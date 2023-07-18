@@ -1,0 +1,91 @@
+---
+title: "HW 0"
+author: "Jun Ryu"
+date: "2023-01-23"
+categories: [homework]
+---
+
+>Write a tutorial explaining how to construct an interesting data visualization of the Palmer Penguins data set.
+
+
+### First, we read the data...
+--- 
+
+```{python}
+import pandas as pd
+url = "https://raw.githubusercontent.com/PhilChodrow/PIC16B/master/datasets/palmer_penguins.csv"
+penguins = pd.read_csv(url)
+```
+
+### Let's see what this data holds!
+---
+
+using `.head()` will display the first 5 rows of the data frame.
+
+```{python}
+penguins.head()
+```
+---
+> Now, suppose we wanted to create a plot that shows the distribution of the body mass based on the penguin's species.
+
+
+### We will import the correct packages for plotting...
+---
+
+`matplotlib` is a plotting library and `seaborn` is a data visualization library based on `matplotlib`. the following code is how we import these packages:
+
+```{python}
+from matplotlib import pyplot as plt 
+import seaborn as sns
+```
+
+### We first create our empty plot using pyplot...
+---
+
+we use `plt.subplots()` as described here: <https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html> <br> <br>
+the method returns two variables "figures" and "axes", which we store under `fig` and `ax`, respectively. our first argument for `plt.subplots()` is 1 because we want to create 1 subplot. we also specify the size of our figure using the `figsize` argument: the first number represents how wide and the second number represents how tall the plot will be.
+
+```{python} 
+fig, ax = plt.subplots(1, figsize = (8,5))
+```
+
+### Then, we use sns.boxplot() to plot "body mass" split along different species...
+---
+
+here, we call our penguins data using `data = penguins` and we set our x-axis data to draw from the "Body Mass (g)" column and y-axis to draw from the "Species" column. we will also set `width = 0.5`, which controls the size of the boxes. lastly, we will store this result under `fig`, which we created earlier with matplotlib. <br><br>
+
+for further documentation: <https://seaborn.pydata.org/generated/seaborn.boxplot.html>
+
+```{python}
+fig = sns.boxplot(data = penguins, x="Body Mass (g)", y="Species", width=0.5)
+
+```
+
+### For funsies, we will also produce the strip plot...
+---
+
+the intention of adding a strip plot is to see the spread of the individual data points, thus we utilize `sns.stripplot()`. we use `color = "black"` to make the dots black and we set `size = 3` to reduce the size of the dots. <br><br>
+
+for further documentation: <https://seaborn.pydata.org/generated/seaborn.stripplot.html>
+
+```{python}
+fig = sns.stripplot(data = penguins, x="Body Mass (g)", y="Species", color = "black", size = 3)
+
+```
+
+### Combine the two plots with a title and a figure caption...
+---
+
+now, for our final step, we combine the previous three code chunks, but we add an extra line using `ax.set_title()` to create a title for our plot. remember that `ax` was formed when we originally created our plot using `matplotlib` and represents our "axes".
+
+```{python}
+
+#| fig-cap: "Figure 1: Body Mass (g) vs. Penguin Species"
+
+fig, ax = plt.subplots(1, figsize = (8,5))
+ax.set_title("Body Mass vs. Species")
+fig = sns.boxplot(data = penguins, x="Body Mass (g)", y="Species", width=0.5)
+fig = sns.stripplot(data = penguins, x="Body Mass (g)", y="Species", color = "black", size = 3)
+```
+
+### There's our visualization!

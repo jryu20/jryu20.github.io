@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: e2a42cf8-d45c-4656-878a-5430374b9bbb
+      url: 'https://quartopub.com/sites/jryu20/blog'
