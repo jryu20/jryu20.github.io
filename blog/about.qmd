@@ -12,10 +12,8 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/jryu20
 
 ---
 
-Hello! Welcome to my PIC16B blog!
-
-Here is where I will showcase all the homeworks and project assignments for the course.
+hello! welcome to my blog!

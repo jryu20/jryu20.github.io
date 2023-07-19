@@ -22,5 +22,11 @@
   },
   "posts/zillow_blog/blog_post.qmd": {
     "blog_post.html": "f06324cb"
+  },
+  "posts/palmer_vis/index.qmd": {
+    "index.html": "19f12417"
+  },
+  "posts/penguin_project/pic16a_final_project-1 copy.ipynb": {
+    "pic16a_final_project-1 copy.html": "1f1e539e"
   }
 }

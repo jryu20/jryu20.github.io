@@ -1,11 +1,11 @@
 ---
-title: "HW 0"
+title: "Palmer Penguins!"
 author: "Jun Ryu"
 date: "2023-01-23"
-categories: [homework]
+categories: [visualizations]
 ---
 
->Write a tutorial explaining how to construct an interesting data visualization of the Palmer Penguins data set.
+>In this post, we will explain how to construct an interesting data visualization of the Palmer Penguins data set.
 
 
 ### First, we read the data...
