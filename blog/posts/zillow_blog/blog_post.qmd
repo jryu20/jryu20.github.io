@@ -1,6 +1,6 @@
 ---
 title: "Visualizing Zillow Homes"
-authors: "Aram, Emily, Jun, Ryan"
+author: "Aram, Emily, Jun, Ryan"
 date: "2023-03-24"
 ---
 

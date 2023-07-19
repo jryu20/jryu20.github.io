@@ -3,8 +3,9 @@
     "listing": "/index.html",
     "items": [
       "/posts/zillow_blog/blog_post.html",
-      "/posts/palmer_vis/index.html",
-      "/posts/penguin_project/palmer_project.html"
+      "/posts/image_class/image_classification copy.html",
+      "/posts/penguin_project/palmer_project.html",
+      "/posts/palmer_vis/index.html"
     ]
   }
 ]
