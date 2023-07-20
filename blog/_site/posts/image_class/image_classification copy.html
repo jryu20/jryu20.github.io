@@ -336,8 +336,10 @@ Found 1000 files belonging to 2 classes.</code></pre>
 </div>
 <p>So, we observe that there are a thousand images of each animal in the training set. Suppose we were to create our baseline machine learning model where the model always guesses the most frequent label. In this case, since neither the dog or the cat takes the majority, without loss of generality, suppose that all images are labeled as dogs. Then, our model would only be <strong>50% accurate</strong>! (Not so great… but we will definitely come up with better models).</p>
 </section>
-<section id="first-simple-model" class="level2">
-<h2 class="anchored" data-anchor-id="first-simple-model"># 2. First Simple Model</h2>
+</section>
+<section id="first-simple-model" class="level1">
+<h1>2. First Simple Model</h1>
+<hr>
 <p>Let’s create our first <code>tf.keras.Sequential</code> model using three <code>Conv2D</code> layers, two <code>MaxPooling2D</code> layers, one <code>Flatten</code> layer, two <code>Dense</code> layers, and one <code>Dropout</code> layer.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> models.Sequential([</span>
@@ -453,7 +455,6 @@ Epoch 20/20
 <p><img src="image_classification copy_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
 <section id="comments-on-model-1" class="level2">
 <h2 class="anchored" data-anchor-id="comments-on-model-1">Comments on Model 1:</h2>
 <ul>
@@ -632,8 +633,10 @@ Epoch 20/20
 <li>Yes, there is still a bit of an overfitting issue as seen in the graph above. Definitely not as bad as <code>model1</code>; however, we want to try to avoid overfitting as much as we can.</li>
 </ul>
 </section>
-<section id="third-model-data-preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="third-model-data-preprocessing"># 4. Third Model (Data Preprocessing)</h2>
+</section>
+<section id="third-model-data-preprocessing" class="level1">
+<h1>4. Third Model (Data Preprocessing)</h1>
+<hr>
 <p>In this section, we will explore data preprocessing, such as scaling the RGB code down into something that’s easier to compute. The following code will create that preprocessor layer in which we can insert into the beginning of our model:</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>(<span class="dv">160</span>, <span class="dv">160</span>, <span class="dv">3</span>))</span>
@@ -757,7 +760,6 @@ Epoch 20/20
 <p><img src="image_classification copy_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
 <section id="comments-on-model-3" class="level2">
 <h2 class="anchored" data-anchor-id="comments-on-model-3">Comments on Model 3:</h2>
 <ul>
@@ -892,8 +894,10 @@ Epoch 20/20
 <li>Again, no overfitting issues seem to be present!</li>
 </ul>
 </section>
-<section id="evaluating-testing-data-using-model-4" class="level2">
-<h2 class="anchored" data-anchor-id="evaluating-testing-data-using-model-4"># 6. Evaluating Testing Data using Model 4</h2>
+</section>
+<section id="evaluating-testing-data-using-model-4" class="level1">
+<h1>6. Evaluating Testing Data using Model 4</h1>
+<hr>
 <p>Now, time to use our most accurate model and actually evaluate it on the testing data:</p>
 <div class="cell" data-outputid="5be6ea29-389f-4638-e0b7-087c88bd7655" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>model4.evaluate(test_dataset, verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -907,7 +911,6 @@ Epoch 20/20
 <p>The accuracy turned out to be 97.4%, which is pretty impressive!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
