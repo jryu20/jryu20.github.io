@@ -210,11 +210,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<section id="overview" class="level1">
+<h1>Overview</h1>
 <blockquote class="blockquote">
-<p>Our objective is to</p>
+<p>An important task in the ecology of the Antarctic is to catalog the many different species of penguins in that area. Determining the species of a penguin often requires a combination of biological expertise and many precise measurements, which can be difficult to obtain.</p>
 </blockquote>
+<blockquote class="blockquote">
+<p>Because there are so many penguins, we can’t take many detailed measurements on all of them! In order to classify the species of penguins in large volume, we need to figure out <em>which</em> measurements are most important for distinguishing penguin species.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>In this post, our objective is to determine a small set of measurements that are highly predictive of a penguin’s species.</strong> In particular, we will perform feature selection and then use a variety of machine learning models to determine the “best” set of three distinct measurements.</p>
+</blockquote>
+<p><br></p>
 <section id="data-import-and-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="data-import-and-cleaning">Data Import and Cleaning</h2>
+<h2 class="anchored" data-anchor-id="data-import-and-cleaning">1. Data Import and Cleaning</h2>
 <div class="cell" data-outputid="dfc442d4-3d2f-47d3-e1ea-93c175446bad" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -367,9 +376,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<p><br></p>
 </section>
 <section id="exploratory-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory Analysis</h2>
+<h2 class="anchored" data-anchor-id="exploratory-analysis">2. Exploratory Analysis</h2>
 <section id="table-1-summary-table" class="level3">
 <h3 class="anchored" data-anchor-id="table-1-summary-table">Table 1: Summary Table</h3>
 <div class="cell" data-outputid="0485751c-f6d3-4521-f909-71ce1e67dd1d" data-execution_count="2">
@@ -632,10 +642,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Figure 4 explanation:</p>
 <p>We chose sex and penguin species because for the qualitative variable, we wanted to see if sex would be able to predict the type of species. The results show that there is virtually no difference in the levels of male and female penguins for all three species, which is most likely attributed to the fact that the scientists wanted to record equal numbers of each species, as to avoid any biases in the data. However, the graph does show us that Adelie penguins make up the majority of the penguins. Gentoo penguins have the second highest number of penguins, and Chinstrap penguins have the fewest.</p>
+<p><br></p>
 </section>
 </section>
 <section id="feature-selection" class="level2">
-<h2 class="anchored" data-anchor-id="feature-selection">Feature Selection</h2>
+<h2 class="anchored" data-anchor-id="feature-selection">3. Feature Selection</h2>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make combos of three groups of features based on our </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># exploratory data analysis</span></span>
@@ -712,9 +723,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The CV scores indicate that models using the combinations of (Island, Culmen Length, and Culmen Depth), (Island, Culmen Length, and Delta 15 N), and (Island, Flipper Length, and Delta 13 C) are the best predictors of penguin species for the unseen test data. The culmen length and depth set scored remarkably high (0.985, with 1 being a perfect predictor of the data), which may be the product of overfitting, so more exploration is needed there. Culmen length and nitrogen levels in the bloodstream and flipper length and carbon levels in the bloodstream were also very high, clocking in CV scores of 0.966 and 0.962, respectively. These could also be attributed to overfitting, but the models below will better indicate whether or not that is the case.</p>
 <p>Overall, the CV scores for all of our combination permutations were pretty high, with the lowest score being 0.795. This suggests that the variables we selected are all generally good performers at predicting the species for the unseen data.</p>
+<p><br></p>
 </section>
 <section id="modeling" class="level2">
-<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<h2 class="anchored" data-anchor-id="modeling">4. Modeling</h2>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funtions used throughout all the models</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1147,17 +1159,18 @@ Name: Species, dtype: object]</code></pre>
 <p>The model was able to predict the penguin species with extreme accuracy, only mislabeling one of the data points and scoring 0.984 on the test data.</p>
 <p>The confusion matrix seems to indicate that the error happened on the second island (Dream), and looking at the decision regions on the second graph above we can see that the blue and green points (Adelie and Chinstrap penguins, respectively) are very close to each other. Comparing the blue points across all three decision region graphs, we can see that the Culmen Lengths and Depths for Adelie penguins are very similar to those of Chinstrap penguins, and they have some points of potential overlap.</p>
 <p>This overlap is most likely what led the model to incorrectly label one of the Chinstrap points as Adelie. Chinstrap and Adelie penguins can have Culmen Lengths and Depths in the same ranges, so mislabeling only one of these points is still impressive.</p>
+<p><br></p>
 </section>
 </section>
 </section>
 <section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p><em>Describe the overall performance of your models, state which combination of model and features (measurements) you recommend. Discuss how the model could be improved if more or different data were available.</em></p>
+<h2 class="anchored" data-anchor-id="discussion">5. Discussion</h2>
 <p>Overall, all three of our models performed well, with scores of 0.983, 0.952, and 0.919 for multinomial logistic regression, random forests, and K nearest neighbors, respectively. The highest accuracy score was seen in the logistic regression model that used Island, Culmen Length, and Culmen Depth, so we recommend those as the ideal model and features for predicting penguin species.</p>
 <p>Increasing the number of samples in the data would reduce the effect that outliers have on the data and lead to a more reliable prediction overall. It would also allow us to see if our logistic regression model really does predict species with a 98% accuracy rate and make sure that it was not due to a small sample size.</p>
 <p>More data on Gentoo and Chinstrap penguins would also be helpful, since the majority of the current data set is Adelie penguins. They could also expand to more diverse islands, since Torgersen Island only housed Adelie penguins and not Gentoos or Chinstraps.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -9,7 +9,7 @@
 <meta name="author" content="Jun Ryu">
 <meta name="dcterms.date" content="2023-02-28">
 
-<title>Jun Ryu - Fake News Classification using TensorFlow</title>
+<title>Jun Ryu - Fake News Classification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -171,9 +171,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Fake News Classification using TensorFlow</h1>
+      <h1 class="title">Fake News Classification</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">ML</div>
+                <div class="quarto-category">TensorFlow</div>
               </div>
                   </div>
   </div>
@@ -213,274 +214,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Rampant misinformation —often called “fake news”— is one of the defining features of contemporary democratic life. In this post, we will develop and assess a fake news classifier using Tensorflow.</p>
 </blockquote>
 <section id="acquiring-training-data" class="level1">
-<h1>Acquiring Training Data</h1>
+<h1>1. Acquiring Training Data</h1>
+<p>First, we import all the necessary packages and read in the data. We will also import stopwords (words that are usually considered to be uninformative, such as “the,” “and,” or “but”), which we will use later.</p>
 <div class="cell" data-outputid="b79dd745-f41d-4434-d73c-120029fc3881" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> losses</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># for embedding viz</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>pio.templates.default <span class="op">=</span> <span class="st">"plotly_white"</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>train_url <span class="op">=</span> <span class="st">"https://github.com/PhilChodrow/PIC16b/blob/master/datasets/fake_news_train.csv?raw=true"</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>train_df <span class="op">=</span> pd.read_csv(train_url)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>stop <span class="op">=</span> stopwords.words(<span class="st">'english'</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>train_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> losses</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># for embedding visualization</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pio.templates.default <span class="op">=</span> <span class="st">"plotly_white"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>train_url <span class="op">=</span> <span class="st">"https://github.com/PhilChodrow/PIC16b/blob/master/datasets/fake_news_train.csv?raw=true"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>train_df <span class="op">=</span> pd.read_csv(train_url)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>stop <span class="op">=</span> stopwords.words(<span class="st">'english'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>train_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>[nltk_data] Downloading package stopwords to /root/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2023-07-20 12:57:10.059622: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 
-
-
-  <div id="df-fca50167-f1e9-4699-a431-acb78438d8ce">
-    <div class="colab-df-container">
-      <div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>title</th>
-      <th>text</th>
-      <th>fake</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>17366</td>
-      <td>Merkel: Strong result for Austria's FPO 'big c...</td>
-      <td>German Chancellor Angela Merkel said on Monday...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>5634</td>
-      <td>Trump says Pence will lead voter fraud panel</td>
-      <td>WEST PALM BEACH, Fla.President Donald Trump sa...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>17487</td>
-      <td>JUST IN: SUSPECTED LEAKER and “Close Confidant...</td>
-      <td>On December 5, 2017, Circa s Sara Carter warne...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>12217</td>
-      <td>Thyssenkrupp has offered help to Argentina ove...</td>
-      <td>Germany s Thyssenkrupp, has offered assistance...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5535</td>
-      <td>Trump say appeals court decision on travel ban...</td>
-      <td>President Donald Trump on Thursday called the ...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>22444</th>
-      <td>10709</td>
-      <td>ALARMING: NSA Refuses to Release Clinton-Lynch...</td>
-      <td>If Clinton and Lynch just talked about grandki...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>22445</th>
-      <td>8731</td>
-      <td>Can Pence's vow not to sling mud survive a Tru...</td>
-      <td>() - In 1990, during a close and bitter congre...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>22446</th>
-      <td>4733</td>
-      <td>Watch Trump Campaign Try To Spin Their Way Ou...</td>
-      <td>A new ad by the Hillary Clinton SuperPac Prior...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>22447</th>
-      <td>3993</td>
-      <td>Trump celebrates first 100 days as president, ...</td>
-      <td>HARRISBURG, Pa.U.S. President Donald Trump hit...</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>22448</th>
-      <td>12896</td>
-      <td>TRUMP SUPPORTERS REACT TO DEBATE: “Clinton New...</td>
-      <td>MELBOURNE, FL is a town with a population of 7...</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-<p>22449 rows × 4 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-fca50167-f1e9-4699-a431-acb78438d8ce')" title="Convert this dataframe to an interactive table." style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"></path>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
-  </svg>
-      </button>
-
-
-
-    <div id="df-d01b270b-c229-4da2-96d3-ecf1fb59901c">
-      <button class="colab-df-quickchart" onclick="quickchart('df-d01b270b-c229-4da2-96d3-ecf1fb59901c')" title="Suggest charts." style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-d01b270b-c229-4da2-96d3-ecf1fb59901c button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-fca50167-f1e9-4699-a431-acb78438d8ce button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-fca50167-f1e9-4699-a431-acb78438d8ce');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
+KeyboardInterrupt
+</code></pre>
 </div>
 </div>
 </section>
