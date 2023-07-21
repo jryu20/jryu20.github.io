@@ -131,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -203,15 +203,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-import-and-cleaning" id="toc-data-import-and-cleaning" class="nav-link" data-scroll-target="#data-import-and-cleaning">1. Data Import and Cleaning</a></li>
+  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis">2. Exploratory Analysis</a>
+  <ul class="collapse">
+  <li><a href="#table-1-summary-table" id="toc-table-1-summary-table" class="nav-link" data-scroll-target="#table-1-summary-table">Table 1: Summary Table</a></li>
+  <li><a href="#figure-1" id="toc-figure-1" class="nav-link" data-scroll-target="#figure-1">Figure 1</a></li>
+  <li><a href="#figure-2" id="toc-figure-2" class="nav-link" data-scroll-target="#figure-2">Figure 2</a></li>
+  <li><a href="#figure-3" id="toc-figure-3" class="nav-link" data-scroll-target="#figure-3">Figure 3</a></li>
+  <li><a href="#figure-4" id="toc-figure-4" class="nav-link" data-scroll-target="#figure-4">Figure 4</a></li>
+  </ul></li>
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">3. Feature Selection</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">4. Modeling</a>
+  <ul class="collapse">
+  <li><a href="#model-1-k-nearest-neighbors" id="toc-model-1-k-nearest-neighbors" class="nav-link" data-scroll-target="#model-1-k-nearest-neighbors">Model 1 : K Nearest Neighbors</a></li>
+  <li><a href="#model-2-random-forests" id="toc-model-2-random-forests" class="nav-link" data-scroll-target="#model-2-random-forests">Model 2 : Random Forests</a></li>
+  <li><a href="#model-3-multinomial-logistic-regression" id="toc-model-3-multinomial-logistic-regression" class="nav-link" data-scroll-target="#model-3-multinomial-logistic-regression">Model 3: Multinomial Logistic Regression</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">5. Discussion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <blockquote class="blockquote">
 <p>An important task in the ecology of the Antarctic is to catalog the many different species of penguins in that area. Determining the species of a penguin often requires a combination of biological expertise and many precise measurements, which can be difficult to obtain.</p>
 </blockquote>
@@ -222,6 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>In this post, our objective is to determine a small set of measurements that are highly predictive of a penguin’s species.</strong> In particular, we will perform feature selection and then use a variety of machine learning models to determine the “best” set of three distinct measurements.</p>
 </blockquote>
 <p><br></p>
+</section>
 <section id="data-import-and-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="data-import-and-cleaning">1. Data Import and Cleaning</h2>
 <div class="cell" data-outputid="dfc442d4-3d2f-47d3-e1ea-93c175446bad" data-execution_count="1">
@@ -1170,7 +1196,6 @@ Name: Species, dtype: object]</code></pre>
 <p>More data on Gentoo and Chinstrap penguins would also be helpful, since the majority of the current data set is Adelie penguins. They could also expand to more diverse islands, since Torgersen Island only housed Adelie penguins and not Gentoos or Chinstraps.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

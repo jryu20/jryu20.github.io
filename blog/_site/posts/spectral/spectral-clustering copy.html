@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -200,15 +200,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a">Part A</a></li>
+  <li><a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b">Part B</a></li>
+  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c">Part C</a></li>
+  <li><a href="#part-d" id="toc-part-d" class="nav-link" data-scroll-target="#part-d">Part D</a></li>
+  <li><a href="#part-e" id="toc-part-e" class="nav-link" data-scroll-target="#part-e">Part E</a></li>
+  <li><a href="#part-f" id="toc-part-f" class="nav-link" data-scroll-target="#part-f">Part F</a></li>
+  <li><a href="#part-g" id="toc-part-g" class="nav-link" data-scroll-target="#part-g">Part G</a></li>
+  <li><a href="#part-h" id="toc-part-h" class="nav-link" data-scroll-target="#part-h">Part H</a></li>
+  <li><a href="#part-i" id="toc-part-i" class="nav-link" data-scroll-target="#part-i">Part I</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="preface" class="level1">
-<h1>Preface</h1>
+<section id="preface" class="level2">
+<h2 class="anchored" data-anchor-id="preface">Preface</h2>
 <blockquote class="blockquote">
 <p>In this post, we will explore a simple version of the <em>spectral clustering</em> algorithm for clustering data points. Spectral clustering is an important tool for identifying meaningful parts of data sets with complex structure.</p>
 </blockquote>
@@ -220,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Boldface lowercase letters like <span class="math inline">\(\mathbf{v}\)</span> refer to vectors (1d arrays of numbers).</li>
 <li><span class="math inline">\(\mathbf{A}\mathbf{B}\)</span> refers to a matrix-matrix product (<code>A@B</code>). <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span> refers to a matrix-vector product (<code>A@v</code>).</li>
 </ul>
+</section>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -255,8 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="spectral-clustering copy_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<section id="harder-clustering" class="level3">
-<h3 class="anchored" data-anchor-id="harder-clustering">Harder Clustering</h3>
+<section id="harder-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="harder-clustering">Harder Clustering</h4>
 <p>That was all well and good, but what if our data is “shaped weird”?</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
@@ -796,7 +818,6 @@ z_i =
 <p>Through experimentation, we find that an <code>epsilon</code> value of <code>0.4</code> is able to accurately cluster this data!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

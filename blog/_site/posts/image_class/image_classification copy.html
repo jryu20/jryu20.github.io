@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -199,7 +199,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#first-simple-model" id="toc-first-simple-model" class="nav-link" data-scroll-target="#first-simple-model">2. First Simple Model</a>
+  <ul class="collapse">
+  <li><a href="#comments-on-model-1" id="toc-comments-on-model-1" class="nav-link" data-scroll-target="#comments-on-model-1">Comments on Model 1:</a></li>
+  </ul></li>
+  <li><a href="#second-model-data-augmentation-layers" id="toc-second-model-data-augmentation-layers" class="nav-link" data-scroll-target="#second-model-data-augmentation-layers">3. Second Model (Data Augmentation Layers)</a>
+  <ul class="collapse">
+  <li><a href="#comments-on-model-2" id="toc-comments-on-model-2" class="nav-link" data-scroll-target="#comments-on-model-2">Comments on Model 2:</a></li>
+  </ul></li>
+  <li><a href="#third-model-data-preprocessing" id="toc-third-model-data-preprocessing" class="nav-link" data-scroll-target="#third-model-data-preprocessing">4. Third Model (Data Preprocessing)</a>
+  <ul class="collapse">
+  <li><a href="#comments-on-model-3" id="toc-comments-on-model-3" class="nav-link" data-scroll-target="#comments-on-model-3">Comments on Model 3:</a></li>
+  </ul></li>
+  <li><a href="#last-model-transfer-learning" id="toc-last-model-transfer-learning" class="nav-link" data-scroll-target="#last-model-transfer-learning">5. Last Model (Transfer Learning)</a>
+  <ul class="collapse">
+  <li><a href="#comments-on-model-4" id="toc-comments-on-model-4" class="nav-link" data-scroll-target="#comments-on-model-4">Comments on Model 4:</a></li>
+  </ul></li>
+  <li><a href="#evaluating-testing-data-using-best-model" id="toc-evaluating-testing-data-using-best-model" class="nav-link" data-scroll-target="#evaluating-testing-data-using-best-model">6. Evaluating Testing Data using Best Model</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -210,10 +235,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this blog post, we attempt to train a machine learning algorithm to distinguish the images of cats and dogs. We will go through four different models, and observe which one performs the best!</p>
 </blockquote>
 <section id="introduction" class="level1">
-<h1>1: Introduction</h1>
+<h1>1. Introduction</h1>
 <hr>
-<section id="loading-the-correct-packages" class="level2">
-<h2 class="anchored" data-anchor-id="loading-the-correct-packages">Loading the correct packages…</h2>
+<section id="loading-the-correct-packages" class="level4">
+<h4 class="anchored" data-anchor-id="loading-the-correct-packages">Loading the correct packages…</h4>
 <p>We will use <code>tensorflow.keras</code> to build our ML algorithm! We will grab the appropriate modules under <code>tensorflow.keras</code> and also grab the usual <code>numpy</code> and <code>matplotlib.pyplot</code> for visualizations.</p>
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -229,8 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="loading-the-correct-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-the-correct-data">Loading the correct data…</h2>
+<section id="loading-the-correct-data" class="level4">
+<h4 class="anchored" data-anchor-id="loading-the-correct-data">Loading the correct data…</h4>
 <p>This sample data, which contains labeled images of dogs and cats, is provided by the TensorFlow team. We run the following code to extract the data and create training, validation, and testing datasets.</p>
 <div class="cell" data-outputid="cd8a95be-9e70-47dc-f1ab-910842b9f8a1" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># location of data</span></span>
@@ -281,8 +306,8 @@ Found 1000 files belonging to 2 classes.</code></pre>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>test_dataset <span class="op">=</span> test_dataset.prefetch(buffer_size<span class="op">=</span>AUTOTUNE) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="lets-visualize-what-this-data-holds" class="level2">
-<h2 class="anchored" data-anchor-id="lets-visualize-what-this-data-holds">Let’s visualize what this data holds!</h2>
+<section id="lets-visualize-what-this-data-holds" class="level4">
+<h4 class="anchored" data-anchor-id="lets-visualize-what-this-data-holds">Let’s visualize what this data holds!</h4>
 <p>Here, we create a function named <code>visualize_data</code> that will take in our training dataset as its input parameter. We use <code>dataset.take(1)</code> in our function in order to access the first batch (32 images with labels) from the input dataset. As we iterate through this batch, we put the first 3 cat images into the first row, and we put the first 3 dog images into the second row.</p>
 <div class="cell" data-outputid="1999e518-c373-4441-be47-35b288f72323" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_data(dataset):</span>
@@ -316,8 +341,8 @@ Found 1000 files belonging to 2 classes.</code></pre>
 </div>
 </div>
 </section>
-<section id="analyzing-our-labels" class="level2">
-<h2 class="anchored" data-anchor-id="analyzing-our-labels">Analyzing our labels</h2>
+<section id="analyzing-our-labels" class="level4">
+<h4 class="anchored" data-anchor-id="analyzing-our-labels">Analyzing our labels</h4>
 <p>In the following code, the first line creates an iterator named <code>labels_iterator</code> that contains labels for the training dataset. We will iterate through <code>labels_iterator</code> to see how many cat and dog images are in the training data, respectively.</p>
 <div class="cell" data-outputid="b376b1c5-15de-44a1-a3dc-818fc5ce9697" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>labels_iterator <span class="op">=</span> train_dataset.unbatch().<span class="bu">map</span>(<span class="kw">lambda</span> image, label: label).as_numpy_iterator()</span>
@@ -895,8 +920,8 @@ Epoch 20/20
 </ul>
 </section>
 </section>
-<section id="evaluating-testing-data-using-model-4" class="level1">
-<h1>6. Evaluating Testing Data using Model 4</h1>
+<section id="evaluating-testing-data-using-best-model" class="level1">
+<h1>6. Evaluating Testing Data using Best Model</h1>
 <hr>
 <p>Now, time to use our most accurate model and actually evaluate it on the testing data:</p>
 <div class="cell" data-outputid="5be6ea29-389f-4638-e0b7-087c88bd7655" data-execution_count="26">
