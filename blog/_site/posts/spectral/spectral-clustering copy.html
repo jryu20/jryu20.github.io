@@ -467,9 +467,19 @@ z_i =
 <li>Then, we will check the equation above that relates the matrix product to the normcut objective, by computing each side separately and checking that they are equal.</li>
 <li>We will also check the identity <span class="math inline">\(\mathbf{z}^T\mathbf{D}\mathbb{1} = 0\)</span>, where <span class="math inline">\(\mathbb{1}\)</span> is the vector of <code>n</code> ones (i.e.&nbsp;<code>np.ones(n)</code>). This identity effectively says that <span class="math inline">\(\mathbf{z}\)</span> should contain roughly as many positive as negative entries.</li>
 </ol>
-<section id="note" class="level4">
-<h4 class="anchored" data-anchor-id="note">Note</h4>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The equation above is exact, but computer arithmetic is not! <code>np.isclose(a,b)</code> is a good way to check if <code>a</code> is “close” to <code>b</code>, in the sense that they differ by less than the smallest amount that the computer is (by default) able to quantify.</p>
+</div>
+</div>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transform(A, y):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -527,7 +537,6 @@ z_i =
 <pre><code>True</code></pre>
 </div>
 </div>
-</section>
 </section>
 <section id="part-d" class="level2">
 <h2 class="anchored" data-anchor-id="part-d">Part D</h2>
@@ -607,7 +616,19 @@ z_i =
        -2.09440454e-03, -1.33509304e-03, -1.49829560e-03, -1.33646032e-03])</code></pre>
 </div>
 </div>
-<p><strong>Note</strong>: there’s a cheat going on here! We originally specified that the entries of <span class="math inline">\(\mathbf{z}\)</span> should take only one of two values (back in Part C), whereas now we’re allowing the entries to have <em>any</em> value! This means that we are no longer exactly optimizing the normcut objective, but rather an approximation. This cheat is so common that deserves a name: it is called the <em>continuous relaxation</em> of the normcut problem.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There’s a cheat going on here! We originally specified that the entries of <span class="math inline">\(\mathbf{z}\)</span> should take only one of two values (back in Part C), whereas now we’re allowing the entries to have <em>any</em> value! This means that we are no longer exactly optimizing the normcut objective, but rather an approximation. This cheat is so common that deserves a name: it is called the <em>continuous relaxation</em> of the normcut problem.</p>
+</div>
+</div>
 </section>
 <section id="part-e" class="level2">
 <h2 class="anchored" data-anchor-id="part-e">Part E</h2>
