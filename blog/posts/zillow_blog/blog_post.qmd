@@ -1,13 +1,13 @@
 ---
 title: "Visualizing Zillow Homes"
+image: house.jpeg
 format:
   html:
     toc: true
 author: "Aram, Emily, Jun, Ryan"
 date: "2023-03-24"
+categories: [python, project, html]
 ---
-
-Link to GitHub Repo: <a href="https://github.com/Aram-1999/PIC16B_Group_Project"> Git Repo </a>
 
 ## Overview
 The goal of this project was for users to understand the distribution of homes for sale on Zillow. Typically, prospective home buyers and sellers go to Zillow to find similar homes in order to gain an understanding of a given house's value. Our project would give users a better understanding as it would explain the entire housing market for a given city. This includes geographic visualizations, histograms and scatterplots, and a predictive model that works with user data. We decided to limit our focus to the top ten major cities in the United States: Los Angeles, San Antonio, Philadelphia, San Diego, Houston, Dallas, Phoenix, New York, Chicago, and San Jose. Using the API, we were able to obtain information on 1500 homes for each city with 30 features.
@@ -17,6 +17,8 @@ Our website has the following components: advanced machine learning, dynamic fea
 ![](flowchart.PNG)
 
 There are 5 pages to our website. First is an interactive map for users to select a city of interest. Second is geographic data visualization consisting of an interactive scatterplot, an interactive heatmap, and customizable filters for the user to understand the data. The next page is the data collection and prediction page. The user can enter housing information like number of bedrooms, year made, etc. and see our machine learning model's predicted sale price. The fourth page is the data visualization, where users can compare their entered data to the distribution of homes in the selected city. We provide histograms and scatterplots that can be adjusted to the user's preference. Finally, we also allow the user to view the raw data on the last page which includes variables we did not use for model building. 
+
+Link to GitHub Repo: <a href="https://github.com/Aram-1999/PIC16B_Group_Project"> Git Repo </a>
 
 ## Technical Components
 

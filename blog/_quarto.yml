@@ -12,7 +12,9 @@ website:
         href: https://www.instagram.com/r.yujunhee
 format:
   html:
-    theme: yeti
+    theme: 
+      light: flatly
+      dark: darkly
     css: styles.css
 
 

@@ -1,11 +1,12 @@
 ---
-title: "Palmer Penguins!"
+title: "Penguins!"
+image: "https://upload.wikimedia.org/wikipedia/commons/0/00/Brown_Bluff-2016-Tabarin_Peninsula%E2%80%93Gentoo_penguin_%28Pygoscelis_papua%29_03.jpg"
 author: "Jun Ryu"
 date: "2022-01-23"
-categories: [visualizations]
+categories: [python, visualizations]
 ---
 
->In this post, we will explain how to construct an interesting data visualization of the Palmer Penguins data set.
+>In this blog post, we will explain how to construct an interesting data visualization of the Palmer Penguins data set.
 
 
 ### First, we read the data...
