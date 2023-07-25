@@ -11,7 +11,7 @@
     "href": "posts/fakenews/fakenews_classification_copy2.html",
     "title": "Fake News Classification",
     "section": "",
-    "text": "Rampant misinformation — often called “fake news” — is one of the defining features of contemporary democratic life. In this post, we will develop and assess a fake news classifier using Tensorflow."
+    "text": "Rampant misinformation — often called “fake news” — is one of the defining features of contemporary democratic life.\nIn this post, we will develop and assess a fake news classifier using Tensorflow."
   },
   {
     "objectID": "posts/fakenews/fakenews_classification_copy2.html#first-model",
