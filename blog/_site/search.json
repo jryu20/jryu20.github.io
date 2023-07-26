@@ -277,7 +277,7 @@
     "href": "posts/predator-prey/modeling.html",
     "title": "Predator-Prey Dynamics",
     "section": "",
-    "text": "In this project, we explore a predator-prey relationship between ducks (predator), fish (prey), and a common food source (namely, an aquatic plant). In doing so, we split the model into 2 different phases: the first phase is with a constant population of the shared food source and the second is without.\n\nAttached below are the paper and the presentation that summarize our findings."
+    "text": "In this project, we explore a predator-prey relationship between ducks (predator), fish (prey), and a common food source (namely, an aquatic plant). In doing so, we split the model into 2 different phases: the first phase is with a constant population of the shared food source and the second is without.\n\nAttached below is the presentation that summarizes our findings."
   },
   {
     "objectID": "index.html",
