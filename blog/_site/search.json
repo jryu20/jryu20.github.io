@@ -282,9 +282,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Blog Posts!",
+    "title": "About",
     "section": "",
-    "text": "Spectral Clustering. What is it?\n\n\n\n\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\n\n\n\n\nJun 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nVisualizing Zillow Homes\n\n\n\n\n\n\n\npython\n\n\nproject\n\n\nhtml\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2023\n\n\nAram, Emily, Jun, Ryan\n\n\n\n\n\n\n  \n\n\n\n\nFake News Classification\n\n\n\n\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nAre You a Dog or Cat Person?\n\n\n\n\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\n\n\n\n\nFeb 28, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nFlask Tutorial\n\n\n\n\n\n\n\npython\n\n\nsqlite\n\n\nhtml\n\n\n\n\n\n\n\n\n\n\n\nFeb 3, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nWeb Scraping with Scrapy\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 26, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nPlotly: Pure Perfection\n\n\n\n\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 17, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nClimate Data Visualization\n\n\n\n\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 10, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nPredator-Prey Dynamics\n\n\n\n\n\n\n\nmath\n\n\nmodeling\n\n\nproject\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2022\n\n\nJun, Kevin, Yuki\n\n\n\n\n\n\n  \n\n\n\n\nAdélie! Gentoo! Chinstrap!\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\nproject\n\n\nML\n\n\n\n\n\n\n\n\n\n\n\nMar 10, 2022\n\n\nJeremy, Jun, Meichen\n\n\n\n\n\n\n  \n\n\n\n\nPalmer Penguins\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 23, 2022\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
+    "text": "hello! welcome to my blog!"
   },
   {
     "objectID": "about.html",
@@ -313,5 +313,12 @@
     "title": "Plotly: Pure Perfection",
     "section": "# 2. Maps",
     "text": "# 2. Maps\nIn the previous post, we mainly worked with px.scatter_mapbox. Let’s see what other maps there are!\npx.density_mapbox: Mapbox Density Heatmap"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nSpectral Clustering. What is it?\n\n\n\n\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\n\n\n\n\nJun 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nVisualizing Zillow Homes\n\n\n\n\n\n\n\npython\n\n\nproject\n\n\nhtml\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2023\n\n\nAram, Emily, Jun, Ryan\n\n\n\n\n\n\n  \n\n\n\n\nFake News Classification\n\n\n\n\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nAre You a Dog or Cat Person?\n\n\n\n\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\n\n\n\n\nFeb 28, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nFlask Tutorial\n\n\n\n\n\n\n\npython\n\n\nsqlite\n\n\nhtml\n\n\n\n\n\n\n\n\n\n\n\nFeb 3, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nWeb Scraping with Scrapy\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 26, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nPlotly: Pure Perfection\n\n\n\n\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 17, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nClimate Data Visualization\n\n\n\n\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 10, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n  \n\n\n\n\nPredator-Prey Dynamics\n\n\n\n\n\n\n\nmath\n\n\nmodeling\n\n\nproject\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2022\n\n\nJun, Kevin, Yuki\n\n\n\n\n\n\n  \n\n\n\n\nAdélie! Gentoo! Chinstrap!\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\nproject\n\n\nML\n\n\n\n\n\n\n\n\n\n\n\nMar 10, 2022\n\n\nJeremy, Jun, Meichen\n\n\n\n\n\n\n  \n\n\n\n\nPalmer Penguins\n\n\n\n\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\n\n\n\n\nJan 23, 2022\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
   }
 ]

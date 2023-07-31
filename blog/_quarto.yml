@@ -5,7 +5,7 @@ website:
   title: "Jun Ryu"
   navbar:
     right:
-      - about.qmd
+      - blog.qmd
       - icon: github
         href: https://github.com/jryu20
       - icon: instagram

@@ -64,5 +64,8 @@
   },
   "posts/sql2/plotly.ipynb": {
     "plotly.html": "413b1383"
+  },
+  "blog.qmd": {
+    "blog.html": "7057c59d"
   }
 }
