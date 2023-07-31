@@ -17,5 +17,8 @@ format:
       dark: darkly
     css: styles.css
 
+comments:
+  utterances:
+    repo: quarto-dev/quarto-docs
 
 
