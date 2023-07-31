@@ -5,9 +5,9 @@ image: bare bears.jpg
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/r.yujunhee
     - icon: linkedin
       text: LinkedIn
       href: https://linkedin.com
@@ -17,4 +17,6 @@ about:
 
 ---
 
-hello! welcome to my blog!
+Welcome! I'm Jun Ryu (he/him), a fourth-year undergraduate student studying Applied Mathematics and Statistics/Data Science at the University of California, Los Angeles (UCLA). 
+
+Here, you will find many of my interests:
