@@ -18,7 +18,7 @@ format:
     css: styles.css
 
 comments:
-  utterances:
-    repo: quarto-dev/quarto-docs
+  giscus:
+    repo: jryu20/quarto
 
 

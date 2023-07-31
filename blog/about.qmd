@@ -1,5 +1,6 @@
 ---
 title: "About"
+comments: false
 image: bare bears.jpg
 about:
   template: jolla

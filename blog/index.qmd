@@ -1,5 +1,6 @@
 ---
 title: "Blog Posts!"
+comments: false
 listing:
   contents: posts
   sort: "date desc"
