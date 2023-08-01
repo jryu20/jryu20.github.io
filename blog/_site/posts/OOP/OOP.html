@@ -442,15 +442,15 @@ nums = 2 7 7 2 3 5 1</code></pre>
 </section>
 <section id="b-addition-and-subtraction" class="level2">
 <h2 class="anchored" data-anchor-id="b-addition-and-subtraction">b) Addition and Subtraction</h2>
-<p>Our end goal in this section is to come up with two functions: <code>add(x,y)</code> and <code>subtract(x,y)</code> for 2 <code>pqnumber</code> objects <code>x</code> and <code>y</code>. To do this, let’s write two helper functions:</p>
+<p>Our end goal in this section is to come up with two functions: <code>add(x,y)</code> and <code>subtract(x,y)</code> for <span class="math inline">\(2\)</span> <code>pqnumber</code> objects <code>x</code> and <code>y</code>. To do this, let’s write two helper functions:</p>
 <section id="carry_over" class="level4">
 <h4 class="anchored" data-anchor-id="carry_over">1. <strong><code>carry_over()</code></strong></h4>
 <p><strong>Algorithm:</strong></p>
 <ol type="1">
 <li><p>We iterate through each element of a numeric vector.</p></li>
-<li><p>We keep the remainder (when divided by 10) in its element spot.</p></li>
-<li><p>We locate the existence of a carry by using %/% and seeing if it is not equal to 0.</p></li>
-<li><p>If it’s not equal to 0, we push the carry value onto the next element.</p></li>
+<li><p>We keep the remainder (when divided by <span class="math inline">\(10\)</span>) in its element spot.</p></li>
+<li><p>We locate the existence of a carry by using <code>%/%</code> and seeing if it is not equal to <span class="math inline">\(0\)</span>.</p></li>
+<li><p>If it’s not equal to <span class="math inline">\(0\)</span>, we push the carry value onto the next element.</p></li>
 <li><p>We add the carried value to the next element and repeat the process from step 2.</p></li>
 </ol>
 <div class="cell">
@@ -496,11 +496,11 @@ nums = 2 7 7 2 3 5 1</code></pre>
 <h4 class="anchored" data-anchor-id="abs_gtr">2. <strong><code>abs_gtr()</code></strong></h4>
 <p><strong>Algorithm:</strong></p>
 <ol type="1">
-<li><p>First, we appropriately pad both numbers by adding extra 0s at the end to either x or y if one has more digits after the decimal point.</p></li>
-<li><p>We do a similar padding by adding extra 0s at the front to either x or y if one has more digits before the decimal point.</p></li>
-<li><p>Now, we should have x and y have equal lengths in their nums vectors.</p></li>
-<li><p>We reverse the nums vectors for both x and y and compare the digits starting from the first digit.</p></li>
-<li><p>By comparing the first digit, if x’s first digit is greater, return TRUE, if y’s is, then return FALSE.</p></li>
+<li><p>First, we appropriately pad both numbers by adding extra <span class="math inline">\(0\)</span>s at the end to either <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> if one has more digits after the decimal point.</p></li>
+<li><p>We do a similar padding by adding extra <span class="math inline">\(0\)</span>s at the front to either <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> if one has more digits before the decimal point.</p></li>
+<li><p>Now, we should have <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have equal lengths in their <code>nums</code> vectors.</p></li>
+<li><p>We reverse the <code>nums</code> vectors for both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and compare the digits starting from the first digit.</p></li>
+<li><p>By comparing the first digit, if <span class="math inline">\(x\)</span>’s first digit is greater, return <code>TRUE</code>, if <span class="math inline">\(y\)</span>’s is, then return <code>FALSE</code>.</p></li>
 <li><p>If the digits are the same, then we move on to the next digit and do the comparison again.</p></li>
 </ol>
 <div class="cell">
@@ -570,19 +570,19 @@ nums = 2 7 7 2 3 5 1</code></pre>
 </div>
 </div>
 <hr>
-<p>We are now ready to write the two main functions:</p>
+<p>With the above helper functions, we are now ready to write the two main functions:</p>
 </section>
 <section id="add" class="level4">
 <h4 class="anchored" data-anchor-id="add"><strong><code>add()</code></strong></h4>
 <p><strong>Algorithm:</strong></p>
 <ol type="1">
-<li><p>We first initialize a vector z of length max_p + max_q + 1, which represents the maximum number of digits we can possibly obtain by adding two numbers (considering the case of a carry-over).</p></li>
-<li><p>Now, we split it into casework: first case is when x and y have equal signs, second case is when x and y have unequal signs.</p></li>
+<li><p>We first initialize a vector <span class="math inline">\(z\)</span> of length <span class="math inline">\(\text{max\_p} + \text{max\_q} + 1\)</span>, which represents the maximum number of digits we can possibly obtain by adding two numbers (considering the case of a carry-over).</p></li>
+<li><p>Now, we split it into casework: first case is when <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have equal signs, second case is when <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have unequal signs.</p></li>
 <li><p>When the signs are equal, we simply add the two by aligning positions, then call the carry-over helper function to carry over digits if necessary.</p></li>
 <li><p>When the signs are unequal, we first check which number has a greater absolute magnitude.</p></li>
-<li><p>Then, we grab the sign of the number that has a greater absolute magnitude and we change the signs for the nums vector of the other number.</p></li>
+<li><p>Then, we grab the sign of the number that has a greater absolute magnitude and we change the signs for the <code>nums</code> vector of the other number.</p></li>
 <li><p>We proceed with the same addition process (as in step 3) and then use the carry-over function.</p></li>
-<li><p>We return the sum as a pqnumber object.</p></li>
+<li><p>We return the sum as a <code>pqnumber</code> object.</p></li>
 </ol>
 <div class="cell">
 <details>
@@ -663,8 +663,8 @@ nums = 6 5 0 2 5 6</code></pre>
 <h4 class="anchored" data-anchor-id="subtract"><strong><code>subtract()</code></strong></h4>
 <p><strong>Algorithm:</strong></p>
 <ol type="1">
-<li><p>We simply change the sign of y by multiplying its sign by -1.</p></li>
-<li><p>Then, we do add(x,y) since x + (-y) is equal to x - y (or subtract(x,y)).</p></li>
+<li><p>We simply change the sign of <span class="math inline">\(y\)</span> by multiplying its sign by <span class="math inline">\(-1\)</span>.</p></li>
+<li><p>Then, we do <code>add(x,y)</code> since <span class="math inline">\(x + (-y)\)</span> is equal to <span class="math inline">\(x - y\)</span> (or <code>subtract(x,y)</code>).</p></li>
 </ol>
 <div class="cell">
 <details>
@@ -710,41 +710,70 @@ q = 3
 nums = 4 8 6 2 5 6</code></pre>
 </div>
 </div>
+<hr>
+<p>Perhaps now we can write a different arithmetic function…?</p>
 </section>
 </section>
 <section id="c-multiplication" class="level2">
 <h2 class="anchored" data-anchor-id="c-multiplication">c) Multiplication</h2>
+<p>We will try to define the product of two <code>pqnumber</code> objects.</p>
 <section id="multiply" class="level4">
 <h4 class="anchored" data-anchor-id="multiply"><strong><code>multiply()</code></strong></h4>
 <p><strong>Algorithm:</strong></p>
 <ol type="1">
-<li><p>We first initialize a vector z of length x$p + x$q + y$p + y$q + 1, which represents the maximum number of digits we can possibly obtain by multiplying two numbers (considering the case of a carry-over).</p></li>
-<li><p>Now, we iterate through each element of nums of y and we multiply it with the entire nums vector of x and place it in the appropriate indices of z.</p></li>
+<li><p>We first initialize a vector <span class="math inline">\(z\)</span> of length <span class="math inline">\(x\$p + x\$q + y\$p + y\$q + 1\)</span>, which represents the maximum number of digits we can possibly obtain by multiplying two numbers (considering the case of a carry-over).</p></li>
+<li><p>Now, we iterate through each element of <code>nums</code> of <span class="math inline">\(y\)</span> and we multiply it with the entire <code>nums</code> vector of <span class="math inline">\(x\)</span> and place it in the appropriate indices of <span class="math inline">\(z\)</span>.</p></li>
 <li><p>We use carry-over function to clear any carries.</p></li>
-<li><p>We determine the sign of the product by multiplying the sign of x with the sign of y.</p></li>
-<li><p>We return the product as a pqnumber object.</p></li>
+<li><p>We determine the sign of the product by multiplying the sign of <span class="math inline">\(x\)</span> with the sign of <span class="math inline">\(y\)</span>.</p></li>
+<li><p>We return the product as a <code>pqnumber</code> object.</p></li>
 </ol>
+<div class="cell">
+<details>
+<summary>Show the Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>multiply <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This function multiplies two pqnumbers</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args:</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x: a pqnumber</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y: a pqnumber</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return:</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the product of x and y, returned in a pqnumber format</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> x<span class="sc">$</span>p <span class="sc">+</span> x<span class="sc">$</span>q <span class="sc">+</span> y<span class="sc">$</span>p <span class="sc">+</span> y<span class="sc">$</span>q <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rep</span>(0L, n)</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="dv">1</span><span class="sc">+</span>y<span class="sc">$</span>p<span class="sc">+</span>y<span class="sc">$</span>q)) {</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    x_leftover <span class="ot">&lt;-</span> x<span class="sc">$</span>p <span class="sc">+</span> x<span class="sc">$</span>q</span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    z[r<span class="sc">:</span>(r<span class="sc">+</span>x_leftover)] <span class="ot">&lt;-</span> z[r<span class="sc">:</span>(r<span class="sc">+</span>x_leftover)] <span class="sc">+</span> (x<span class="sc">$</span>nums<span class="sc">*</span>y<span class="sc">$</span>nums[r])</span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">carry_over</span>(z)</span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>  digit_offset <span class="ot">&lt;-</span> <span class="fu">length</span>(z) <span class="sc">-</span> n</span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>  sgn <span class="ot">&lt;-</span> x<span class="sc">$</span>sign <span class="sc">*</span> y<span class="sc">$</span>sign</span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pqnumber</span>(sgn, x<span class="sc">$</span>p <span class="sc">+</span> y<span class="sc">$</span>p, x<span class="sc">$</span>q <span class="sc">+</span> y<span class="sc">$</span>q <span class="sc">+</span> digit_offset, z)</span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><strong>Test Cases:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># -32.1</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># -3.14</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>)) <span class="co"># 754.913</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(x,z) <span class="co"># expected value: -24232.7073 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># -32.1</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># -3.14</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">pqnumber</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>)) <span class="co"># 754.913</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(x,z) <span class="co"># expected value: -24232.7073 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sign = -1
 p = 4
 q = 4
 nums = 3 7 0 7 2 3 2 4 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(x,y) <span class="co"># expected value: 100.794 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(x,y) <span class="co"># expected value: 100.794 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sign = 1
 p = 3
 q = 2
 nums = 4 9 7 0 0 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(y,x) <span class="co"># expected value: 100.794 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multiply</span>(y,x) <span class="co"># expected value: 100.794 in pqnumber form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sign = 1
 p = 3
@@ -752,6 +781,7 @@ q = 2
 nums = 4 9 7 0 0 1</code></pre>
 </div>
 </div>
+<hr>
 
 
 </section>

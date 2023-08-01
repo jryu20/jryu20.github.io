@@ -23,12 +23,7 @@ For example, we can use the following object $x$ to keep the number $87654.321$:
 
 ```r
 x <- structure(list(sign = 1, p = 3, q = 4, nums = 1:8), class = "pqnumber")
-```
-
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-source("OOP.R")
-```
+``` 
 
 ## a) Basics
 
@@ -188,19 +183,19 @@ Great! All our outputs look correct. Now, the real question is: how can we defin
 
 ## b) Addition and Subtraction
 
-Our end goal in this section is to come up with two functions: `add(x,y)` and `subtract(x,y)` for 2 `pqnumber` objects `x` and `y`. To do this, let's write two helper functions:
+Our end goal in this section is to come up with two functions: `add(x,y)` and `subtract(x,y)` for $2$ `pqnumber` objects `x` and `y`. To do this, let's write two helper functions:
 
-#### 1. **`carry_over()`**
+#### 1. **`carry_over()`** 
 
 **Algorithm:**
 
 1. We iterate through each element of a numeric vector.
 
-2. We keep the remainder (when divided by 10) in its element spot.
+2. We keep the remainder (when divided by $10$) in its element spot.
 
-3. We locate the existence of a carry by using %/% and seeing if it is not equal to 0.
+3. We locate the existence of a carry by using `%/%` and seeing if it is not equal to $0$.
 
-4. If it's not equal to 0, we push the carry value onto the next element.
+4. If it's not equal to $0$, we push the carry value onto the next element.
 
 5. We add the carried value to the next element and repeat the process from step 2.
 
@@ -245,15 +240,15 @@ carry_over(y) # expected value: c(1,5,4,1)
 
 **Algorithm:**
 
-1. First, we appropriately pad both numbers by adding extra 0s at the end to either x or y if one has more digits after the decimal point.
+1. First, we appropriately pad both numbers by adding extra $0$s at the end to either $x$ or $y$ if one has more digits after the decimal point.
 
-2. We do a similar padding by adding extra 0s at the front to either x or y if one has more digits before the decimal point.
+2. We do a similar padding by adding extra $0$s at the front to either $x$ or $y$ if one has more digits before the decimal point.
 
-3. Now, we should have x and y have equal lengths in their nums vectors.
+3. Now, we should have $x$ and $y$ have equal lengths in their `nums` vectors.
 
-4. We reverse the nums vectors for both x and y and compare the digits starting from the first digit.
+4. We reverse the `nums` vectors for both $x$ and $y$ and compare the digits starting from the first digit.
 
-5. By comparing the first digit, if x's first digit is greater, return TRUE, if y's is, then return FALSE.
+5. By comparing the first digit, if $x$'s first digit is greater, return `TRUE`, if $y$'s is, then return `FALSE`.
 
 6. If the digits are the same, then we move on to the next digit and do the comparison again.
 
@@ -316,25 +311,25 @@ abs_gtr(w, x) # expected value: FALSE
 
 ---
 
-We are now ready to write the two main functions:
+With the above helper functions, we are now ready to write the two main functions:
 
 #### **`add()`**
 
 **Algorithm:**
 
-1. We first initialize a vector z of length max_p + max_q + 1, which represents the maximum number of digits we can possibly obtain by adding two numbers (considering the case of a carry-over).
+1. We first initialize a vector $z$ of length $\text{max\_p} + \text{max\_q} + 1$, which represents the maximum number of digits we can possibly obtain by adding two numbers (considering the case of a carry-over).
 
-2. Now, we split it into casework: first case is when x and y have equal signs, second case is when x and y have unequal signs.
+2. Now, we split it into casework: first case is when $x$ and $y$ have equal signs, second case is when $x$ and $y$ have unequal signs.
 
 3. When the signs are equal, we simply add the two by aligning positions, then call the carry-over helper function to carry over digits if necessary.
 
 4. When the signs are unequal, we first check which number has a greater absolute magnitude.
 
-5. Then, we grab the sign of the number that has a greater absolute magnitude and we change the signs for the nums vector of the other number.
+5. Then, we grab the sign of the number that has a greater absolute magnitude and we change the signs for the `nums` vector of the other number.
 
 6. We proceed with the same addition process (as in step 3) and then use the carry-over function.
 
-7. We return the sum as a pqnumber object.
+7. We return the sum as a `pqnumber` object.
 
 ```{r}
 #| code-fold: true
@@ -400,9 +395,9 @@ add(z,y) # expected value: 6520.56 in pqnumber form
 
 **Algorithm:**
 
-1. We simply change the sign of y by multiplying its sign by -1.
+1. We simply change the sign of $y$ by multiplying its sign by $-1$.
 
-2. Then, we do add(x,y) since x + (-y) is equal to x - y (or subtract(x,y)).
+2. Then, we do `add(x,y)` since $x + (-y)$ is equal to $x - y$ (or `subtract(x,y)`).
 
 ```{r}
 #| code-fold: true
@@ -433,21 +428,55 @@ subtract(y,z) # expected value: -6526.84 in pqnumber form
 
 ```
 
+---
+
+Perhaps now we can write a different arithmetic function...?
+
 ## c) Multiplication
+
+We will try to define the product of two `pqnumber` objects.
 
 #### **`multiply()`**
 
 **Algorithm:**
 
-1. We first initialize a vector z of length x\$p + x\$q + y\$p + y\$q + 1, which represents the maximum number of digits we can possibly obtain by multiplying two numbers (considering the case of a carry-over).
+1. We first initialize a vector $z$ of length $x\$p + x\$q + y\$p + y\$q + 1$, which represents the maximum number of digits we can possibly obtain by multiplying two numbers (considering the case of a carry-over).
 
-2. Now, we iterate through each element of nums of y and we multiply it with the entire nums vector of x and place it in the appropriate indices of z.
+2. Now, we iterate through each element of `nums` of $y$ and we multiply it with the entire `nums` vector of $x$ and place it in the appropriate indices of $z$.
 
 3. We use carry-over function to clear any carries.
 
-4. We determine the sign of the product by multiplying the sign of x with the sign of y.
+4. We determine the sign of the product by multiplying the sign of $x$ with the sign of $y$.
 
-5. We return the product as a pqnumber object.
+5. We return the product as a `pqnumber` object.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+multiply <- function(x,y) {
+  # This function multiplies two pqnumbers
+  # Args:
+  # x: a pqnumber
+  # y: a pqnumber
+  # Return:
+  # the product of x and y, returned in a pqnumber format
+  
+  n <- x$p + x$q + y$p + y$q + 1
+  z <- rep(0L, n)
+  
+  for (r in 1:(1+y$p+y$q)) {
+    
+    x_leftover <- x$p + x$q
+    z[r:(r+x_leftover)] <- z[r:(r+x_leftover)] + (x$nums*y$nums[r])
+  }
+  z <- carry_over(z)
+  digit_offset <- length(z) - n
+  sgn <- x$sign * y$sign
+  pqnumber(sgn, x$p + y$p, x$q + y$q + digit_offset, z)
+}
+
+``` 
 
 **Test Cases:**
 ```{r}
@@ -461,6 +490,8 @@ multiply(x,y) # expected value: 100.794 in pqnumber form
 multiply(y,x) # expected value: 100.794 in pqnumber form
 
 ```
+
+---
 
 
 
