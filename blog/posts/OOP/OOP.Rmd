@@ -6,35 +6,164 @@ format:
   html:
     toc: true
 categories: [R, OOP]
-image: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Arithmetic_symbols.svg"
+image: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Lots_of_math_symbols_and_numbers.svg"
 output: html_document
 ---
 
-> Today, we will define 
+> We define a new object class `pqnumber` to handle computations with large floating point numbers. 
 
-```{r}
+A `pqnumber` object should be able to store large numbers and will be defined by the following four components:
+
+1. `sign`: $1$ if positive, $-1$ if negative
+2. `p`: number of digits after the decimal point
+3. `q`: (number of digits before the decimal point $-$ $1$)
+4. `nums`: vector of $p + q + 1$ integers between $0$ and $9$, 
+
+For example, we can use the following object $x$ to keep the number $87654.321$:
+
+```r
+x <- structure(list(sign = 1, p = 3, q = 4, nums = 1:8), class = "pqnumber")
+```
+
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source("OOP.R")
 ```
 
 ## a) Basics
 
-To sum up, you are expected to provide the following functions.
+To begin, we must start by defining the following five functions:
 
-* pqnumber(sign, p, q, nums)
-* is_pqnumber(x)
-* print(x, DEC)
-* as_pqnumber(x, p, q)
-* as_numeric(x)
+* `pqnumber(sign, p, q, nums)`: **constructor** function (returns a `pqnumber` object)
+* `is_pqnumber(x)`: **predicate** function (returns `TRUE` if the input is a `pqnumber` object, `FALSE` otherwise)
+* `print(x, DEC)`: **print** function (prints the components of the `pqnumber` object if `DEC` is `FALSE`, prints the decimal value otherwise)
+* `as_pqnumber(x, p, q)`: generic **coercion** function from `numeric` to `pqnumber`
+* `as_numeric(x)`: generic **coercion** function from `pqnumber` to `numeric`
+
+To see how these functions are defined, click on the following:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+pqnumber <- function(sign, p, q, nums) {
+  # This function is the constructor function for a pqnumber
+  # This will throw an error if:
+  # 1) the sign argument is not the integer 1 or -1
+  # 2) the p argument is not a whole number
+  # 3) the q argument is not a whole number
+  # 4) the length of the nums argument is not equal to p+q+1
+  # 5) the entries in the nums vector are not numbers 0-9
+  # Args:
+  # sign: denotes the sign of the number
+  # p: denotes how many digits are after the decimal point
+  # q: denotes how many digits are before the units digit
+  # nums: a numeric vector we use to construct the pqnumber
+  # Return:
+  # a pqnumber object
+  
+  if (abs(sign) != 1) {
+    stop("The sign should be either 1 or -1.")
+  }
+  if (p %% 1 != 0 | q %% 1 != 0 | p < 0 | q < 0) {
+    stop("p and q values must be whole numbers.")
+  }
+  if (length(nums) != p + q + 1) {
+    stop("The length of nums must equal p+q+1.")
+  }
+  for (i in length(nums)) {
+    if (!(nums[i] %in% 0:9)) {
+      stop("The indices of nums must be an integer between 0 and 9.")
+    } 
+  }
+  
+  structure(list(sign = as.integer(sign), p = as.integer(p), q = as.integer(q), nums = as.integer(nums)), class = 'pqnumber')
+}
+
+is_pqnumber <- function(x) {
+  # This function is the predicate function for a pqnumber
+  # Args:
+  # x: any input
+  # Return:
+  # a logical value checking whether the input is a pqnumber object or not
+  any(class(x) == 'pqnumber')
+}
+
+print.pqnumber <- function(x, DEC = FALSE) {
+  # This function is the print function for a pqnumber
+  # Args:
+  # x: a pqnumber
+  # DEC: default set to FALSE, but if set to TRUE, will return the decimal form
+  # Return:
+  # either the decimal form or the object form (depends on the DEC input)
+  if (DEC) {
+    print_str <- paste0(substr(paste(rev(x$nums), collapse = ''), 1, x$q+1), '.', paste0(substr(paste(rev(x$nums), collapse = ''), x$q+2, length(x$nums))))
+    
+    if (x$sign == -1) {
+      print_str <- paste0('-', print_str)
+    }
+  } else {
+    print_str <- paste0('sign = ', x$sign, '\np = ', x$p, '\nq = ', x$q, '\nnums = ', paste(x$nums, collapse = ' '))
+  }
+  cat(paste0(print_str, '\n'))
+}
+
+as_pqnumber <- function(x, p, q) {
+  # This function is the generic coercion function for a numeric value into a pqnumber
+  # Args:
+  # x: a numeric value
+  # p: denotes how many digits are after the decimal point
+  # q: denotes how many digits are before the units digit
+  UseMethod('as_pqnumber')
+}
+
+as_pqnumber.numeric <- function(x, p, q) {
+  # This function is the coercion method for the above generic function
+  # Args:
+  # x: a numeric value
+  # p: denotes how many digits are after the decimal point
+  # q: denotes how many digits are before the units digit
+  # Return:
+  # a pqnumber object that satisfies the given inputs
+  nums <- (abs(x) * 10^seq(p, -q)) %% 10 %/% 1
+  sgn <- if(x == 0) 1 else base::sign(x)
+  pqnumber(sgn, p, q, nums)
+}
+
+as_numeric <- function(x) {
+  # This function is the generic coercion function for a pqnumber into a numeric value
+  # Args:
+  # x: a pqnumber
+  UseMethod('as_numeric')
+}
+
+as_numeric.pqnumber <- function(x) {
+  # This function is the coercion method for the above generic function
+  # Args:
+  # x: a pqnumber
+  # Return:
+  # a numeric value that matches the pqnumber input
+  if (x$sign == 1) {
+    numeric <- as.numeric(paste(rev(x$nums), collapse = '')) / 10^(x$p)
+  } else {
+    numeric <- -1*(as.numeric(paste(rev(x$nums), collapse = '')) / 10^(x$p))
+  }
+  numeric
+}
+```
+
+---
+
+The following are tests to make sure our five functions work as intended:
 
 **Test Cases:**
+
 ```{r}
 x <- pqnumber(1, 3, 4, 1:8)
-y <- pqnumber(1, 6, 0, c(3,9,5,1,4,1,3))
-z <- pqnumber(-1, 5, 1, c(2,8,2,8,1,7,2))
-
 x
+y <- pqnumber(1, 6, 0, c(3,9,5,1,4,1,3))
 y
+z <- pqnumber(-1, 5, 1, c(2,8,2,8,1,7,2))
 z
 
 is_pqnumber(x) # expected value: TRUE
@@ -49,13 +178,19 @@ print(z, DEC = T) # expected value: -27.18282
 as_pqnumber(3.14, 3, 4) # expect a pqnumber object (sign = 1, p = 3, q = 4, nums = c(0,4,1,3,0,0,0,0))
 as_pqnumber(-153.2772, 4, 2) # # expect a pqnumber object (sign = -1, p = 4, q = 2, nums = c(2,7,7,2,3,5,1))
 
-as_numeric(x) # expected value: 87654.321 but it might lose precision
-as_numeric(pqnumber(-1, 3, 6, rep(1,10))) # expected value: -1111111.111 but it might lose precision
+as_numeric(x) # expected value: 87654.321 but might lose precision ("numeric" has a default printing of 7 digits)
+as_numeric(pqnumber(-1, 3, 6, rep(1,10))) # expected value: -1111111.111 but might lose precision
 ```
+
+---
+
+Great! All our outputs look correct. Now, the real question is: how can we define basic arithmetic functions for these `pqnumber` objects?
 
 ## b) Addition and Subtraction
 
-#### **`carry_over()`**
+Our end goal in this section is to come up with two functions: `add(x,y)` and `subtract(x,y)` for 2 `pqnumber` objects `x` and `y`. To do this, let's write two helper functions:
+
+#### 1. **`carry_over()`**
 
 **Algorithm:**
 
@@ -69,17 +204,44 @@ as_numeric(pqnumber(-1, 3, 6, rep(1,10))) # expected value: -1111111.111 but it 
 
 5. We add the carried value to the next element and repeat the process from step 2.
 
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+carry_over <- function(z) {
+  # This helper function is the carry over function that takes care of moving digits when it needs to be moved over to the next index
+  # Args:
+  # z: a numeric vector
+  # Return:
+  # a modified vector of z that has the carry over process completed
+  n <- length(z)
+  carry <- 0
+  for (i in 1:n) {
+    zi <- z[i] + carry
+    z[i] <- zi %% 10
+    carry <- zi %/% 10
+  }
+  
+  if (carry != 0) {
+    z[n+1] <- carry
+  }
+  z
+}
+```
+
 **Test Cases:**
 ```{r}
 x <- c(13,4,5)
-y <- c(31,52,9) 
-
 carry_over(x) # expected value: c(3,5,5)
+
+y <- c(31,52,9) 
 carry_over(y) # expected value: c(1,5,4,1)
 
 ```
 
-#### **`abs_gtr()`**
+---
+
+#### 2. **`abs_gtr()`**
 
 **Algorithm:**
 
@@ -95,6 +257,49 @@ carry_over(y) # expected value: c(1,5,4,1)
 
 6. If the digits are the same, then we move on to the next digit and do the comparison again.
 
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+abs_gtr <- function(x, y) {
+  # This helper function compares the absolute magnitudes of two pqnumbers
+  # Args:
+  # x: a pqnumber
+  # y: a pqnumber
+  # Return:
+  # TRUE is x has a greater absolute magnitude than y, FALSE if otherwise
+  if (x$p > y$p) {
+    y <- pqnumber(y$sign, x$p, y$q, c(rep(0, x$p-y$p), y$nums))
+  } else {
+    x <- pqnumber(x$sign, y$p, x$q, c(rep(0, y$p-x$p), x$nums))
+  }
+  
+  if (x$q > y$q) {
+    y <- pqnumber(y$sign, y$p, x$q, c(y$nums, rep(0, x$q-y$q)))
+  } else {
+    x <- pqnumber(x$sign, x$p, y$q, c(x$nums, rep(0, y$q-x$q)))
+  }
+  
+  x_rev <- rev(x$nums)
+  y_rev <- rev(y$nums)
+  gtr <- character(1)
+  
+  for (i in 1:length(x$nums)) {
+    if (y_rev[i] > x_rev[i]) {
+      gtr <- F
+      break
+    } else if (x_rev[i] > y_rev[i]) {
+      gtr <- T
+      break
+    } else {
+      next
+    }
+  }
+  
+  gtr
+}
+```
+
 **Test Cases:**
 ```{r}
 
@@ -108,6 +313,10 @@ abs_gtr(y, x) # expected value: FALSE
 abs_gtr(x, z) # expected value: FALSE
 abs_gtr(w, x) # expected value: FALSE
 ```
+
+---
+
+We are now ready to write the two main functions:
 
 #### **`add()`**
 
@@ -127,6 +336,51 @@ abs_gtr(w, x) # expected value: FALSE
 
 7. We return the sum as a pqnumber object.
 
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+add <- function(x, y) {
+  # This function adds two pqnumbers
+  # Args:
+  # x: a pqnumber
+  # y: a pqnumber
+  # Return:
+  # the sum of x and y, returned in a pqnumber format
+  max_p <- max(x$p, y$p)
+  max_q <- max(x$q, y$q)
+  n <- max_p + max_q + 1
+  
+  z <- rep(0L, n)
+  if (x$sign == y$sign) {
+    x_vals <- x$nums
+    y_vals <- y$nums
+    sgn <- x$sign
+    
+  } else {
+    if(abs_gtr(x,y)) {
+      x_vals <- x$nums
+      y_vals <- -y$nums
+      sgn <- x$sign
+      
+    } else {
+      x_vals <- -x$nums
+      y_vals <- y$nums
+      sgn <- y$sign
+    }
+    
+  }
+  
+  z[(1+max_p-x$p):(1+max_p+x$q)] <- x_vals
+  z[(1+max_p-y$p):(1+max_p+y$q)] <- z[(1+max_p-y$p):(1+max_p+y$q)] + y_vals
+  
+  z <- carry_over(z)
+  
+  digit_offset <- length(z) - n
+  pqnumber(sgn, max_p, max_q + digit_offset, z)
+}
+``` 
+
 **Test Cases:**
 ```{r}
 x <- pqnumber(-1,3,4,1:8) # -87654.321
@@ -140,6 +394,8 @@ add(z,y) # expected value: 6520.56 in pqnumber form
 
 ```
 
+---
+
 #### **`subtract()`**
 
 **Algorithm:**
@@ -147,6 +403,22 @@ add(z,y) # expected value: 6520.56 in pqnumber form
 1. We simply change the sign of y by multiplying its sign by -1.
 
 2. Then, we do add(x,y) since x + (-y) is equal to x - y (or subtract(x,y)).
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the Code"
+
+subtract <- function(x, y) {
+  # This function subtracts one pqnumber from the other
+  # Args:
+  # x: a pqnumber
+  # y: a pqnumber
+  # Return:
+  # the difference of x and y, returned in a pqnumber format
+  y$sign <- y$sign * -1
+  add(x, y)
+}
+``` 
 
 **Test Cases:**
 ```{r}
