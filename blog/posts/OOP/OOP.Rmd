@@ -1,0 +1,211 @@
+---
+title: "Objected Oriented Programming in R"
+author: "Jun Ryu"
+date: "2023-03-09"
+format:
+  html:
+    toc: true
+categories: [R, OOP]
+image: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Arithmetic_symbols.svg"
+output: html_document
+---
+
+> Today, we will define 
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+source("OOP.R")
+```
+
+## a) Basics
+
+To sum up, you are expected to provide the following functions.
+
+* pqnumber(sign, p, q, nums)
+* is_pqnumber(x)
+* print(x, DEC)
+* as_pqnumber(x, p, q)
+* as_numeric(x)
+
+**Test Cases:**
+```{r}
+x <- pqnumber(1, 3, 4, 1:8)
+y <- pqnumber(1, 6, 0, c(3,9,5,1,4,1,3))
+z <- pqnumber(-1, 5, 1, c(2,8,2,8,1,7,2))
+
+x
+y
+z
+
+is_pqnumber(x) # expected value: TRUE
+is_pqnumber(y) # expected value: TRUE
+is_pqnumber(z) # expected value: TRUE
+is_pqnumber(1230) # expected value: FALSE
+
+print(x) # expect a pqnumber object (sign = 1, p = 3, q = 4, nums = 1:8)
+print(y, DEC = T) # expected value: 3.141593
+print(z, DEC = T) # expected value: -27.18282
+
+as_pqnumber(3.14, 3, 4) # expect a pqnumber object (sign = 1, p = 3, q = 4, nums = c(0,4,1,3,0,0,0,0))
+as_pqnumber(-153.2772, 4, 2) # # expect a pqnumber object (sign = -1, p = 4, q = 2, nums = c(2,7,7,2,3,5,1))
+
+as_numeric(x) # expected value: 87654.321 but it might lose precision
+as_numeric(pqnumber(-1, 3, 6, rep(1,10))) # expected value: -1111111.111 but it might lose precision
+```
+
+## b) Addition and Subtraction
+
+#### **`carry_over()`**
+
+**Algorithm:**
+
+1. We iterate through each element of a numeric vector.
+
+2. We keep the remainder (when divided by 10) in its element spot.
+
+3. We locate the existence of a carry by using %/% and seeing if it is not equal to 0.
+
+4. If it's not equal to 0, we push the carry value onto the next element.
+
+5. We add the carried value to the next element and repeat the process from step 2.
+
+**Test Cases:**
+```{r}
+x <- c(13,4,5)
+y <- c(31,52,9) 
+
+carry_over(x) # expected value: c(3,5,5)
+carry_over(y) # expected value: c(1,5,4,1)
+
+```
+
+#### **`abs_gtr()`**
+
+**Algorithm:**
+
+1. First, we appropriately pad both numbers by adding extra 0s at the end to either x or y if one has more digits after the decimal point.
+
+2. We do a similar padding by adding extra 0s at the front to either x or y if one has more digits before the decimal point.
+
+3. Now, we should have x and y have equal lengths in their nums vectors.
+
+4. We reverse the nums vectors for both x and y and compare the digits starting from the first digit.
+
+5. By comparing the first digit, if x's first digit is greater, return TRUE, if y's is, then return FALSE.
+
+6. If the digits are the same, then we move on to the next digit and do the comparison again.
+
+**Test Cases:**
+```{r}
+
+x <- pqnumber(1,5,3,1:9) # 9876.54321
+y <- pqnumber(1,2,0,c(4,1,3)) # 3.14
+z <- pqnumber(-1,1,5,rep(3,7)) # -333333.3
+w <- pqnumber(-1,6,3,c(2,1,1,2,4,5,3,8,7,7)) # -7783.542112
+
+abs_gtr(x, y) # expected value: TRUE
+abs_gtr(y, x) # expected value: FALSE
+abs_gtr(x, z) # expected value: FALSE
+abs_gtr(w, x) # expected value: FALSE
+```
+
+#### **`add()`**
+
+**Algorithm:**
+
+1. We first initialize a vector z of length max_p + max_q + 1, which represents the maximum number of digits we can possibly obtain by adding two numbers (considering the case of a carry-over).
+
+2. Now, we split it into casework: first case is when x and y have equal signs, second case is when x and y have unequal signs.
+
+3. When the signs are equal, we simply add the two by aligning positions, then call the carry-over helper function to carry over digits if necessary.
+
+4. When the signs are unequal, we first check which number has a greater absolute magnitude.
+
+5. Then, we grab the sign of the number that has a greater absolute magnitude and we change the signs for the nums vector of the other number.
+
+6. We proceed with the same addition process (as in step 3) and then use the carry-over function.
+
+7. We return the sum as a pqnumber object.
+
+**Test Cases:**
+```{r}
+x <- pqnumber(-1,3,4,1:8) # -87654.321
+y <- pqnumber(-1,2,0,c(4,1,3)) # -3.14
+z <- pqnumber(1,1,3,c(7,3,2,5,6)) # 6523.7
+w <- pqnumber(1,3,5,c(3,1,2,4,5,3,8,7,7)) # 778354.213
+
+add(x,z) # expected value: -81130.621 in pqnumber form
+add(z,w) # expected value: 784877.913 in pqnumber form
+add(z,y) # expected value: 6520.56 in pqnumber form
+
+```
+
+#### **`subtract()`**
+
+**Algorithm:**
+
+1. We simply change the sign of y by multiplying its sign by -1.
+
+2. Then, we do add(x,y) since x + (-y) is equal to x - y (or subtract(x,y)).
+
+**Test Cases:**
+```{r}
+x <- pqnumber(-1,3,4,1:8) # -87654.321
+y <- pqnumber(-1,2,0,c(4,1,3)) # -3.14
+z <- pqnumber(1,1,3,c(7,3,2,5,6)) # 6523.7
+w <- pqnumber(1,3,5,c(3,1,2,4,5,3,8,7,7)) # 778354.213
+
+subtract(x,z) # expected value: -94178.021 in pqnumber form
+subtract(w,x) # expected value: 866008.534 in pqnumber form
+subtract(y,z) # expected value: -6526.84 in pqnumber form
+
+```
+
+## c) Multiplication
+
+#### **`multiply()`**
+
+**Algorithm:**
+
+1. We first initialize a vector z of length x\$p + x\$q + y\$p + y\$q + 1, which represents the maximum number of digits we can possibly obtain by multiplying two numbers (considering the case of a carry-over).
+
+2. Now, we iterate through each element of nums of y and we multiply it with the entire nums vector of x and place it in the appropriate indices of z.
+
+3. We use carry-over function to clear any carries.
+
+4. We determine the sign of the product by multiplying the sign of x with the sign of y.
+
+5. We return the product as a pqnumber object.
+
+**Test Cases:**
+```{r}
+
+x <- pqnumber(-1,1,1,1:3) # -32.1
+y <- pqnumber(-1,2,0,c(4,1,3)) # -3.14
+z <- pqnumber(1,3,2,c(3,1,9,4,5,7)) # 754.913
+
+multiply(x,z) # expected value: -24232.7073 in pqnumber form
+multiply(x,y) # expected value: 100.794 in pqnumber form
+multiply(y,x) # expected value: 100.794 in pqnumber form
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
