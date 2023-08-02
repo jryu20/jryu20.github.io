@@ -73,5 +73,8 @@
   },
   "posts/OOP/OOP.Rmd": {
     "OOP.html": "5cf7620e"
+  },
+  "posts/regex/regex.Rmd": {
+    "regex.html": "6a09e5ee"
   }
 }
