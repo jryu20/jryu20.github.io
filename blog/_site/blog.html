@@ -72,9 +72,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
@@ -199,20 +199,17 @@ ul.task-list li input[type="checkbox"] {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="python,ML" data-listing-date-sort="1687330800000" data-listing-file-modified-sort="1690400781906" data-listing-reading-time-sort="9.84">
-<div class="thumbnail">
-<p><a href="./posts/spectral/spectral-clustering copy.html"> <img src="./posts/spectral/spectral.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/spectral/spectral-clustering copy.html">
-<h3 class="no-anchor listing-title">
+<div class="list grid quarto-listing-cols-2">
+<div class="g-col-1" data-index="0" data-categories="python,ML" data-listing-date-sort="1687330800000" data-listing-file-modified-sort="1690400781906" data-listing-reading-time-sort="9.84">
+<a href="./posts/spectral/spectral-clustering copy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/spectral/spectral.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Spectral Clustering. What is it?
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -221,36 +218,31 @@ python
 ML
 </div>
 </div>
-<a href="./posts/spectral/spectral-clustering copy.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 In this post, we will explore a simple version of the <em>spectral clustering</em> algorithm for clustering data points.…
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/spectral/spectral-clustering copy.html">
-<div class="listing-date">
-Jun 21, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Jun 21, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="python,project,html" data-listing-date-sort="1679641200000" data-listing-file-modified-sort="1690322092418" data-listing-reading-time-sort="18.335">
-<div class="thumbnail">
-<p><a href="./posts/zillow_blog/blog_post.html"> <img src="./posts/zillow_blog/house.jpeg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/zillow_blog/blog_post.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="1" data-categories="python,project,html" data-listing-date-sort="1679641200000" data-listing-file-modified-sort="1690322092418" data-listing-reading-time-sort="18.335">
+<a href="./posts/zillow_blog/blog_post.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/zillow_blog/house.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Visualizing Zillow Homes
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -262,36 +254,31 @@ project
 html
 </div>
 </div>
-<a href="./posts/zillow_blog/blog_post.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 The goal of this project was for users to understand the distribution of homes for sale on Zillow. Typically, prospective home buyers and sellers go to Zillow to find…
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/zillow_blog/blog_post.html">
-<div class="listing-date">
-Mar 24, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Aram, Emily, Jun, Ryan
 </div>
+<div class="listing-date">
+Mar 24, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="python,ML,tensorflow" data-listing-date-sort="1678863600000" data-listing-file-modified-sort="1690839610339" data-listing-reading-time-sort="2.36">
-<div class="thumbnail">
-<p><a href="./posts/fakenews/fakenews_classification_copy2.html"> <img src="./posts/fakenews/fakenews.jpeg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/fakenews/fakenews_classification_copy2.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="2" data-categories="python,ML,tensorflow" data-listing-date-sort="1678863600000" data-listing-file-modified-sort="1690839610339" data-listing-reading-time-sort="2.36">
+<a href="./posts/fakenews/fakenews_classification_copy2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/fakenews/fakenews.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Fake News Classification
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -303,36 +290,31 @@ ML
 tensorflow
 </div>
 </div>
-<a href="./posts/fakenews/fakenews_classification_copy2.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 Rampant misinformation — often called “fake news” — is one of the defining features of contemporary democratic life.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/fakenews/fakenews_classification_copy2.html">
-<div class="listing-date">
-Mar 15, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Mar 15, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="R,OOP" data-listing-date-sort="1678348800000" data-listing-file-modified-sort="1690932419640" data-listing-reading-time-sort="12.52">
-<div class="thumbnail">
-<p><a href="./posts/OOP/OOP.html"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lots_of_math_symbols_and_numbers.svg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/OOP/OOP.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="3" data-categories="R,OOP" data-listing-date-sort="1678348800000" data-listing-file-modified-sort="1690932419640" data-listing-reading-time-sort="12.52">
+<a href="./posts/OOP/OOP.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lots_of_math_symbols_and_numbers.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Objected Oriented Programming in R
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -341,36 +323,31 @@ R
 OOP
 </div>
 </div>
-<a href="./posts/OOP/OOP.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 We define a new object class <code>pqnumber</code> to handle computations with large floating point numbers.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/OOP/OOP.html">
-<div class="listing-date">
-Mar 9, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Mar 9, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="python,ML,tensorflow" data-listing-date-sort="1677571200000" data-listing-file-modified-sort="1690400713608" data-listing-reading-time-sort="6.17">
-<div class="thumbnail">
-<p><a href="./posts/image_class/image_classification copy.html"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Cat_and_Dog_Game.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/image_class/image_classification copy.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="4" data-categories="python,ML,tensorflow" data-listing-date-sort="1677571200000" data-listing-file-modified-sort="1690400713608" data-listing-reading-time-sort="6.17">
+<a href="./posts/image_class/image_classification copy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Cat_and_Dog_Game.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Are You a Dog or Cat Person?
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -382,40 +359,31 @@ ML
 tensorflow
 </div>
 </div>
-<a href="./posts/image_class/image_classification copy.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 In this blog post, we attempt to train a machine learning algorithm to distinguish the images of cats and dogs.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/image_class/image_classification copy.html">
-<div class="listing-date">
-Feb 28, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Feb 28, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="5" data-categories="R,tidyverse" data-listing-date-sort="1675584000000" data-listing-file-modified-sort="1691187900496" data-listing-reading-time-sort="7.965">
+<a href="./posts/tidy_R/tidyr.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="R,tidyverse" data-listing-date-sort="1675584000000" data-listing-file-modified-sort="1691187900496" data-listing-reading-time-sort="7.965">
-<div class="thumbnail">
-<a href="./posts/tidy_R/tidyr.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./posts/tidy_R/tidyr.html"></a></p>
-</div>
-<div class="body">
-<a href="./posts/tidy_R/tidyr.html">
-<h3 class="no-anchor listing-title">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Intro to Data Manipulation
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -424,36 +392,31 @@ R
 tidyverse
 </div>
 </div>
-<a href="./posts/tidy_R/tidyr.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 For today, we import two powerful packages (<code>dplyr</code> and <code>tidyr</code>) under tidyverse that will help us clean and manipulate data easily.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/tidy_R/tidyr.html">
-<div class="listing-date">
-Feb 5, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Feb 5, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="python,sqlite,html" data-listing-date-sort="1675411200000" data-listing-file-modified-sort="1690324045439" data-listing-reading-time-sort="6.235">
-<div class="thumbnail">
-<p><a href="./posts/web_dev/flask.html"> <img src="./posts/web_dev/demo4.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/web_dev/flask.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="6" data-categories="python,sqlite,html" data-listing-date-sort="1675411200000" data-listing-file-modified-sort="1690324045439" data-listing-reading-time-sort="6.235">
+<a href="./posts/web_dev/flask.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/web_dev/demo4.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Flask Tutorial
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -465,36 +428,31 @@ sqlite
 html
 </div>
 </div>
-<a href="./posts/web_dev/flask.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 Today, we will demonstrate how to create a simple web application using <code>Flask</code>.
 </div>
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Jun Ryu
 </div>
-<div class="metadata">
-<a href="./posts/web_dev/flask.html">
 <div class="listing-date">
 Feb 3, 2023
 </div>
-<div class="listing-author">
-Jun Ryu
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="python,visualizations" data-listing-date-sort="1674720000000" data-listing-file-modified-sort="1690320155747" data-listing-reading-time-sort="4.125">
-<div class="thumbnail">
-<p><a href="./posts/scrapy/result_vis copy.html"> <img src="./posts/scrapy/scrapy.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/scrapy/result_vis copy.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="7" data-categories="python,visualizations" data-listing-date-sort="1674720000000" data-listing-file-modified-sort="1690320155747" data-listing-reading-time-sort="4.125">
+<a href="./posts/scrapy/result_vis copy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/scrapy/scrapy.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Web Scraping with Scrapy
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -503,36 +461,31 @@ python
 visualizations
 </div>
 </div>
-<a href="./posts/scrapy/result_vis copy.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 What movie or TV shows share actors with your favorite movie or show?
 </div>
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Jun Ryu
 </div>
-<div class="metadata">
-<a href="./posts/scrapy/result_vis copy.html">
 <div class="listing-date">
 Jan 26, 2023
 </div>
-<div class="listing-author">
-Jun Ryu
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="sqlite,python,visualizations" data-listing-date-sort="1673942400000" data-listing-file-modified-sort="1690611253088" data-listing-reading-time-sort="2.06">
-<div class="thumbnail">
-<p><a href="./posts/sql2/plotly.html"> <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Plotly-logo.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/sql2/plotly.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="8" data-categories="sqlite,python,visualizations" data-listing-date-sort="1673942400000" data-listing-file-modified-sort="1690611253088" data-listing-reading-time-sort="2.06">
+<a href="./posts/sql2/plotly.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Plotly-logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Plotly: Pure Perfection
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('sqlite'); return false;">
 sqlite
@@ -544,36 +497,31 @@ python
 visualizations
 </div>
 </div>
-<a href="./posts/sql2/plotly.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 What else can Plotly produce? Today, we continue with the NOAA climate data and explore what other visualizations can be made.
 </div>
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Jun Ryu
 </div>
-<div class="metadata">
-<a href="./posts/sql2/plotly.html">
 <div class="listing-date">
 Jan 17, 2023
 </div>
-<div class="listing-author">
-Jun Ryu
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="sqlite,python,visualizations" data-listing-date-sort="1673337600000" data-listing-file-modified-sort="1690484941357" data-listing-reading-time-sort="2.16">
-<div class="thumbnail">
-<p><a href="./posts/sql_vis/data_vis copy.html"> <img src="./posts/sql_vis/vis.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/sql_vis/data_vis copy.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="9" data-categories="sqlite,python,visualizations" data-listing-date-sort="1673337600000" data-listing-file-modified-sort="1690484941357" data-listing-reading-time-sort="2.16">
+<a href="./posts/sql_vis/data_vis copy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/sql_vis/vis.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Climate Data Visualization
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('sqlite'); return false;">
 sqlite
@@ -585,36 +533,31 @@ python
 visualizations
 </div>
 </div>
-<a href="./posts/sql_vis/data_vis copy.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 In this post, we will be working with the data from National Oceanic and Atmospheric Administration (NOAA) to create interesting, interactive geographical visualizations.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/sql_vis/data_vis copy.html">
-<div class="listing-date">
-Jan 10, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
+<div class="listing-date">
+Jan 10, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="math,modeling,project" data-listing-date-sort="1669622400000" data-listing-file-modified-sort="1690394935557" data-listing-reading-time-sort="0.345">
-<div class="thumbnail">
-<p><a href="./posts/predator-prey/modeling.html"> <img src="./posts/predator-prey/model.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/predator-prey/modeling.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="10" data-categories="math,modeling,project" data-listing-date-sort="1669622400000" data-listing-file-modified-sort="1690394935557" data-listing-reading-time-sort="0.345">
+<a href="./posts/predator-prey/modeling.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/predator-prey/model.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Predator-Prey Dynamics
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('math'); return false;">
 math
@@ -626,36 +569,31 @@ modeling
 project
 </div>
 </div>
-<a href="./posts/predator-prey/modeling.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 In this project, we explore a predator-prey relationship between ducks (predator), fish (prey), and a common food source…
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/predator-prey/modeling.html">
-<div class="listing-date">
-Nov 28, 2022
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun, Kevin, Yuki
 </div>
+<div class="listing-date">
+Nov 28, 2022
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="python,visualizations,project,ML" data-listing-date-sort="1646899200000" data-listing-file-modified-sort="1690400486408" data-listing-reading-time-sort="6.91">
-<div class="thumbnail">
-<p><a href="./posts/penguin_project/palmer_project.html"> <img src="./posts/penguin_project/gentoo.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/penguin_project/palmer_project.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="11" data-categories="python,visualizations,project,ML" data-listing-date-sort="1646899200000" data-listing-file-modified-sort="1690400486408" data-listing-reading-time-sort="6.91">
+<a href="./posts/penguin_project/palmer_project.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/penguin_project/gentoo.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Adélie! Gentoo! Chinstrap!
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -670,36 +608,31 @@ project
 ML
 </div>
 </div>
-<a href="./posts/penguin_project/palmer_project.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 An important task in the ecology of the Antarctic is to catalog the many different species of…
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/penguin_project/palmer_project.html">
-<div class="listing-date">
-Mar 10, 2022
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jeremy, Jun, Meichen
 </div>
+<div class="listing-date">
+Mar 10, 2022
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-categories="python,visualizations" data-listing-date-sort="1642924800000" data-listing-file-modified-sort="1690401376383" data-listing-reading-time-sort="2.195">
-<div class="thumbnail">
-<p><a href="./posts/palmer_vis/index.html"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Brown_Bluff-2016-Tabarin_Peninsula%E2%80%93Gentoo_penguin_%28Pygoscelis_papua%29_03.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/palmer_vis/index.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="12" data-categories="python,visualizations" data-listing-date-sort="1642924800000" data-listing-file-modified-sort="1690401376383" data-listing-reading-time-sort="2.195">
+<a href="./posts/palmer_vis/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Brown_Bluff-2016-Tabarin_Peninsula%E2%80%93Gentoo_penguin_%28Pygoscelis_papua%29_03.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Palmer Penguins
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
 python
@@ -708,22 +641,20 @@ python
 visualizations
 </div>
 </div>
-<a href="./posts/palmer_vis/index.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 In this blog post, we will explain how to construct an interesting data visualization of the Palmer Penguins data set.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/palmer_vis/index.html">
-<div class="listing-date">
-Jan 23, 2022
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Jun Ryu
 </div>
-</a>
+<div class="listing-date">
+Jan 23, 2022
 </div>
+</div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">
