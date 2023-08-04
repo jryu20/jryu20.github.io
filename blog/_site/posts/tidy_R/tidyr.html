@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jun Ryu">
+<meta name="dcterms.date" content="2023-02-05">
+
+<title>Jun Ryu - Intro to Data Manipulation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jun Ryu</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jryu20"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/r.yujunhee"><i class="bi bi-instagram" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Intro to Data Manipulation</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">tidyverse</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jun Ryu </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 5, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-simulate-a-dataset" id="toc-a-simulate-a-dataset" class="nav-link active" data-scroll-target="#a-simulate-a-dataset">a) Simulate a Dataset</a></li>
+  <li><a href="#b-modify-the-dataset" id="toc-b-modify-the-dataset" class="nav-link" data-scroll-target="#b-modify-the-dataset">b) Modify the Dataset</a></li>
+  <li><a href="#c-messy-imputation" id="toc-c-messy-imputation" class="nav-link" data-scroll-target="#c-messy-imputation">c) Messy Imputation</a></li>
+  <li><a href="#d-demo-1" id="toc-d-demo-1" class="nav-link" data-scroll-target="#d-demo-1">d) Demo 1</a></li>
+  <li><a href="#e-convert-the-data" id="toc-e-convert-the-data" class="nav-link" data-scroll-target="#e-convert-the-data">e) Convert the Data</a></li>
+  <li><a href="#f-tidy-imputation" id="toc-f-tidy-imputation" class="nav-link" data-scroll-target="#f-tidy-imputation">f) Tidy Imputation</a></li>
+  <li><a href="#g-demo-2" id="toc-g-demo-2" class="nav-link" data-scroll-target="#g-demo-2">g) Demo 2</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>For today, we import two powerful packages (<code>dplyr</code> and <code>tidyr</code>) under <a href="https://tidyverse.tidyverse.org/">tidyverse</a> that will help us clean and manipulate data easily.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<section id="a-simulate-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="a-simulate-a-dataset">a) Simulate a Dataset</h2>
+<p>Our first task is to create a dataset that we can work with. We intend to simulate a dataset that resembles a <em>gradebook</em>. Specifically, we want the following:</p>
+<ul>
+<li>Each row of the gradebook should contain all measurements for a single student.</li>
+<li>Each column should contain scores for one assignment.</li>
+<li>There should be 11 columns (1 for 9-digit student IDs, 5 for homework, 5 for quizzes).</li>
+</ul>
+<p>The simulated <em>gradebook</em> should contain the grades for 100 students and scores (out of 100) for 5 homework and 5 quizzes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">605574052</span>) <span class="co"># set seed for reproducibility </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gradebook <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  UID <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="dv">100000000</span>, <span class="at">max =</span> <span class="dv">999999999</span>), <span class="dv">0</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  assignments <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>), <span class="dv">0</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">c</span>(UID, assignments)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  gradebook <span class="ot">&lt;-</span> <span class="fu">rbind</span>(gradebook, data)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(gradebook) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"UID"</span>, <span class="st">"Homework_1"</span>, <span class="st">"Homework_2"</span>, <span class="st">"Homework_3"</span>, <span class="st">"Homework_4"</span>, </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"Homework_5"</span>, <span class="st">"Quiz_1"</span>, <span class="st">"Quiz_2"</span>, <span class="st">"Quiz_3"</span>, <span class="st">"Quiz_4"</span>, <span class="st">"Quiz_5"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gradebook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+1 532521854         45         17         75         22         13     80
+2 486614393         20         50         82         78         41     53
+3 576992987         53         54         85         52         29     35
+4 143843463         33          2          6         39         39     49
+5 773280766         99         25         52         51         17     42
+6 486851405         58         38         76         49         86     39
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+1     87     83     82     11
+2     10     55     73     42
+3     74     28     27     46
+4     55     97     84     67
+5     66     37    100     10
+6      7     80      2     16</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="b-modify-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="b-modify-the-dataset">b) Modify the Dataset</h2>
+<p>Now, we will modify the dataset to randomly replace 10% of <code>Homework_4</code> and <code>Quiz_4</code> with <code>NA</code>, respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">605574052</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="fu">sample</span>(<span class="dv">100</span>, <span class="dv">10</span>), <span class="st">"Homework_4"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="fu">sample</span>(<span class="dv">100</span>, <span class="dv">10</span>), <span class="st">"Quiz_4"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(gradebook[<span class="st">"Homework_4"</span>])) <span class="co"># should output 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(gradebook[<span class="st">"Quiz_4"</span>])) <span class="co"># should output 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>With this, our dataset is all ready to go. In the later parts, we will perform <em>imputation</em> on the data using two different approaches. Here, <em>imputation</em> is the process of replacing missing values with estimated values. The simplest (far from preferred) method to impute values is to replace missing values with the most typical value, say the mean or the median.</p>
+</section>
+<section id="c-messy-imputation" class="level2">
+<h2 class="anchored" data-anchor-id="c-messy-imputation">c) Messy Imputation</h2>
+<p>In this part, we will try to <strong>impute</strong> the <code>NA</code> values WITHOUT using any of the tools provided by <code>dplyr</code> or <code>tidyr</code>.</p>
+<p>In order to achieve this, we will write a function <code>messy_impute()</code> with at least three arguments:</p>
+<ul>
+<li><strong>df</strong>: the gradebook dataframe (note that the number of rows and where <code>NA</code> values occur may be different)</li>
+<li><strong>center</strong>: a character object indicating the impute function (Mean or Median) with the default as “Mean”</li>
+<li><strong>margin</strong>: an integer (1 or 2) indicating the imputation method (if <code>1</code>, the function imputes the missing values by row, if <code>2</code>, by column. if choosing by column, the function should process homework and quizzes separately)</li>
+</ul>
+<section id="messy_impute" class="level4">
+<h4 class="anchored" data-anchor-id="messy_impute"><strong><code>messy_impute()</code></strong></h4>
+<p><strong>Algorithm:</strong></p>
+<ol type="1">
+<li><p>We first determine how to impute based on the measure of center (mean or median).</p></li>
+<li><p>We call the helper function, which first establishes the indices of the <code>NA</code> values in the data frame.</p></li>
+<li><p>The helper function determines how to impute based on the margin value (row or column).</p></li>
+<li><p>If we are imputing by row, then we iterate through each <code>NA</code> value and impute the missing values.</p></li>
+<li><p>If we are imputing by column, then we iterate through each <code>NA</code> value but we check what category (homework or quiz) each <code>NA</code> value falls under.</p></li>
+<li><p>Based on which category the <code>NA</code> value falls under, we impute by that category separately.</p></li>
+<li><p>We return the imputed data frame.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>messy_impute_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df, center_fn, margin, ...) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This helper function essentially sets up the imputation process based on the center method (mean or median) and margin (row or column)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will throw an error if the margin is any input other than 1 or 2</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will also throw an error if the score does not belong in either the homework or quiz category</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args:</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df: the gradebook data frame</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center_fn: center function (either mean or margin)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># margin: the margin (either row or column)</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...: extra args to pass onto the center_fn</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return:</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the imputed data frame</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(df), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (margin <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(index)) {</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      df[index[i,<span class="dv">1</span>], index[i,<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">center_fn</span>(df[ ,index[i,<span class="dv">2</span>]], <span class="at">na.rm =</span> T, ...)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (margin <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(index)) {</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"Homework"</span>, <span class="fu">colnames</span>(gradebook)[index[i,<span class="dv">2</span>]])) {</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        df[index[i,<span class="dv">1</span>], index[i,<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">apply</span>(gradebook[index[i,<span class="dv">1</span>], <span class="fu">grepl</span>(<span class="st">"Homework"</span>, <span class="fu">names</span>(gradebook))], <span class="dv">1</span>, center_fn, <span class="at">na.rm =</span> T, ...)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"Quiz"</span>, <span class="fu">colnames</span>(gradebook)[index[i,<span class="dv">2</span>]])) {</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        df[index[i,<span class="dv">1</span>], index[i,<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">apply</span>(gradebook[index[i,<span class="dv">1</span>], <span class="fu">grepl</span>(<span class="st">"Quiz"</span>, <span class="fu">names</span>(gradebook))], <span class="dv">1</span>, center_fn, <span class="at">na.rm =</span> T, ...)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"This score does not belong to either the homework or quiz category."</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"The margin must be either 1 (by row) or 2 (by column)."</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>messy_impute <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">center =</span> <span class="st">"Mean"</span>, margin, ...) {</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This function uses the above helper function to actually impute the data frame </span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will throw an error if the measure of center is not mean or median</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args:</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df: the gradebook data frame</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center: center function with default as mean (either mean or margin)</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># margin: the margin (either row or column)</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...: extra args to pass onto the center_fn in the helper function</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return:</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the imputed data frame</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  center <span class="ot">&lt;-</span> <span class="fu">tolower</span>(center)</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (center <span class="sc">==</span> <span class="st">"mean"</span>) {</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">messy_impute_data</span>(df, mean, margin, ...)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (center <span class="sc">==</span> <span class="st">"median"</span>) {</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">messy_impute_data</span>(df, median, margin, ...)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"The measure of center must be either 'mean' or 'median'."</span>)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="d-demo-1" class="level2">
+<h2 class="anchored" data-anchor-id="d-demo-1">d) Demo 1</h2>
+<p>Let’s demonstrate the above function! We will select two students missing <code>Homework_4</code> and two students missing <code>Quiz_4</code> from our simulated gradebook and perform imputations.</p>
+<p><strong>Test Cases:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="dv">3</span>,] <span class="co"># 1st student missing Quiz_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+3 576992987         53         54         85         52         29     35
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+3     74     28     NA     46</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="dv">4</span>,] <span class="co"># 2nd student missing Quiz_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+4 143843463         33          2          6         39         39     49
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+4     55     97     NA     67</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="dv">8</span>,] <span class="co"># 1st student missing Homework_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+8 473921063         84         82         23         NA         53     63
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+8     99     10     68     88</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gradebook[<span class="dv">22</span>,] <span class="co"># 2nd student missing Homework_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+22 642770743         73         19         41         NA         15     89
+   Quiz_2 Quiz_3 Quiz_4 Quiz_5
+22     52     63     62     57</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">messy_impute</span>(gradebook, <span class="st">"mean"</span>, <span class="dv">1</span>)[<span class="dv">3</span>,] <span class="co">#apply row imputing by mean for 1st student missing Quiz_4; expected imputed value: 48.25556</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+3 576992987         53         54         85         52         29     35
+  Quiz_2 Quiz_3   Quiz_4 Quiz_5
+3     74     28 48.25556     46</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">messy_impute</span>(gradebook, <span class="st">"median"</span>, <span class="dv">2</span>)[<span class="dv">4</span>,] <span class="co">#apply column imputing by median for 2nd student missing Quiz_4; expected imputed value: 61</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+4 143843463         33          2          6         39         39     49
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+4     55     97     61     67</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">messy_impute</span>(gradebook, <span class="st">"mean"</span>, <span class="dv">2</span>)[<span class="dv">8</span>, ] <span class="co">#apply column imputing by mean for 1st student missing Homework_4; expected imputed value: 60.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+8 473921063         84         82         23       60.5         53     63
+  Quiz_2 Quiz_3 Quiz_4 Quiz_5
+8     99     10     68     88</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">messy_impute</span>(gradebook, <span class="st">"mean"</span>, <span class="dv">1</span>, <span class="at">trim =</span> <span class="fl">0.25</span>)[<span class="dv">22</span>,] <span class="co">#apply row imputing by mean (with trim) for 2nd student missing Homework_4; expected imputed value: 54.54348</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         UID Homework_1 Homework_2 Homework_3 Homework_4 Homework_5 Quiz_1
+22 642770743         73         19         41   54.54348         15     89
+   Quiz_2 Quiz_3 Quiz_4 Quiz_5
+22     52     63     62     57</code></pre>
+</div>
+</div>
+<hr>
+<p>The function definitely works as intended, but the code looks quite messy. What happens when we make use of <code>tidyr</code> and <code>dplyr</code>?</p>
+</section>
+<section id="e-convert-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="e-convert-the-data">e) Convert the Data</h2>
+<p>First, we will convert our simulated dataset into a tidy format.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gradebook_tidy <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(gradebook) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="fu">names</span>(gradebook)[<span class="sc">-</span><span class="dv">1</span>], <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Assignment_Type"</span>, <span class="st">"Assignment_Number"</span>), <span class="at">values_to =</span> <span class="st">"Score"</span>, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>gradebook_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,000 × 4
+         UID Assignment_Type Assignment_Number Score
+       &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+ 1 532521854 Homework        1                    45
+ 2 532521854 Homework        2                    17
+ 3 532521854 Homework        3                    75
+ 4 532521854 Homework        4                    22
+ 5 532521854 Homework        5                    13
+ 6 532521854 Quiz            1                    80
+ 7 532521854 Quiz            2                    87
+ 8 532521854 Quiz            3                    83
+ 9 532521854 Quiz            4                    82
+10 532521854 Quiz            5                    11
+# … with 990 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="f-tidy-imputation" class="level2">
+<h2 class="anchored" data-anchor-id="f-tidy-imputation">f) Tidy Imputation</h2>
+<p>To perform tidy imputation, we will write a function called <code>tidy_impute()</code>. The trick here is to make use of <code>group_by()</code> in order to pull the appropriate data needed for each imputation method. The <code>tidy_impute()</code> function should have the same arguments as the <code>messy_impute()</code> function.</p>
+<section id="tidy_impute" class="level4">
+<h4 class="anchored" data-anchor-id="tidy_impute"><strong><code>tidy_impute()</code></strong></h4>
+<p><strong>Algorithm:</strong></p>
+<ol type="1">
+<li><p>We first determine how to impute based on the measure of center (mean or median).</p></li>
+<li><p>We create a center function that reflects the measure of center.</p></li>
+<li><p>We now determine how to impute based on margin (row or column).</p></li>
+<li><p>If imputing by row, we first group by assignment_type and assignment_number.</p></li>
+<li><p>Then, we mutate the Score column of the tidy data using an if_else statement to see where the NA values are.</p></li>
+<li><p>If imputing by column, we group by student IDs and assignment_type, then do step 5 as described above.</p></li>
+<li><p>We return the imputed tidy data.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tidy_impute <span class="ot">&lt;-</span> <span class="cf">function</span>(tidy_df, <span class="at">center =</span> <span class="st">"Mean"</span>, margin, ...) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This function imputes a tidy data</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will throw an error if the measure of center is not mean or median</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will also throw an error if the margin is any input other than 1 or 2</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Args:</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tidy_df: the tidied gradebook data</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center: center function with default as mean (either mean or margin)</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># margin: the margin (either row or column)</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...: extra args to pass onto the center_fn</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return:</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the imputed tidy data</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  center <span class="ot">&lt;-</span> <span class="fu">tolower</span>(center)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (center <span class="sc">==</span> <span class="st">"mean"</span>) {</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    center_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> T, ...)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (center <span class="sc">==</span> <span class="st">"median"</span>) {</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    center_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">median</span>(x, <span class="at">na.rm =</span> T, ...)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"The measure of center must be either 'mean' or 'median'."</span>)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (margin <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    tidy_df <span class="ot">&lt;-</span> tidy_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Assignment_Type, Assignment_Number) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Score=</span><span class="fu">if_else</span>(<span class="fu">is.na</span>(Score), <span class="fu">center_fn</span>(Score), Score))</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (margin <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    tidy_df <span class="ot">&lt;-</span> tidy_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(UID, Assignment_Type) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Score=</span><span class="fu">if_else</span>(<span class="fu">is.na</span>(Score), <span class="fu">center_fn</span>(Score), Score))</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"The margin must be either 1 (by row) or 2 (by column)."</span>)</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>  tidy_df</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="g-demo-2" class="level2">
+<h2 class="anchored" data-anchor-id="g-demo-2">g) Demo 2</h2>
+<p>We use the same cases from d) to demonstrate our new function, <code>tidy_impute()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gradebook_tidy[<span class="dv">29</span>,] <span class="co"># 1st student missing Quiz_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 576992987 Quiz            4                    NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gradebook_tidy[<span class="dv">39</span>,] <span class="co"># 2nd student missing Quiz_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 143843463 Quiz            4                    NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gradebook_tidy[<span class="dv">74</span>,] <span class="co"># 1st student missing Homework_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 473921063 Homework        4                    NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>gradebook_tidy[<span class="dv">214</span>,] <span class="co"># 2nd student missing Homework_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 642770743 Homework        4                    NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy_impute should result in the same numbers as messy_impute</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_impute</span>(gradebook_tidy, <span class="st">"mean"</span>, <span class="dv">1</span>)[<span class="dv">29</span>,] <span class="co">#expected imputed value: 48.25556</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+# Groups:   Assignment_Type, Assignment_Number [1]
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 576992987 Quiz            4                  48.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_impute</span>(gradebook_tidy, <span class="st">"median"</span>, <span class="dv">2</span>)[<span class="dv">39</span>,] <span class="co">#expected imputed value: 61</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+# Groups:   UID, Assignment_Type [1]
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 143843463 Quiz            4                    61</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_impute</span>(gradebook_tidy, <span class="st">"mean"</span>, <span class="dv">2</span>)[<span class="dv">74</span>, ] <span class="co">#expected imputed value: 60.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+# Groups:   UID, Assignment_Type [1]
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 473921063 Homework        4                  60.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_impute</span>(gradebook_tidy, <span class="st">"mean"</span>, <span class="dv">1</span>, <span class="at">trim =</span> <span class="fl">0.25</span>)[<span class="dv">214</span>,] <span class="co">#expected imputed value: 54.54348</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+# Groups:   Assignment_Type, Assignment_Number [1]
+        UID Assignment_Type Assignment_Number Score
+      &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+1 642770743 Homework        4                  54.5</code></pre>
+</div>
+</div>
+<hr>
+<p>Great! The new function also works as intended and is much more concise than <code>messy_impute()</code>. With this, we discover the power of using <code>tidyverse</code> for any data-related work.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jryu20/quarto" data-repo-id="R_kgDOJ9F5gw" data-category="General" data-category-id="DIC_kwDOJ9F5g84CYQlE" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

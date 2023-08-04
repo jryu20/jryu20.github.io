@@ -211,14 +211,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#using-r" id="toc-using-r" class="nav-link active" data-scroll-target="#using-r">Using R</a>
+  <li><a href="#using-r" id="toc-using-r" class="nav-link active" data-scroll-target="#using-r">1. Using R</a>
   <ul class="collapse">
   <li><a href="#names.txt" id="toc-names.txt" class="nav-link" data-scroll-target="#names.txt">names.txt</a></li>
   <li><a href="#cards.txt" id="toc-cards.txt" class="nav-link" data-scroll-target="#cards.txt">cards.txt</a></li>
   <li><a href="#passwords.txt" id="toc-passwords.txt" class="nav-link" data-scroll-target="#passwords.txt">passwords.txt</a></li>
   <li><a href="#wordlists.rdata" id="toc-wordlists.rdata" class="nav-link" data-scroll-target="#wordlists.rdata">wordlists.RData</a></li>
   </ul></li>
-  <li><a href="#using-python" id="toc-using-python" class="nav-link" data-scroll-target="#using-python">Using Python</a></li>
+  <li><a href="#using-python" id="toc-using-python" class="nav-link" data-scroll-target="#using-python">2. Using Python</a></li>
   </ul>
 </nav>
     </div>
@@ -229,10 +229,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <blockquote class="blockquote">
-<p>Just some exercises with <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>…</p>
+<p>Some simple exercises with <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>…</p>
 </blockquote>
 <section id="using-r" class="level2">
-<h2 class="anchored" data-anchor-id="using-r">Using R</h2>
+<h2 class="anchored" data-anchor-id="using-r">1. Using R</h2>
 <section id="names.txt" class="level3">
 <h3 class="anchored" data-anchor-id="names.txt">names.txt</h3>
 <div class="cell">
@@ -250,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="a">(a)</h4>
 <p>Find all usernames that contain at least one numeric character.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, pat_1_a)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, <span class="st">"[0-9]"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "abc123"          "myUsernameis210" "123fionaFog"     "Red chihuahua5" 
 [5] "1"               "0maha p0shy"    </code></pre>
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="b">(b)</h4>
 <p>Find all usernames that are exactly four characters long and consist only of alphabetic characters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, pat_1_b)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, <span class="st">"^[a-zA-Z]{4}$"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "asml" "john"</code></pre>
 </div>
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
 <p>Find all usernames following the conventional way of name format, i.e., the “given name” goes first, and the “family” name last, with any other names in-between. The names are separated by a single white space and each name should be uppercase letter followed by one or more lowercase letters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, pat_1_c)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>names[<span class="fu">str_detect</span>(names, <span class="st">"^(?:[A-Z][a-z]+ )+(?:[A-Z][a-z]+)$"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Edward Lazowska"</code></pre>
 </div>
@@ -281,11 +281,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="cards.txt" class="level3">
 <h3 class="anchored" data-anchor-id="cards.txt">cards.txt</h3>
-<p>Find cards.txt and write the regex patterns to identify all the valid card numbers with the formatting rules below.</p>
-<ul>
-<li>A Master card number begins with a 5 and it is exactly 16 digits long.</li>
-<li>A Visa card number begins with a 4 and it is between 13 and 16 digits long.</li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cards <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">read.table</span>(<span class="st">"cards.txt"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>), <span class="at">use.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cards</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -298,11 +293,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [11] "4182 2884 1232 9582 2182"</code></pre>
 </div>
 </div>
+<hr>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A Master card number begins with a 5 and it is exactly 16 digits long.</li>
+<li>A Visa card number begins with a 4 and it is between 13 and 16 digits long.</li>
+</ul>
+</div>
+</div>
 <section id="a-1" class="level4">
 <h4 class="anchored" data-anchor-id="a-1">(a)</h4>
 <p>Write a regex pattern to match valid Master card number and print all the valid numbers, grouped into sets of 4 separated by a single space.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">str_match</span>(cards[<span class="fu">str_detect</span>(cards, pat_2_a)], pat_2_a)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, paste, <span class="at">collapse =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pat_a <span class="ot">&lt;-</span> <span class="st">"^([5][0-9]{3})</span><span class="sc">\\</span><span class="st">s*([0-9]{4})</span><span class="sc">\\</span><span class="st">s*([0-9]{4})</span><span class="sc">\\</span><span class="st">s*([0-9]{4})$"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">str_match</span>(cards[<span class="fu">str_detect</span>(cards, pat_a)], pat_a)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, paste, <span class="at">collapse =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "5123 4567 8910 1112" "5234 4567 8910 1112" "5192 9295 9182 8818"</code></pre>
 </div>
@@ -312,7 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="b-1">(b)</h4>
 <p>Write a regex pattern to match valid Visa card number and print all the valid numbers, grouped into sets of 4 separated by a single space.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">str_match</span>(cards[<span class="fu">str_detect</span>(cards, pat_2_b)], pat_2_b)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, paste, <span class="at">collapse =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pat_b <span class="ot">&lt;-</span> <span class="st">"^([4][0-9]{3})</span><span class="sc">\\</span><span class="st">s*([0-9]{4})</span><span class="sc">\\</span><span class="st">s*([0-9]{4})</span><span class="sc">\\</span><span class="st">s*([0-9]{1,4})$"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">str_match</span>(cards[<span class="fu">str_detect</span>(cards, pat_b)], pat_b)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, paste, <span class="at">collapse =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "4789 0123 8910 1112" "4444 9321 1230 3"   </code></pre>
 </div>
@@ -340,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Must contain at least one digit</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>passwords[<span class="fu">str_detect</span>(passwords, pat_3_a)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>passwords[<span class="fu">str_detect</span>(passwords, <span class="st">"(?=.*[0-9])(?=.*[a-zA-Z]).{8}"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Strings78" "appleO07"  "1brownie"  "glhf1234" </code></pre>
 </div>
@@ -356,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Must contain at least one digit</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>passwords[<span class="fu">str_detect</span>(passwords, pat_3_b)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>passwords[<span class="fu">str_detect</span>(passwords, <span class="st">"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8}"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Strings78" "appleO07" </code></pre>
 </div>
@@ -366,18 +380,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="wordlists.rdata" class="level3">
 <h3 class="anchored" data-anchor-id="wordlists.rdata">wordlists.RData</h3>
-<p>Please load wordlists.RData to R and write regular expression patterns which will match all of the values in x and none of the values in y.</p>
+<p>Write regular expression patterns which will match all of the values in x and none of the values in y.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"wordlists.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="a-3" class="level4">
 <h4 class="anchored" data-anchor-id="a-3">(a)</h4>
+<p><img src="regex1.png" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Ranges<span class="sc">$</span>x, pat_4_a)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Ranges<span class="sc">$</span>x, <span class="st">"^[a-f]+$"</span>)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Ranges<span class="sc">$</span>y, pat_4_a)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Ranges<span class="sc">$</span>y, <span class="st">"^[a-f]+$"</span>)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -385,12 +400,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="b-3" class="level4">
 <h4 class="anchored" data-anchor-id="b-3">(b)</h4>
+<p><img src="regex2.png" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Backrefs<span class="sc">$</span>x, pat_4_b)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Backrefs<span class="sc">$</span>x, <span class="st">"([a-z]{3}).*</span><span class="sc">\\</span><span class="st">1"</span>)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Backrefs<span class="sc">$</span>y, pat_4_b)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Backrefs<span class="sc">$</span>y, <span class="st">"([a-z]{3}).*</span><span class="sc">\\</span><span class="st">1"</span>)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -398,12 +414,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="c-1" class="level4">
 <h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p><img src="regex3.png" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Prime<span class="sc">$</span>x, pat_4_c)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Prime<span class="sc">$</span>x, <span class="st">"^(?!(xx+)</span><span class="sc">\\</span><span class="st">1+$)"</span>)) <span class="sc">==</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Prime<span class="sc">$</span>y, pat_4_c)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">str_detect</span>(wordlists<span class="sc">$</span>Prime<span class="sc">$</span>y, <span class="st">"^(?!(xx+)</span><span class="sc">\\</span><span class="st">1+$)"</span>)) <span class="sc">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -413,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 </section>
 <section id="using-python" class="level2">
-<h2 class="anchored" data-anchor-id="using-python">Using Python</h2>
+<h2 class="anchored" data-anchor-id="using-python">2. Using Python</h2>
 
 
 </section>
