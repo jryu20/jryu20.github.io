@@ -23,7 +23,6 @@
       "/posts/fakenews/fakenews_classification_copy2.html",
       "/posts/OOP/OOP.html",
       "/posts/image_class/image_classification copy.html",
-      "/posts/regex/regex.html",
       "/posts/tidy_R/tidyr.html",
       "/posts/web_dev/flask.html",
       "/posts/scrapy/result_vis copy.html",
@@ -32,6 +31,12 @@
       "/posts/predator-prey/modeling.html",
       "/posts/penguin_project/palmer_project.html",
       "/posts/palmer_vis/index.html"
+    ]
+  },
+  {
+    "listing": "/exercises.html",
+    "items": [
+      "/exercises/regex/regex.html"
     ]
   }
 ]

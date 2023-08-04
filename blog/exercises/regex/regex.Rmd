@@ -149,8 +149,3 @@ all(str_detect(wordlists$Prime$x, "^(?!(xx+)\\1+$)")) == TRUE
 any(str_detect(wordlists$Prime$y, "^(?!(xx+)\\1+$)")) == FALSE
 ```
 
----
-
-## 2. Using Python
-
-

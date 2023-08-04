@@ -5,6 +5,9 @@
     ],
     "blog.qmd": [
       "posts"
+    ],
+    "exercises.qmd": [
+      "exercises"
     ]
   }
 }

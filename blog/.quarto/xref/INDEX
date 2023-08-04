@@ -79,5 +79,11 @@
   },
   "posts/tidy_R/tidyr.Rmd": {
     "tidyr.html": "49a2e39a"
+  },
+  "exercises.qmd": {
+    "exercises.html": "4e0dbc31"
+  },
+  "exercises/regex/regex.Rmd": {
+    "regex.html": "7a0e8c7e"
   }
 }
