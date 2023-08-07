@@ -5,6 +5,7 @@ listing:
   contents: posts
   sort: "date desc"
   type: grid
+  image-height: 200px
   grid-columns: 2
   categories: true
   sort-ui: true
