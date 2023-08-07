@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jun Ryu">
+<meta name="dcterms.date" content="2023-06-21">
+
+<title>Jun Ryu - Spectral Clustering. What is it?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jun Ryu</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jryu20"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/r.yujunhee"><i class="bi bi-instagram" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Spectral Clustering. What is it?</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">ML</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jun Ryu </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 21, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a">Part A</a></li>
+  <li><a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b">Part B</a></li>
+  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c">Part C</a></li>
+  <li><a href="#part-d" id="toc-part-d" class="nav-link" data-scroll-target="#part-d">Part D</a></li>
+  <li><a href="#part-e" id="toc-part-e" class="nav-link" data-scroll-target="#part-e">Part E</a></li>
+  <li><a href="#part-f" id="toc-part-f" class="nav-link" data-scroll-target="#part-f">Part F</a></li>
+  <li><a href="#part-g" id="toc-part-g" class="nav-link" data-scroll-target="#part-g">Part G</a></li>
+  <li><a href="#part-h" id="toc-part-h" class="nav-link" data-scroll-target="#part-h">Part H</a></li>
+  <li><a href="#part-i" id="toc-part-i" class="nav-link" data-scroll-target="#part-i">Part I</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="preface" class="level2">
+<h2 class="anchored" data-anchor-id="preface">Preface</h2>
+<blockquote class="blockquote">
+<p>In this post, we will explore a simple version of the <em>spectral clustering</em> algorithm for clustering data points. Spectral clustering is an important tool for identifying meaningful parts of data sets with complex structure.</p>
+</blockquote>
+<section id="notation" class="level3">
+<h3 class="anchored" data-anchor-id="notation">Notation</h3>
+<p>In all the math below:</p>
+<ul>
+<li>Boldface capital letters like <span class="math inline">\(\mathbf{A}\)</span> refer to matrices (2d arrays of numbers).</li>
+<li>Boldface lowercase letters like <span class="math inline">\(\mathbf{v}\)</span> refer to vectors (1d arrays of numbers).</li>
+<li><span class="math inline">\(\mathbf{A}\mathbf{B}\)</span> refers to a matrix-matrix product (<code>A@B</code>). <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span> refers to a matrix-vector product (<code>A@v</code>).</li>
+</ul>
+</section>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>To begin, let’s look at an example where we <em>don’t</em> need spectral clustering.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1111</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_blobs(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="va">None</span>, centers <span class="op">=</span> <span class="dv">2</span>, cluster_std <span class="op">=</span> <span class="fl">2.0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947c78d9d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Clustering</em> refers to the task of separating this data set into the two natural “blobs.” K-means is a very common way to achieve this task, which has good performance on circular-ish blobs like these:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init <span class="op">=</span> <span class="st">"auto"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947ce3a550&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="harder-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="harder-clustering">Harder Clustering</h4>
+<p>That was all well and good, but what if our data is “shaped weird”?</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_moons(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, noise<span class="op">=</span><span class="fl">0.05</span>, random_state<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947cfb37c0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We can still make out two meaningful clusters in the data, but now they aren’t blobs but crescents. As before, the Euclidean coordinates of the data points are contained in the matrix <code>X</code>, while the labels of each point are contained in <code>y</code>. Now k-means won’t work so well, because k-means is, by design, looking for circular clusters.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init <span class="op">=</span> <span class="st">"auto"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947d206fa0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Whoops! That’s not right!</p>
+<p>As we’ll see, spectral clustering is able to correctly cluster the two crescents. In the following parts, we will derive and implement spectral clustering.</p>
+</section>
+</section>
+<section id="part-a" class="level2">
+<h2 class="anchored" data-anchor-id="part-a">Part A</h2>
+<p>In this part, we will construct the <em>similarity matrix</em> <span class="math inline">\(\mathbf{A}\)</span>. <span class="math inline">\(\mathbf{A}\)</span> should be a matrix (2d <code>np.ndarray</code>) with shape <code>(n, n)</code> (recall that <code>n</code> is the number of data points).</p>
+<p>When constructing the similarity matrix, we will use a parameter <code>epsilon</code>. Entry <code>A[i,j]</code> should be equal to <code>1</code> if <code>X[i]</code> (the coordinates of data point <code>i</code>) is within distance <code>epsilon</code> of <code>X[j]</code> (the coordinates of data point <code>j</code>), and <code>0</code> otherwise.</p>
+<p><strong>For this matrix, the diagonal entries <code>A[i,i]</code> should all be equal to zero.</strong> We will use <code>epsilon = 0.4</code> for now.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> pairwise_distances</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construct_similarity_matrix(X, epsilon):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Constructs the similarity matrix</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    X: original matrix containing coordinates for all data points</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    epsilon: the benchmark distance for classifying 'similarity'</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    similarity_matrix: a n by n similarity matrix</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> pairwise_distances(X)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    similarity_matrix <span class="op">=</span> np.where(distances <span class="op">&lt;=</span> epsilon, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    np.fill_diagonal(similarity_matrix, <span class="dv">0</span>) <span class="co"># diagonal entries are 0</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> similarity_matrix</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> construct_similarity_matrix(X, <span class="fl">0.4</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 1, 0],
+       ...,
+       [0, 0, 0, ..., 0, 1, 1],
+       [0, 0, 1, ..., 1, 0, 1],
+       [0, 0, 0, ..., 1, 1, 0]])</code></pre>
+</div>
+</div>
+</section>
+<section id="part-b" class="level2">
+<h2 class="anchored" data-anchor-id="part-b">Part B</h2>
+<p>The matrix <code>A</code> now contains information about which points are near (within distance <code>epsilon</code>) which other points. We now pose the task of clustering the data points in <code>X</code> as the task of partitioning the rows and columns of <code>A</code>.</p>
+<p>Let <span class="math inline">\(d_i = \sum_{j = 1}^n a_{ij}\)</span> be the <span class="math inline">\(i\)</span>th row-sum of <span class="math inline">\(\mathbf{A}\)</span>, which is also called the <em>degree</em> of <span class="math inline">\(i\)</span>. Let <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span> be two clusters of the data points. We assume that every data point is in either <span class="math inline">\(C_0\)</span> or <span class="math inline">\(C_1\)</span>. The cluster membership as being specified by <code>y</code>. We think of <code>y[i]</code> as being the label of point <code>i</code>. So, if <code>y[i] = 1</code>, then point <code>i</code> (and therefore row <span class="math inline">\(i\)</span> of <span class="math inline">\(\mathbf{A}\)</span>) is an element of cluster <span class="math inline">\(C_1\)</span>.</p>
+<p>The <em>binary norm cut objective</em> of a matrix <span class="math inline">\(\mathbf{A}\)</span> is the function</p>
+<p><span class="math display">\[N_{\mathbf{A}}(C_0, C_1)\equiv \mathbf{cut}(C_0, C_1)\left(\frac{1}{\mathbf{vol}(C_0)} + \frac{1}{\mathbf{vol}(C_1)}\right)\;.\]</span></p>
+<p>In this expression,</p>
+<ul>
+<li><span class="math inline">\(\mathbf{cut}(C_0, C_1) \equiv \sum_{i \in C_0, j \in C_1} a_{ij}\)</span> is the <em>cut</em> of the clusters <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span>.</li>
+<li><span class="math inline">\(\mathbf{vol}(C_0) \equiv \sum_{i \in C_0}d_i\)</span>, where <span class="math inline">\(d_i = \sum_{j = 1}^n a_{ij}\)</span> is the <em>degree</em> of row <span class="math inline">\(i\)</span> (the total number of all other rows related to row <span class="math inline">\(i\)</span> through <span class="math inline">\(A\)</span>). The <em>volume</em> of cluster <span class="math inline">\(C_0\)</span> is a measure of the size of the cluster.</li>
+</ul>
+<p>A pair of clusters <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span> is considered to be a “good” partition of the data when <span class="math inline">\(N_{\mathbf{A}}(C_0, C_1)\)</span> is small. To see why, let’s look at each of the two factors in this objective function separately.</p>
+<section id="b.1-the-cut-term" class="level4">
+<h4 class="anchored" data-anchor-id="b.1-the-cut-term">B.1 The Cut Term</h4>
+<p>First, the cut term <span class="math inline">\(\mathbf{cut}(C_0, C_1)\)</span> is the number of nonzero entries in <span class="math inline">\(\mathbf{A}\)</span> that relate points in cluster <span class="math inline">\(C_0\)</span> to points in cluster <span class="math inline">\(C_1\)</span>. Saying that this term should be small is the same as saying that points in <span class="math inline">\(C_0\)</span> shouldn’t usually be very close to points in <span class="math inline">\(C_1\)</span>.</p>
+<p>Here, we will write a function called <code>cut(A,y)</code> to compute the cut term.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cut(A, y):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the cut term</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    cut_value: the cut term</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    cut_value <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> y[i] <span class="op">!=</span> y[j]: <span class="co"># these are in different clusters</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                cut_value <span class="op">+=</span> A[i, j]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cut_value<span class="op">/</span><span class="dv">2</span> <span class="co"># avoid double-counting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we will compute the cut objective for the true clusters <code>y</code>. Then, we will generate a random vector of random labels of length <code>n</code>, with each label equal to either 0 or 1, and check the cut objective for the random labels. We should get that the cut objective for the true labels is <em>much</em> smaller than the cut objective for the random labels.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cut_true <span class="op">=</span> cut(A, y)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)  </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>y_random <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>n) <span class="co"># random labels</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>cut_random <span class="op">=</span> cut(A, y_random)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cut_true)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cut_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13.0
+1147.0</code></pre>
+</div>
+</div>
+<p>This shows that this part of the cut objective indeed favors the true clusters over the random ones.</p>
+</section>
+<section id="b.2-the-volume-term" class="level4">
+<h4 class="anchored" data-anchor-id="b.2-the-volume-term">B.2 The Volume Term</h4>
+<p>Now, the <em>volume term</em>. As mentioned above, the <em>volume</em> of cluster <span class="math inline">\(C_0\)</span> is a measure of how “big” cluster <span class="math inline">\(C_0\)</span> is. If we choose cluster <span class="math inline">\(C_0\)</span> to be small, then <span class="math inline">\(\mathbf{vol}(C_0)\)</span> will be small and <span class="math inline">\(\frac{1}{\mathbf{vol}(C_0)}\)</span> will be large, leading to an undesirable higher objective value.</p>
+<p>Synthesizing, the binary normcut objective asks us to find clusters <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span> such that:</p>
+<ol type="1">
+<li>There are relatively few entries of <span class="math inline">\(\mathbf{A}\)</span> that join <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span>.</li>
+<li>Neither <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span> are too small.</li>
+</ol>
+<p>We will write a function called <code>vols(A,y)</code> which computes the volumes of <span class="math inline">\(C_0\)</span> and <span class="math inline">\(C_1\)</span>, returning them as a tuple. For example, <code>v0, v1 = vols(A,y)</code> should result in <code>v0</code> holding the volume of cluster <code>0</code> and <code>v1</code> holding the volume of cluster <code>1</code>. Then, we will write a function called <code>normcut(A,y)</code> which uses <code>cut(A,y)</code> and <code>vols(A,y)</code> to compute the binary normalized cut objective of a matrix <code>A</code> with clustering vector <code>y</code>.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vols(A, y):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the volume term</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    v0, v1: the volumes of cluster 0 and cluster 1</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    v0 <span class="op">=</span> np.<span class="bu">sum</span>(A[np.where(y <span class="op">==</span> <span class="dv">0</span>)])  <span class="co"># volume of cluster 0</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    v1 <span class="op">=</span> np.<span class="bu">sum</span>(A[np.where(y <span class="op">==</span> <span class="dv">1</span>)])  <span class="co"># volume of cluster 1</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> v0, v1</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normcut(A, y):</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the binary norm cut objective</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">    normcut_value: the binary norm cut objective</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    cut_value <span class="op">=</span> cut(A, y)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    v0, v1 <span class="op">=</span> vols(A, y)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    normcut_value <span class="op">=</span> cut_value <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> v0 <span class="op">+</span> <span class="dv">1</span> <span class="op">/</span> v1)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> normcut_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we will compare the <code>normcut</code> objective using both the true labels <code>y</code> and the fake labels we generated above.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normcut(A,y))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normcut(A,y_random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.011518412331615225
+1.0159594530373053</code></pre>
+</div>
+</div>
+<p>We notice that the normcut for the true labels is significantly smaller than the normcut for the fake labels.</p>
+</section>
+</section>
+<section id="part-c" class="level2">
+<h2 class="anchored" data-anchor-id="part-c">Part C</h2>
+<p>We have now defined a normalized cut objective which takes small values when the input clusters are (a) joined by relatively few entries in <span class="math inline">\(A\)</span> and (b) not too small. One approach to clustering is to try to find a cluster vector <code>y</code> such that <code>normcut(A,y)</code> is small. However, this is an NP-hard combinatorial optimization problem, which means that may not be possible to find the best clustering in practical time, even for relatively small data sets. We need a math trick!</p>
+<p>Here’s the trick: define a new vector <span class="math inline">\(\mathbf{z} \in \mathbb{R}^n\)</span> such that:</p>
+<p><span class="math display">\[
+z_i =
+\begin{cases}
+    \frac{1}{\mathbf{vol}(C_0)} &amp;\quad \text{if } y_i = 0 \\
+    -\frac{1}{\mathbf{vol}(C_1)} &amp;\quad \text{if } y_i = 1 \\
+\end{cases}
+\]</span></p>
+<p>Note that the signs of the elements of <span class="math inline">\(\mathbf{z}\)</span> contain all the information from <span class="math inline">\(\mathbf{y}\)</span>: if <span class="math inline">\(i\)</span> is in cluster <span class="math inline">\(C_0\)</span>, then <span class="math inline">\(y_i = 0\)</span> and <span class="math inline">\(z_i &gt; 0\)</span>.</p>
+<p>Next, by linear algebra, we can show that</p>
+<p><span class="math display">\[\mathbf{N}_{\mathbf{A}}(C_0, C_1) = \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\mathbf{z}}{\mathbf{z}^T\mathbf{D}\mathbf{z}}\;,\]</span></p>
+<p>where <span class="math inline">\(\mathbf{D}\)</span> is the diagonal matrix with nonzero entries <span class="math inline">\(d_{ii} = d_i\)</span>, and where <span class="math inline">\(d_i = \sum_{j = 1}^n a_i\)</span> is the degree (row-sum) from before.</p>
+<p>Now, we will achieve three tasks in this part:</p>
+<ol type="1">
+<li>We will write a function called <code>transform(A,y)</code> to compute the appropriate <span class="math inline">\(\mathbf{z}\)</span> vector given <code>A</code> and <code>y</code>, using the formula above.</li>
+<li>Then, we will check the equation above that relates the matrix product to the normcut objective, by computing each side separately and checking that they are equal.</li>
+<li>We will also check the identity <span class="math inline">\(\mathbf{z}^T\mathbf{D}\mathbb{1} = 0\)</span>, where <span class="math inline">\(\mathbb{1}\)</span> is the vector of <code>n</code> ones (i.e.&nbsp;<code>np.ones(n)</code>). This identity effectively says that <span class="math inline">\(\mathbf{z}\)</span> should contain roughly as many positive as negative entries.</li>
+</ol>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The equation above is exact, but computer arithmetic is not! <code>np.isclose(a,b)</code> is a good way to check if <code>a</code> is “close” to <code>b</code>, in the sense that they differ by less than the smallest amount that the computer is (by default) able to quantify.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transform(A, y):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Transforms into the z vector</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    z: a new z vector</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    v0, v1 <span class="op">=</span> vols(A, y)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.zeros_like(y, dtype<span class="op">=</span>np.float32)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    z[y <span class="op">==</span> <span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> v0</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    z[y <span class="op">==</span> <span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> v1</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.diag(np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">1</span>)) <span class="co"># by definition</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_normcut(A, y):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Checks for equality of normcut objective to the matrix product</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">    True if equal, False otherwise</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> transform(A, y)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> z.T <span class="op">@</span> (D <span class="op">-</span> A) <span class="op">@</span> z</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> z.T <span class="op">@</span> D <span class="op">@</span> z</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    mat_result <span class="op">=</span> num <span class="op">/</span> denom</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.isclose(mat_result, normcut(A,y))</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>check_normcut(A, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_identity(A, y):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Checks that z contains as many positive as negative entries</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">    A: a similarity matrix</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">    y: the labels for the clusters</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">    True if equal, False otherwise</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> transform(A, y)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    zD_ones <span class="op">=</span> z.T <span class="op">@</span> D <span class="op">@</span> np.ones(n)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.isclose(zD_ones, <span class="dv">0</span>, atol <span class="op">=</span> <span class="fl">1e-7</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>check_identity(A,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="part-d" class="level2">
+<h2 class="anchored" data-anchor-id="part-d">Part D</h2>
+<p>In the last part, we saw that the problem of minimizing the normcut objective is mathematically related to the problem of minimizing the function</p>
+<p><span class="math display">\[ R_\mathbf{A}(\mathbf{z})\equiv \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\mathbf{z}}{\mathbf{z}^T\mathbf{D}\mathbf{z}} \]</span></p>
+<p>subject to the condition <span class="math inline">\(\mathbf{z}^T\mathbf{D}\mathbb{1} = 0\)</span>. It’s actually possible to bake this condition into the optimization, by substituting for <span class="math inline">\(\mathbf{z}\)</span> the orthogonal complement of <span class="math inline">\(\mathbf{z}\)</span> relative to <span class="math inline">\(\mathbf{D}\mathbf{1}\)</span>. In the code below, <code>orth_obj</code> function is defined, which handles this.</p>
+<p>Next, we will use the <code>minimize</code> function from <code>scipy.optimize</code> to minimize the function <code>orth_obj</code> with respect to <span class="math inline">\(\mathbf{z}\)</span>. Note that this computation might take a little while. Explicit optimization can be pretty slow! We will give the minimizing vector a name <code>z_min</code>.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> orth(u, v):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (u <span class="op">@</span> v) <span class="op">/</span> (v <span class="op">@</span> v) <span class="op">*</span> v</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.ones(n) </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> D <span class="op">@</span> e</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> orth_obj(z):</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    z_o <span class="op">=</span> z <span class="op">-</span> orth(z, d)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (z_o <span class="op">@</span> (D <span class="op">-</span> A) <span class="op">@</span> z_o)<span class="op">/</span>(z_o <span class="op">@</span> D <span class="op">@</span> z_o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> transform(A, y)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(orth_obj, z)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>z_min <span class="op">=</span> result.x</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>z_min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>array([-1.83363931e-03, -2.41710538e-03, -1.20226192e-03, -1.41758081e-03,
+       -9.85645864e-04, -1.23091162e-03, -5.85690924e-04, -8.67514274e-04,
+       -2.13363507e-03, -1.82275230e-03, -2.18410465e-03, -1.18182503e-03,
+       -1.12573569e-03, -2.27573913e-03, -2.49845111e-03, -2.32678030e-03,
+       -2.03869604e-03, -1.27316401e-03, -1.24225281e-03, -1.14288295e-03,
+       -2.24037253e-03, -1.12831398e-03, -2.25941115e-03, -1.41898598e-03,
+       -8.52871118e-04, -1.94379461e-03, -1.07881349e-03, -2.00285492e-03,
+       -2.16758843e-03, -1.20013076e-03, -1.00747518e-03, -2.04783063e-03,
+       -2.38495329e-03, -2.15588571e-03, -2.15346690e-03, -2.30818567e-03,
+       -8.52871117e-04, -2.46828992e-03, -2.33964356e-03, -1.16170816e-03,
+       -2.22253922e-03, -1.27174485e-03, -1.12822595e-03, -3.46851488e-04,
+       -9.25887377e-04, -1.41520836e-03, -1.27241376e-03, -2.31479528e-03,
+       -2.35165502e-03, -1.11530568e-03, -1.13554628e-03, -1.14961808e-03,
+       -2.25941115e-03, -2.21235864e-03, -7.09467445e-04, -1.15745784e-03,
+       -2.38254035e-03, -1.43650669e-03, -2.25741888e-03, -1.34604463e-03,
+       -4.20138485e-04, -1.11092535e-03, -2.05793167e-03, -1.25856296e-03,
+       -2.04525652e-03, -1.08288583e-03, -4.20137105e-04, -8.54366305e-04,
+       -1.42143144e-03, -2.33033499e-03, -2.03790090e-03, -2.38897307e-03,
+       -2.18990875e-03, -1.34300843e-03, -1.14333581e-03, -1.65981887e-03,
+       -1.93561374e-03, -1.27238395e-03, -2.39845900e-03, -1.09193946e-03,
+       -1.44543280e-03, -1.05106695e-03, -1.22165960e-03, -2.26391726e-03,
+       -2.25748494e-03, -2.33476211e-03, -2.15588571e-03, -1.35432579e-03,
+       -1.13228638e-03, -1.27211371e-03, -7.25774582e-04, -2.05793167e-03,
+       -1.17093782e-03, -1.13554628e-03, -1.43650734e-03, -1.82275230e-03,
+       -2.46828992e-03, -2.40313530e-03, -9.53961261e-04, -1.14961808e-03,
+       -2.47023064e-03, -2.35165502e-03, -2.31358643e-03, -6.55858666e-04,
+       -2.22993136e-03, -2.33808740e-03, -9.04983291e-04, -1.34574350e-03,
+       -2.35520055e-03, -2.26940338e-03, -9.81138612e-04, -1.23226012e-03,
+       -1.20423531e-03, -2.33200711e-03, -1.12902150e-03, -7.78452491e-04,
+        8.23457782e-05, -5.85694297e-04, -1.43650682e-03, -2.39011246e-03,
+       -2.60606277e-03, -1.20843845e-03, -2.22127811e-03, -2.30546869e-03,
+       -2.11887544e-03, -1.15351926e-03, -2.37703302e-03, -1.35926151e-03,
+       -2.04783063e-03, -1.43650717e-03, -1.00403850e-03, -5.85690315e-04,
+       -1.34604463e-03, -1.07246063e-03, -2.38606851e-03, -2.47182993e-03,
+       -2.32143351e-03, -2.07609848e-03, -2.22257682e-03, -1.55196736e-03,
+       -1.84564303e-03, -2.37810962e-03, -1.21766890e-03, -1.27596967e-03,
+       -1.62202776e-03, -1.21533336e-03, -1.03802326e-03, -1.23447236e-03,
+       -1.12849559e-03, -1.20803626e-03, -1.12822595e-03, -1.00403850e-03,
+       -1.14333581e-03, -1.94379461e-03, -2.50549836e-03, -4.20135287e-04,
+       -1.97571135e-03, -1.14961808e-03, -1.21533336e-03, -1.22165959e-03,
+       -2.42209324e-03, -2.24464800e-03, -1.08620784e-03, -1.35432579e-03,
+       -1.51461366e-03, -1.94379461e-03, -2.33808740e-03, -1.27596967e-03,
+       -5.85689966e-04, -4.45279297e-04, -2.53383008e-03, -1.16192726e-03,
+       -2.26940338e-03, -2.32109946e-03, -2.33476211e-03, -1.20105347e-03,
+       -1.20033435e-03, -1.23447236e-03, -1.41551282e-03, -2.30546869e-03,
+       -2.03869604e-03, -1.15084992e-03, -1.11092535e-03, -1.99748461e-03,
+       -2.13363507e-03, -2.05049163e-03, -9.86896127e-04, -2.15346690e-03,
+       -2.38254035e-03, -2.35165502e-03, -1.20105347e-03, -2.42209324e-03,
+       -9.86896127e-04, -2.52236526e-03, -2.27504770e-03, -2.32678030e-03,
+       -2.09440454e-03, -1.33509304e-03, -1.49829560e-03, -1.33646032e-03])</code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There’s a cheat going on here! We originally specified that the entries of <span class="math inline">\(\mathbf{z}\)</span> should take only one of two values (back in Part C), whereas now we’re allowing the entries to have <em>any</em> value! This means that we are no longer exactly optimizing the normcut objective, but rather an approximation. This cheat is so common that deserves a name: it is called the <em>continuous relaxation</em> of the normcut problem.</p>
+</div>
+</div>
+</section>
+<section id="part-e" class="level2">
+<h2 class="anchored" data-anchor-id="part-e">Part E</h2>
+<p>Recall that, by design, only the sign of <code>z_min[i]</code> actually contains information about the cluster label of data point <code>i</code>. Thus, we plot the original data, using one color for points such that <code>z_min[i] &lt; 0</code> and another color for points such that <code>z_min[i] &gt;= 0</code>.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span> <span class="cf">if</span> z <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'blue'</span> <span class="cf">for</span> z <span class="kw">in</span> z_min]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>colors)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Data Clustering'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Hmm… Something looks off here. Let’s fix it!</p>
+</section>
+<section id="part-f" class="level2">
+<h2 class="anchored" data-anchor-id="part-f">Part F</h2>
+<p>Explicitly optimizing the orthogonal objective is <em>way</em> too slow to be practical. If spectral clustering required that we do this each time, no one would use it.</p>
+<p>The reason that spectral clustering actually matters, and indeed the reason that spectral clustering is called <em>spectral</em> clustering, is that we can actually solve the problem from Part E using eigenvalues and eigenvectors of matrices.</p>
+<p>Recall that what we would like to do is minimize the function</p>
+<p><span class="math display">\[ R_\mathbf{A}(\mathbf{z})\equiv \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\mathbf{z}}{\mathbf{z}^T\mathbf{D}\mathbf{z}} \]</span></p>
+<p>with respect to <span class="math inline">\(\mathbf{z}\)</span>, subject to the condition <span class="math inline">\(\mathbf{z}^T\mathbf{D}\mathbb{1} = 0\)</span>.</p>
+<p>The Rayleigh-Ritz Theorem states that the minimizing <span class="math inline">\(\mathbf{z}\)</span> must be the solution with smallest eigenvalue of the generalized eigenvalue problem</p>
+<p><span class="math display">\[ (\mathbf{D} - \mathbf{A}) \mathbf{z} = \lambda \mathbf{D}\mathbf{z}\;, \quad \mathbf{z}^T\mathbf{D}\mathbb{1} = 0\]</span></p>
+<p>which is equivalent to the standard eigenvalue problem</p>
+<p><span class="math display">\[ \mathbf{D}^{-1}(\mathbf{D} - \mathbf{A}) \mathbf{z} = \lambda \mathbf{z}\;, \quad \mathbf{z}^T\mathbb{1} = 0\;.\]</span></p>
+<p>Why is this helpful? Well, <span class="math inline">\(\mathbb{1}\)</span> is actually the eigenvector with smallest eigenvalue of the matrix <span class="math inline">\(\mathbf{D}^{-1}(\mathbf{D} - \mathbf{A})\)</span>.</p>
+<blockquote class="blockquote">
+<p>So, the vector <span class="math inline">\(\mathbf{z}\)</span> that we want must be the eigenvector with the <em>second</em>-smallest eigenvalue.</p>
+</blockquote>
+<p>So, we will construct the matrix <span class="math inline">\(\mathbf{L} = \mathbf{D}^{-1}(\mathbf{D} - \mathbf{A})\)</span>, which is often called the (normalized) <em>Laplacian</em> matrix of the similarity matrix <span class="math inline">\(\mathbf{A}\)</span>. Next, we will find the eigenvector corresponding to its second-smallest eigenvalue, and call it <code>z_eig</code>. Then, we will plot the data again, using the sign of <code>z_eig</code> as the color.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.inv(D) <span class="op">@</span> (D <span class="op">-</span> A)  <span class="co"># Laplacian matrix</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>eigenvalues, eigenvectors <span class="op">=</span> np.linalg.eig(L)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> np.argsort(eigenvalues) <span class="co"># sort the eigenvalues</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>eigenvalues <span class="op">=</span> eigenvalues[idx]</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>eigenvectors <span class="op">=</span> eigenvectors[:, idx]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>z_eig <span class="op">=</span> eigenvectors[:, <span class="dv">1</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>z_eig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>array([ 0.09389207,  0.07736223, -0.06300698, -0.06253406, -0.07203744,
+       -0.06844687, -0.05944786, -0.06009116,  0.05131329,  0.03946165,
+        0.06620733, -0.06553515, -0.01103184,  0.05996065,  0.08757109,
+        0.07501904,  0.0572584 , -0.06303476, -0.07571484, -0.07031429,
+        0.0644712 ,  0.03290825,  0.09343953, -0.06278897, -0.07955868,
+        0.04567633, -0.06045876,  0.06151979,  0.05555302, -0.06338615,
+       -0.06034508,  0.09371443,  0.07336238,  0.07147172,  0.05389553,
+        0.08160528, -0.07955868,  0.09261574,  0.08538788, -0.06813982,
+        0.07110439, -0.06321393, -0.06346373, -0.07993405, -0.07933222,
+       -0.06328915, -0.06307581,  0.06482837,  0.08710903,  0.01347952,
+       -0.06233862, -0.06056617,  0.09343953,  0.06090757, -0.0796757 ,
+       -0.07731147,  0.08189833,  0.03602595,  0.09290969, -0.06294241,
+       -0.0798901 , -0.07415366,  0.05089988, -0.06505416,  0.05811411,
+       -0.06897256, -0.0798901 , -0.07942743, -0.06238392,  0.09332248,
+        0.08361412,  0.09170838,  0.09355416, -0.0631895 , -0.0790602 ,
+       -0.05915303,  0.04468668, -0.06320357,  0.09280613, -0.06786225,
+       -0.05938268, -0.07278969, -0.07817252,  0.06725567,  0.06656592,
+        0.0848015 ,  0.07147172, -0.06180046, -0.06269775, -0.06346513,
+       -0.05980403,  0.05089988, -0.0668405 , -0.06233862,  0.03602595,
+        0.03946165,  0.09261574,  0.08445433, -0.07597297, -0.06056617,
+        0.09287649,  0.08710903,  0.08223737, -0.04215372,  0.07189665,
+        0.06759655, -0.07304918, -0.06305594,  0.07848701,  0.05923704,
+       -0.0725521 , -0.07682128, -0.0626213 ,  0.07571056, -0.06316259,
+       -0.07962072, -0.08018401, -0.05944786,  0.03602595,  0.07403544,
+        0.09199031, -0.07111864,  0.05346263,  0.09010294,  0.09363897,
+       -0.07783403,  0.08123258, -0.06128186,  0.09371443,  0.03602595,
+       -0.07861426, -0.05944786, -0.06294241, -0.0613566 ,  0.0913628 ,
+        0.09310399,  0.06571268,  0.06171751,  0.06231661,  0.09411248,
+        0.04240836,  0.0902581 , -0.07880403, -0.06254634,  0.09405611,
+       -0.0789515 , -0.07440044, -0.07648554, -0.06338658, -0.06225021,
+       -0.06346373, -0.07861426, -0.0790602 ,  0.04567633,  0.08845431,
+       -0.0798901 ,  0.09378748, -0.06056617, -0.0789515 , -0.07817252,
+        0.07800947,  0.08257647, -0.06849123, -0.06180046,  0.0368132 ,
+        0.04567633,  0.06759655, -0.06254634, -0.05944786, -0.05906413,
+        0.09190167, -0.07670821,  0.05923704,  0.06554293,  0.0848015 ,
+       -0.06314009, -0.06319512, -0.07648554, -0.06307343,  0.09010294,
+        0.0572584 , -0.07809813, -0.07415366,  0.04338972,  0.05131329,
+        0.0499304 , -0.06306518,  0.05389553,  0.08189833,  0.08710903,
+       -0.06314009,  0.07800947, -0.06306518,  0.09054168,  0.06864681,
+        0.07501904,  0.04662749, -0.06443896, -0.06148957, -0.06422265])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span> <span class="cf">if</span> z <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'blue'</span> <span class="cf">for</span> z <span class="kw">in</span> z_eig]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>colors)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Data Clustering'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>This looks a lot better!</p>
+</section>
+<section id="part-g" class="level2">
+<h2 class="anchored" data-anchor-id="part-g">Part G</h2>
+<p>We will synthesize our results from all the previous parts. In particular, we will write a function called <code>spectral_clustering(X, epsilon)</code> which takes in the input data <code>X</code> (in the same format as Part A) and the distance threshold <code>epsilon</code> and performs spectral clustering, returning an array of binary labels indicating whether data point <code>i</code> is in group <code>0</code> or group <code>1</code>. We will demonstrate our function using the supplied data from the beginning of the problem.</p>
+<section id="outline" class="level4">
+<h4 class="anchored" data-anchor-id="outline">Outline</h4>
+<p>Given data, we need to:</p>
+<ol type="1">
+<li>Construct the similarity matrix.</li>
+<li>Construct the Laplacian matrix.</li>
+<li>Compute the eigenvector with second-smallest eigenvalue of the Laplacian matrix.</li>
+<li>Return labels based on this eigenvector.</li>
+</ol>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectral_clustering(X, epsilon):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Performs spectral clustering</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">    X: original matrix containing coordinates for all data points</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">    epsilon: the benchmark distance for classifying 'similarity'</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Return: </span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">    labels: 0 if in cluster 0, 1 if in cluster 1</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> pairwise_distances(X)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    similarity_matrix <span class="op">=</span> np.where(distances <span class="op">&lt;=</span> epsilon, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    np.fill_diagonal(similarity_matrix, <span class="dv">0</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> np.diag(np.<span class="bu">sum</span>(similarity_matrix, axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.linalg.inv(D) <span class="op">@</span> (D <span class="op">-</span> similarity_matrix)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    eigenvalues, eigenvectors <span class="op">=</span> np.linalg.eig(L)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.argsort(eigenvalues)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    eigenvalues <span class="op">=</span> eigenvalues[idx]</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    eigenvectors <span class="op">=</span> eigenvectors[:, idx]</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    z_eig <span class="op">=</span> eigenvectors[:, <span class="dv">1</span>]</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [<span class="dv">0</span> <span class="cf">if</span> z <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span> <span class="cf">for</span> z <span class="kw">in</span> z_eig]</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> spectral_clustering(X, <span class="fl">0.4</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>labels)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Data Clustering'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>Text(0.5, 1.0, 'Data Clustering')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-h" class="level2">
+<h2 class="anchored" data-anchor-id="part-h">Part H</h2>
+<p>Let’s run one more experiment using our function, by generating a different data set using <code>make_moons</code>. What happens when we increase the <code>noise</code>? Will spectral clustering still find the two half-moon clusters? For these experiments, we might find it useful to increase <code>n</code> to <code>1000</code> or so – we can do this now, because of our fast algorithm!</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_moons(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, noise<span class="op">=</span><span class="fl">0.12</span>, random_state<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> spectral_clustering(X, <span class="fl">0.4</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>labels)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Data Clustering'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>Text(0.5, 1.0, 'Data Clustering')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="part-i" class="level2">
+<h2 class="anchored" data-anchor-id="part-i">Part I</h2>
+<p>Now let’s try our spectral clustering function on another data set – the bull’s eye!</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_circles(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, noise<span class="op">=</span><span class="fl">0.05</span>, random_state<span class="op">=</span><span class="va">None</span>, factor <span class="op">=</span> <span class="fl">0.4</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f9451f5a940&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>There are two concentric circles. As before k-means will not do well here at all.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init<span class="op">=</span><span class="st">"auto"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f94520a99d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Can our function successfully separate the two circles? Some experimentation here with the value of <code>epsilon</code> is likely to be required.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> spectral_clustering(X, <span class="fl">0.4</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>labels)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Data Clustering'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>Text(0.5, 1.0, 'Data Clustering')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Through experimentation, we find that an <code>epsilon</code> value of <code>0.4</code> is able to accurately cluster this data!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jryu20/quarto" data-repo-id="R_kgDOJ9F5gw" data-category="General" data-category-id="DIC_kwDOJ9F5g84CYQlE" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

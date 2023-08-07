@@ -1,42 +1,26 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/exercises.html",
     "items": [
-      "/posts/spectral/spectral-clustering copy.html",
-      "/posts/zillow_blog/blog_post.html",
-      "/posts/fakenews/fakenews_classification_copy2.html",
-      "/posts/image_class/image_classification copy.html",
-      "/posts/web_dev/flask.html",
-      "/posts/scrapy/result_vis copy.html",
-      "/posts/sql2/plotly.html",
-      "/posts/sql_vis/data_vis copy.html",
-      "/posts/predator-prey/modeling.html",
-      "/posts/penguin_project/palmer_project.html",
-      "/posts/palmer_vis/index.html"
+      "/exercises/regex/index.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/spectral/spectral-clustering copy.html",
-      "/posts/zillow_blog/blog_post.html",
-      "/posts/fakenews/fakenews_classification_copy2.html",
-      "/posts/OOP/OOP.html",
-      "/posts/image_class/image_classification copy.html",
-      "/posts/tidy_R/tidyr.html",
-      "/posts/web_dev/flask.html",
-      "/posts/scrapy/result_vis copy.html",
-      "/posts/sql2/plotly.html",
-      "/posts/sql_vis/data_vis copy.html",
-      "/posts/predator-prey/modeling.html",
-      "/posts/penguin_project/palmer_project.html",
-      "/posts/palmer_vis/index.html"
-    ]
-  },
-  {
-    "listing": "/exercises.html",
-    "items": [
-      "/exercises/regex/regex.html"
+      "/posts/clustering/index.html",
+      "/posts/zillow-blog/index.html",
+      "/posts/fakenews/index.html",
+      "/posts/OOP/index.html",
+      "/posts/image-classification/index.html",
+      "/posts/tidyr/index.html",
+      "/posts/flask/index.html",
+      "/posts/scrapy/index.html",
+      "/posts/plotly/index.html",
+      "/posts/noaa-vis/index.html",
+      "/posts/predator-prey/index.html",
+      "/posts/palmer-project/index.html",
+      "/posts/palmer-vis/index.html"
     ]
   }
 ]

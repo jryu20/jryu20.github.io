@@ -85,5 +85,56 @@
   },
   "exercises/regex/regex.Rmd": {
     "regex.html": "7a0e8c7e"
+  },
+  "posts/penguin_project/index.ipynb": {
+    "index.html": "37409254"
+  },
+  "posts/palmer_project/index.ipynb": {
+    "index.html": "74497040"
+  },
+  "posts/noaa_vis/index.ipynb": {
+    "index.html": "ea313898"
+  },
+  "posts/palmer-vis/index.qmd": {
+    "index.html": "4be5d387"
+  },
+  "posts/flask/index.ipynb": {
+    "index.html": "a6b7de58"
+  },
+  "posts/fakenews/index.ipynb": {
+    "index.html": "08fab8ac"
+  },
+  "posts/zillow-blog/index.qmd": {
+    "index.html": "0025a095"
+  },
+  "posts/tidyr/index.Rmd": {
+    "index.html": "fc367623"
+  },
+  "posts/clustering/index.ipynb": {
+    "index.html": "11d65386"
+  },
+  "posts/image-classification/index.ipynb": {
+    "index.html": "44d3e32c"
+  },
+  "posts/OOP/index.Rmd": {
+    "index.html": "78780509"
+  },
+  "posts/scrapy/index.ipynb": {
+    "index.html": "e527da84"
+  },
+  "posts/plotly/index.ipynb": {
+    "index.html": "8bcaa0e4"
+  },
+  "posts/palmer-project/index.ipynb": {
+    "index.html": "537999b9"
+  },
+  "posts/predator-prey/index.ipynb": {
+    "index.html": "afbae198"
+  },
+  "exercises/regex/index.Rmd": {
+    "index.html": "cb74b94c"
+  },
+  "posts/noaa-vis/index.ipynb": {
+    "index.html": "948c97a9"
   }
 }

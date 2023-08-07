@@ -1,13 +1,10 @@
 {
   "listingMap": {
-    "index.qmd": [
-      "posts"
+    "exercises.qmd": [
+      "exercises"
     ],
     "blog.qmd": [
       "posts"
-    ],
-    "exercises.qmd": [
-      "exercises"
     ]
   }
 }
