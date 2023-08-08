@@ -1,0 +1,26 @@
+[
+  {
+    "listing": "/exercises.html",
+    "items": [
+      "/exercises/regex/index.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/clustering/index.html",
+      "/posts/zillow-blog/index.html",
+      "/posts/fakenews/index.html",
+      "/posts/OOP/index.html",
+      "/posts/image-classification/index.html",
+      "/posts/tidyr/index.html",
+      "/posts/flask/index.html",
+      "/posts/scrapy/index.html",
+      "/posts/plotly/index.html",
+      "/posts/noaa-vis/index.html",
+      "/posts/predator-prey/index.html",
+      "/posts/palmer-project/index.html",
+      "/posts/palmer-vis/index.html"
+    ]
+  }
+]

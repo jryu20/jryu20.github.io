@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aram, Emily, Jun, Ryan">
+<meta name="dcterms.date" content="2023-03-24">
+
+<title>Jun Ryu - Visualizing Zillow Homes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jun Ryu</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../exercises.html">
+ <span class="menu-text">Exercises</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jryu20"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/r.yujunhee"><i class="bi bi-instagram" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Visualizing Zillow Homes</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">project</div>
+                <div class="quarto-category">html</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aram, Emily, Jun, Ryan </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 24, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#technical-components" id="toc-technical-components" class="nav-link" data-scroll-target="#technical-components">Technical Components</a>
+  <ul class="collapse">
+  <li><a href="#machine-learning-model" id="toc-machine-learning-model" class="nav-link" data-scroll-target="#machine-learning-model">Machine Learning Model</a></li>
+  <li><a href="#dynamic-website" id="toc-dynamic-website" class="nav-link" data-scroll-target="#dynamic-website">Dynamic Website</a></li>
+  <li><a href="#complex-data-visualizations" id="toc-complex-data-visualizations" class="nav-link" data-scroll-target="#complex-data-visualizations">Complex Data Visualizations</a></li>
+  </ul></li>
+  <li><a href="#conclusion-and-limitations" id="toc-conclusion-and-limitations" class="nav-link" data-scroll-target="#conclusion-and-limitations">Conclusion and Limitations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The goal of this project was for users to understand the distribution of homes for sale on Zillow. Typically, prospective home buyers and sellers go to Zillow to find similar homes in order to gain an understanding of a given house’s value. Our project would give users a better understanding as it would explain the entire housing market for a given city. This includes geographic visualizations, histograms and scatterplots, and a predictive model that works with user data. We decided to limit our focus to the top ten major cities in the United States: Los Angeles, San Antonio, Philadelphia, San Diego, Houston, Dallas, Phoenix, New York, Chicago, and San Jose. Using the API, we were able to obtain information on 1500 homes for each city with 30 features.</p>
+<p>Our website has the following components: advanced machine learning, dynamic features, and complex visualizations.</p>
+<p><img src="flowchart.PNG" class="img-fluid"></p>
+<p>There are 5 pages to our website. First is an interactive map for users to select a city of interest. Second is geographic data visualization consisting of an interactive scatterplot, an interactive heatmap, and customizable filters for the user to understand the data. The next page is the data collection and prediction page. The user can enter housing information like number of bedrooms, year made, etc. and see our machine learning model’s predicted sale price. The fourth page is the data visualization, where users can compare their entered data to the distribution of homes in the selected city. We provide histograms and scatterplots that can be adjusted to the user’s preference. Finally, we also allow the user to view the raw data on the last page which includes variables we did not use for model building.</p>
+<p>Link to GitHub Repo: <a href="https://github.com/Aram-1999/PIC16B_Group_Project"> Git Repo </a></p>
+</section>
+<section id="technical-components" class="level2">
+<h2 class="anchored" data-anchor-id="technical-components">Technical Components</h2>
+<section id="machine-learning-model" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning-model">Machine Learning Model</h3>
+<p>Because the user is inputting mostly numerical values (e.g.&nbsp;the number of bedrooms) and the goal is to accurately model the price value of that specific home, our group decided to utilize a regression model. To do this, we first needed to clean/impute the missing values in our dataset by using the mean of each column. After data preprocessing, we proceeded with splitting our data into predictor variables and target variables, then split each of these into training, validation, and testing data respectively.</p>
+<hr>
+<p>For determining actual model itself, we used a nice tool called <code>lazypredict</code> in order to run through many regression models under <code>scikit-learn</code> and evaluate their accuracies. (Read more about its description here: <a href="https://pypi.org/project/lazypredict/" class="uri">https://pypi.org/project/lazypredict/</a>). This way, we were able to increase efficiency and produce an organized table with the R-squared value and RMSE (Root-mean-square-error) of each model.</p>
+<p>The following code demonstrates how <code>lazypredict</code> was implemented:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install lazypredict <span class="co"># first install the library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> lazypredict</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lazypredict.Supervised <span class="im">import</span> LazyRegressor <span class="co"># this will import all regressors found</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> all_estimators</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> RegressorMixin</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>chosen_regressors <span class="op">=</span> [</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SVR'</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'BaggingRegressor'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'RandomForestRegressor'</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GradientBoostingRegressor'</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'LinearRegression'</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'RidgeCV'</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'LassoCV'</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'KNeighborsRegressor'</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>REGRESSORS <span class="op">=</span> [</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    est</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> est <span class="kw">in</span> all_estimators()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">issubclass</span>(est[<span class="dv">1</span>], RegressorMixin) <span class="kw">and</span> (est[<span class="dv">0</span>] <span class="kw">in</span> chosen_regressors))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> LazyRegressor(verbose<span class="op">=</span><span class="dv">0</span>, ignore_warnings<span class="op">=</span><span class="va">False</span>, custom_metric<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                    regressors<span class="op">=</span>REGRESSORS)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>models, predictions <span class="op">=</span> reg.fit(X_train, X_test, y_train, y_test)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(models)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>As seen in the above code, it is important to note that we did not run through all 42 regression models available through <code>lazypredict</code>. There are mainly two reasons: the first was that some regressors did not match with our input dimensions and the second was that some regressors just took too long to execute and we were not able to produce accurate results in the end. Thus, we picked out 8 that made the most sense in terms of our data.</p>
+</blockquote>
+<p>After running through 8 selected regressors, we ordered them based on their adjusted R-squared (coefficient of determination) and RSME values that indicate how well the model is fitting our data. The top result (the one with the highest R-squared value and the lowest RSME value) was the <code>BaggingRegressor</code>; therefore, we defined <code>model1</code> as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> BaggingRegressor(max_features<span class="op">=</span><span class="fl">1.0</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                          n_estimators<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                          bootstrap<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                          random_state<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>model1.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p>Now, to implement this model into our dynamic website, we used the <code>pickle</code> module to save and transfer over the model. The following code demonstrates the process:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'Model/model1.pkl'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            model <span class="op">=</span> pickle.load(f)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> model.predict(pd.DataFrame({</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'address/zipcode'</span>: [zipcode],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bathrooms'</span>: [bed],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bedrooms'</span>: [bath]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>})) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p>To see how this model actually functions on the webpage, the following image shows how the model is implemented and what the user can expect after inputting certain information about a house:</p>
+<p><img src="model_visual.jpg" class="img-fluid"></p>
+<p>We picked Los Angeles as our target city, and the user is able input data points (number of bedrooms, bathrooms, square feet, year made, home type, and zipcode) through the data collection page. In this particular case, the values 2, 2, 1100, 2015, condo, and 90024 were entered, respectively, and our model was able to predict a price of $1,352,491. Users can play around with the input values to see various predictions.</p>
+</section>
+<section id="dynamic-website" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-website">Dynamic Website</h3>
+<p>We built a dynamic website using Flask that allows users to see housing data visualizations for the ten largest cities in the U.S. and get price predictions for their own home. On the home page is a map of the U.S. where the user can click on their desired city. This takes them to a page with geographic visualization of the housing data using plotly. The user can also customize the visualization by applying filters and submitting the form on the bottom of the page.</p>
+<p><img src="LA_visual.jpg" class="img-fluid"></p>
+<p>In the Data Collection &amp; Prediction page, the user can enter the data for their own home to receive a price prediction generated by a machine learning model. Then, in the Data Visualization page, we used plotly to create graphs to visualize the data distribution for the current city. The user can also see where their own data lies alongside other homes in the same city. In the View Data page, The user can also view the raw data we collected.</p>
+<p>The following is a function (located in app.py) that renders the template for data collection that supports <code>GET</code> and <code>POST</code> methods. This is also where we use the model to make price predictions. We used ‘request.form’ in order to get the user entered information in real time and used ‘session’ dictionary in order to save the information for use on other pages. Finally, we used ‘render_template’ with the saved information to dynamically change the website.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> data_collection():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="co">'''</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Renders template for data collection</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Uses model to predict house price from user input</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Args: None </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: Rendered_template</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">'GET'</span>: <span class="co">#checks if the method is GET</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        city <span class="op">=</span> request.args.get(<span class="st">'city'</span>) <span class="co">#gets selected city </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'data_collection.html'</span>, city<span class="op">=</span>city,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                               prediction <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co">#checks if the method is POST</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        city <span class="op">=</span> request.args.get(<span class="st">'city'</span>) <span class="co">#gets city</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        bed<span class="op">=</span>request.form[<span class="st">"bed"</span>] <span class="co">#gets bed </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        session[<span class="st">'bed_info'</span>] <span class="op">=</span> bed <span class="co">#saves bed</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        bath<span class="op">=</span>request.form[<span class="st">"bath"</span>] <span class="co">#gets bath </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        session[<span class="st">'bath_info'</span>] <span class="op">=</span> bath <span class="co">#saves bath</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        sqft<span class="op">=</span>request.form[<span class="st">"sqft"</span>] <span class="co">#gets sqft</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        session[<span class="st">'sqft_info'</span>] <span class="op">=</span> sqft <span class="co">#saves sqft</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        year_made<span class="op">=</span>request.form[<span class="st">"year_made"</span>] </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        home_type <span class="op">=</span> request.form[<span class="st">'home_type'</span>]</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        zipcode <span class="op">=</span> <span class="bu">str</span>(request.form[<span class="st">"zipcode"</span>])</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'Model/model1.pkl'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            model <span class="op">=</span> pickle.load(f) <span class="co">#Loads the model for prediction</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        price <span class="op">=</span> model.predict(pd.DataFrame({ <span class="co">#Predicted the house price using zipcode, bed count, and bath count</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">'address/zipcode'</span>: [zipcode],</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>            <span class="st">'bathrooms'</span>: [bed],</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">'bedrooms'</span>: [bath]</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        }))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">'data_collection.html'</span>, city <span class="op">=</span> city, <span class="co">#renders the template with the predicted price</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                               prediction <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                               price <span class="op">=</span> <span class="bu">int</span>(price[<span class="dv">0</span>]),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                               bed<span class="op">=</span>bed, bath<span class="op">=</span>bath, sqft<span class="op">=</span>sqft,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                               year_made<span class="op">=</span>year_made,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                               home_type<span class="op">=</span>home_type,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                               zipcode<span class="op">=</span>zipcode)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="complex-data-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="complex-data-visualizations">Complex Data Visualizations</h3>
+<p>The website contains two pages for data visualization - one for geographic representation and another for histogram and scatter plot visualizations.</p>
+<p>The geographic visualization page contains two graphs utilizing Plotly’s Mapbox platform. The user can navigate to this page by clicking on one of the cities on the home page. This would display the default graphs for the entire data of that city. The first visualization is similar to Zillow’s visualization graph. It provides some valuable insights into the data that has been used to train the model. The user can hover over data points and check out the number of bedrooms, bathrooms, sqft, and home type. The second graph utilizes Plotly’s density Mapbox platform. It shows how dense the data points are in the given region. Here is an example of how the graphs look like for the city of New York. <img src="New_York_graph1.png" class="img-fluid"> <img src="New_York_graph2.png" class="img-fluid"> The geographic visualization page also contains filters that can be used by the user to generate custom geographic visualizations. The user can choose to display only the properties with certain number of bedrooms or bathrooms, adjust the range for price, sqft, or year made, select the home type and the style of the map. Here is the function that has been used for making the first geographic graph (It is located in the myGraph.py module which was imported in app.py). The function that had been used for making the second graph is almost exactly the same. The only difference lies in the choice of Plotly’s platform, between Mapbox and Density Mapbox.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapbox(name, <span class="op">**</span>kwargs):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Creates a mapbox of all the data points scraped for the name (city name) parameter</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Args: name -- a city to be used for the geographic visualization,str</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">          **kwargs -- other parameters to filter the data to update the visualization</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">          </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: A json with the mapbox figure</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="ss">f"Datasets/</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">.csv"</span>) <span class="co">#Reads the data </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> {<span class="st">'lat'</span>: np.mean(df[<span class="st">'latitude'</span>]), <span class="st">'lon'</span>: np.mean(df[<span class="st">'longitude'</span>][<span class="dv">0</span>])} <span class="co">#Finds the center of the map</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"feature"</span>):</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            feature <span class="op">=</span> value</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"number"</span>):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> value</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> num <span class="op">!=</span> <span class="st">''</span>:</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                num <span class="op">=</span> <span class="bu">int</span>(num)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                df <span class="op">=</span> df[df[feature] <span class="op">==</span> num] <span class="co">#Filters the data for specific features having a set value. Ex Bathrooms = 2 or Bedrooms = 3</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"feature_type"</span>):</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            feature_type <span class="op">=</span> value</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> feature_type <span class="op">!=</span> []:</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                df <span class="op">=</span> df[df[<span class="st">"homeType"</span>].isin(feature_type)] <span class="co">#Filters the data to only include specific home types</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"feature_min_max"</span>):</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            feature_min_max <span class="op">=</span> value</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"min"</span>):</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            minimum <span class="op">=</span> value</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> minimum <span class="op">!=</span> <span class="st">''</span>:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                minimum <span class="op">=</span> <span class="bu">int</span>(minimum)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                df <span class="op">=</span> df[df[feature_min_max] <span class="op">&gt;=</span> minimum] <span class="co">#Filters the data for specific features having a set minimum value. Ex Min Price = 100k or Min Sqft = 2000</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(key <span class="op">==</span> <span class="st">"max"</span>):</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            maximum <span class="op">=</span> value</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(maximum, feature_min_max)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> maximum <span class="op">!=</span> <span class="st">''</span>:</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                maximum <span class="op">=</span> <span class="bu">int</span>(maximum)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>                df <span class="op">=</span> df[df[feature_min_max] <span class="op">&lt;=</span> maximum]  <span class="co">#Filters the data for specific features having a set max value. Ex Max Price = 250k or Max Year Built = 2010</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Creates plotly scatter mapbox using data with/without added filters</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> px.scatter_mapbox(df,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>                            center <span class="op">=</span> center, </span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>                            hover_data <span class="op">=</span> [<span class="st">"address/city"</span>,<span class="st">"price"</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>,</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'homeType'</span>],</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>                            lat <span class="op">=</span> <span class="st">"latitude"</span>,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>                            lon <span class="op">=</span> <span class="st">"longitude"</span>, </span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>                            zoom <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>                            height <span class="op">=</span> <span class="dv">600</span>,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>                            mapbox_style<span class="op">=</span>kwargs.pop(<span class="st">"style"</span>, <span class="st">"open-street-map"</span>))</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    fig.update_layout(margin<span class="op">=</span>{<span class="st">"r"</span>:<span class="dv">30</span>,<span class="st">"t"</span>:<span class="dv">10</span>,<span class="st">"l"</span>:<span class="dv">30</span>,<span class="st">"b"</span>:<span class="dv">0</span>}) <span class="co">#sets the margin</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> json.dumps(fig, cls<span class="op">=</span>plotly.utils.PlotlyJSONEncoder) <span class="co">#returns the json</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function reads the data for the city (uses the name parameter as the name of the city). It finds the center of the plot which is necessary for displaying the city on the map even if no data points are left after filtering the data. This function accepts a set of key value arguments which act as filters mentioned above. These filters are applied next and a plot is created. After all this is done, the function creates a json file which will be used by the jinja template to render the graph. We looped through all key value pairs, checked if a specific pair was present with boolean logic, subsetted our data frame based on the filter, and finally constructed the scatterplot with the ‘px.scatter_mapbox’ function.</p>
+<p>The histogram and scatterplot data visualization page provides the user with 6 histograms and 3 scatterplots. The purpose of this page was to show where the user’s home information compares to the rest of the housing market. The first three scatterplots show the number of homes compared to bedrooms, bathrooms, and square footage. The next three scatter plots show the median price of homes compared to bedrooms, bathrooms, and square footage. The three histograms show pairwise count plots for the aforementioned features. Once again, these were constructed in plotly.</p>
+<p><img src="visualization.png" class="img-fluid"> <img src="visualization2.png" class="img-fluid"></p>
+<p>All figures are updated with the user’s current entered information. The figures contain markers such as dotted lines and circles that indicate where the user’s data falls on the distribution. The following code snippet shows how the first 3 histograms were made (It is located in the myGraph.py module which was imported in app.py).</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> histogram_count(name, feature, user_info, color):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Creates the count histograms vs a feature and returns a json</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args: name -- a city to be used for the geographic visualization, str</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">          feature -- a column of the dataframe to be visualized, str</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">          user_info -- a variable of the user entered information </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">          color -- a color for the visualization, str</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">          </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: A json of the visualization</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> cleaning(name) <span class="co">#Cleans the dataframe</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    highest_value <span class="op">=</span> <span class="dv">450</span> <span class="co"># marker height for the user entered data </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> px.histogram(df, x<span class="op">=</span>feature, width <span class="op">=</span> <span class="dv">500</span>, color_discrete_sequence<span class="op">=</span>color) <span class="co">#Creates the histogram using the feature and color </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    fig.add_shape(<span class="bu">type</span><span class="op">=</span><span class="st">"line"</span>,x0<span class="op">=</span>user_info, y0<span class="op">=</span><span class="dv">0</span>, x1<span class="op">=</span>user_info, y1<span class="op">=</span>highest_value,line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"red"</span>, width<span class="op">=</span><span class="dv">3</span>, dash<span class="op">=</span><span class="st">"dash"</span>)) <span class="co">#Adds a dotted line marker </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    fig.add_annotation(x<span class="op">=</span>user_info, y<span class="op">=</span>highest_value, ax<span class="op">=</span><span class="dv">0</span>, ay<span class="op">=-</span><span class="dv">40</span>,text<span class="op">=</span><span class="st">"Your Data"</span>,arrowhead<span class="op">=</span><span class="dv">1</span>, arrowwidth<span class="op">=</span><span class="dv">3</span>, showarrow<span class="op">=</span><span class="va">True</span>) <span class="co">#Adds a comment "your data" above the marker</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    fig.update_traces(marker_line_color<span class="op">=</span><span class="st">"black"</span>, marker_line_width<span class="op">=</span><span class="dv">1</span>, opacity<span class="op">=</span><span class="fl">0.7</span>) <span class="co">#Adjusts the figure and marker appearence </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> feature <span class="op">==</span> <span class="st">"livingArea"</span>:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(title<span class="op">=</span>{<span class="st">"text"</span>: <span class="st">"Square Footage "</span>, <span class="st">"x"</span>: <span class="fl">0.5</span>}, yaxis_title<span class="op">=</span><span class="st">"Count"</span>) <span class="co">#Renames the axis </span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(title<span class="op">=</span>{<span class="st">"text"</span>: <span class="st">"Number of "</span> <span class="op">+</span> feature, <span class="st">"x"</span>: <span class="fl">0.5</span>}, yaxis_title<span class="op">=</span><span class="st">"Count"</span>) <span class="co">#Renames the axis </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> json.dumps(fig, cls<span class="op">=</span>plotly.utils.PlotlyJSONEncoder) <span class="co">#returns the json</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function takes in the name of the city of interest, the feature to be plotted (i.e bathrooms, bedrooms), the user data that was entered in previously, and a color that we picked for the visualization. The function then cleans the data removing outliers, creates the visual, adds the custom marker (in this case, the dotted line), changes the appearance of the figure with the color and finally titles the plot. We coded this by first calling our cleaning function, then calling ‘px.histogram’ with our dataframe, feature of interest, and plotly color. To add the markers, we used the ‘add_shape’ function where the location of the marker is set by the user_info parameter. Finally, we customized the visualization with the ‘add_annotation’ function which adds the text “your data” above the user marker and ‘update traces’ function which sets the marker color to black and changes the opacity of the figure.</p>
+</section>
+</section>
+<section id="conclusion-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-limitations">Conclusion and Limitations</h2>
+<p>We hope for this website to be useful for people looking to sell their house or exploring various housing options in the ten largest cities in the U.S. With our multiple visualizations and a predictive regression model ingrained on our website, the user is able to get a comprehensive experience of not only seeing what the market is around them, but how the market looks all across the country. However, we must also consider the possible ethical ramifications of this project. Having all the data accessible in easy to understand visualizations could make it easy for companies or the wealthy to buy up cheap housing. This could end up displacing the current inabitants and lead to gentrification. Furthermore, as our model is certainly not 100% accurate, homeowners/buyers might end up with slightly incorrect estimations, leading to unreasonable expectations when selling or purchasing a home. It should also be noted that these are Zillow estimations which are notoriously overpriced.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jryu20/quarto" data-repo-id="R_kgDOJ9F5gw" data-category="General" data-category-id="DIC_kwDOJ9F5g84CYQlE" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
