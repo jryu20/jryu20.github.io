@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Blog hihihi"
 comments: false
 listing:
   contents: posts
