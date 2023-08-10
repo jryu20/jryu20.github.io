@@ -2,6 +2,7 @@
 title: "Intro to Data Manipulation"
 author: "Jun Ryu"
 date: "2023-02-05"
+image: tidyr.jpg
 format:
   html:
     toc: true

@@ -4,6 +4,12 @@ project:
 
 website:
   title: "Jun Ryu"
+  favicon: favicon.png
+  page-footer:
+    right: |
+      ![signature](signature.png){width=100} <br>
+      &copy; Jun Ryu, 2023 <br>
+      built with [Quarto!](https://quarto.org)
   navbar:
     right:
       - blog.qmd
