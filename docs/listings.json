@@ -22,5 +22,17 @@
       "/posts/palmer-project/index.html",
       "/posts/palmer-vis/index.html"
     ]
+  },
+  {
+    "listing": "/PSets.html",
+    "items": [
+      "/exercises/regex/index.html"
+    ]
+  },
+  {
+    "listing": "/psets.html",
+    "items": [
+      "/psets/regex/index.html"
+    ]
   }
 ]

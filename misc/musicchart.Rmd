@@ -1,0 +1,75 @@
+---
+title: "Music Tracking"
+author: "Jun Ryu"
+date: "2023-08-11"
+format:
+  html:
+    toc: true
+categories: [R]
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(tidyr) 
+library(ggplot2)
+library(ggbump)
+```
+
+```{r}
+gen <- read.csv("musicgenres.csv")
+
+
+gen <- gen %>%
+  group_by(tags) %>%
+  mutate(first_top5 = min(order[rank <= 5]),
+         last_top5 = max(order[rank <= 5]),
+         d_first_top5 = if_else(order == first_top5,
+                                1,
+                                0)) %>%
+  filter(!is.na(first_top5),
+         order >= first_top5,
+         order <= last_top5) %>%
+  ungroup()
+
+
+gen <- gen %>% 
+  arrange(tags, order) %>% 
+  group_by(tags) %>% 
+  mutate(lag_zero = if_else(lag(rank) %in% c(6, NA) & rank <= 5, 1, 0, 0)) %>% 
+  ungroup() %>% 
+  mutate(group = cumsum(lag_zero))
+
+# Select the columns needed for the plot
+gen <- gen %>% 
+  select(tags, month_year, order, rank, first_top5, d_first_top5, group)
+
+gen
+```
+
+
+```{r}
+# Make a palette by drawing pseudo random colors from `RColorBrewer`
+set.seed(42)
+custom_palette <- c(RColorBrewer::brewer.pal(9, "Set1"),
+                    RColorBrewer::brewer.pal(8, "Dark2")) %>% 
+  sample(n_distinct(gen$tags))
+
+p <- gen %>% 
+  ggplot(aes(order, rank, color = tags, group = tags)) +
+  geom_bump(smooth = 15, size = 2, alpha = 0.2) +
+  scale_y_reverse() 
+
+p
+```
+
+
+
+
+
+
+
+
+
+
+

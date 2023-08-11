@@ -1,8 +1,8 @@
 ---
-title: "Exercises"
+title: "PSets"
 comments: false
 listing:
-  contents: exercises
+  contents: psets
   sort: "date desc"
   type: default
   categories: true

@@ -14,7 +14,7 @@ website:
   navbar:
     right:
       - blog.qmd
-      - exercises.qmd
+      - psets.qmd
       - icon: github
         href: https://github.com/jryu20
       - icon: instagram
