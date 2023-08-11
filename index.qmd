@@ -14,7 +14,9 @@ about:
     - icon: github
       text: Github
       href: https://github.com/jryu20
-
+format:
+  html:
+    css: styles.css
 ---
 
 Welcome! I'm **Jun Ryu** (he/him), a fourth-year undergraduate student studying Applied Mathematics and Statistics/Data Science at the University of California, Los Angeles (UCLA). 

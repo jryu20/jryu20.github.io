@@ -10,6 +10,7 @@ website:
       ![signature](/posts/signature.png){width=100} <br>
       &copy; Jun Ryu, 2023 <br>
       built with [Quarto!](https://quarto.org)
+    border: false
   navbar:
     right:
       - blog.qmd
@@ -23,7 +24,6 @@ format:
     theme: 
       light: flatly
       dark: darkly
-    css: styles.css
 
 comments:
   giscus:
