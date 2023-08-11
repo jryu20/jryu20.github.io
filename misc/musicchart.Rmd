@@ -1,23 +1,36 @@
 ---
-title: "Music Tracking"
+title: "Spotify Rewind 2022"
 author: "Jun Ryu"
 date: "2023-08-11"
-format:
-  html:
-    toc: true
 categories: [R]
 output: html_document
 ---
+
+Yes, it is *August 2023*. And yes, I know it's too late to be doing a 2022 recap now.
+
+This post is heavily inspired by David Sjoberg and his tutorial found [here](https://github.com/davidsjoberg/ggbump/wiki/My-year-on-Spotify). Here, I will essentially walk through David's tutorial but with my own listening data. Huge thanks to David!
+
+---
+
+Before we begin, I need to clarify some of the adjustments I made when collecting data. In David's tutorial, the way to import Spotify data and attach tags through the last.fm API is thoroughly explained and one could easily replicate that process if need be. However, I decided that since I will be categorizing by month (instead of seasons) and the monthly tag chart is already available on last.fm (but only with their subscription service, `last.fm pro`), I have pulled and manually created my own data. Due to this, I have skipped the first half of the tutorial.
+
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE) 
+```
+
 
 ```{r}
 library(dplyr)
 library(tidyr) 
 library(ggplot2)
+library(cowplot)
 library(ggbump)
 ```
 
 ```{r}
-gen <- read.csv("musicgenres.csv")
+gen <- read.csv("musicgenres-2022.csv")
 
 
 gen <- gen %>%
@@ -48,7 +61,7 @@ gen
 ```
 
 
-```{r}
+```{r, fig.width = 15, fig.height=4}
 # Make a palette by drawing pseudo random colors from `RColorBrewer`
 set.seed(42)
 custom_palette <- c(RColorBrewer::brewer.pal(9, "Set1"),
@@ -62,6 +75,89 @@ p <- gen %>%
 
 p
 ```
+
+
+```{r, fig.width = 15, fig.height=4}
+p <- p +
+  geom_bump(data = gen %>% filter(rank <= 5), 
+            aes(order, rank, group = group, color = tags), 
+            smooth = 15, size = 2, inherit.aes = F)
+
+p
+
+```
+
+```{r, fig.width = 15, fig.height=5}
+p <- p + 
+  geom_point(data = gen %>% filter(d_first_top5 == 1),
+             aes(x = order - .2),
+             size = 5) +
+    geom_segment(data = gen %>% filter(rank <=5),
+               aes(x = order - .2, xend = order + .2, y = rank, yend = rank),
+               size = 2,
+               lineend = "round")
+    
+p
+
+```
+
+```{r, fig.width = 20, fig.height=6}
+p +
+  scale_x_continuous(breaks = gen$order %>% unique() %>% sort(),
+                     labels = gen %>% distinct(order, month_year) %>% arrange(order) %>% pull(month_year), 
+                     expand = expand_scale(mult = .1)) +
+  geom_text(data = gen %>% filter(d_first_top5 == 1),
+            aes(label = tags, x = order-.2),
+            color = "white",
+            nudge_y = .43,
+            nudge_x = -.05,
+            size = 3.5,
+            fontface = 2,
+            hjust = 0) +
+  geom_text(data = gen %>% filter(order == max(order)),
+            aes(label = tags),
+            color = "gray70",
+            nudge_x = .31,
+            hjust = 0,
+            size = 3,
+            fontface = 2) +
+  cowplot::theme_minimal_hgrid(font_size = 14) +
+  theme(legend.position = "none",
+        panel.grid = element_blank(),
+        plot.title = element_text(hjust = .5, color = "white"),
+        plot.caption = element_text(hjust = 1, color = "white", size = 8),
+        plot.subtitle = element_text(hjust = .5, color = "white", size = 10),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(face = 2, color = "white"),
+        panel.background = element_rect(fill = "black"),
+        plot.background = element_rect(fill = "black")) +
+  labs(x = NULL,
+       title ="Tag Timeline - 2022",
+       subtitle ="Top 5 genre tags for each month",
+       caption = "\nSource:\nlast.fm") +
+  scale_colour_manual(values = custom_palette) +
+  geom_point(data = tibble(x = 0.55, y = 1:5), aes(x = x, y = y), 
+            inherit.aes = F,
+            color = "white",
+            size = 10,
+            pch = 21) +
+  geom_text(data = tibble(x = .55, y = 1:5), aes(x = x, y = y, label = y), 
+             inherit.aes = F,
+            color = "white")
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

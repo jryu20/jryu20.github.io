@@ -15,6 +15,7 @@ website:
     right:
       - blog.qmd
       - psets.qmd
+      - misc.qmd
       - icon: github
         href: https://github.com/jryu20
       - icon: instagram

@@ -34,5 +34,11 @@
     "items": [
       "/psets/regex/index.html"
     ]
+  },
+  {
+    "listing": "/misc.html",
+    "items": [
+      "/misc/musicchart.html"
+    ]
   }
 ]
