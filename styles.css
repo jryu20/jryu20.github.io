@@ -1,15 +1,13 @@
 /* css styles */
 
 body {
-  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.1), rgba(169, 169, 169, 0.9)), url("background.png") center/cover no-repeat fixed;
+  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.5), rgba(169, 169, 169, 0.85)), url("background.png") center/cover no-repeat fixed;
   color: black;
 }
 
 .navbar, .nav-footer {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0);
 }
-
-
 
 
 
