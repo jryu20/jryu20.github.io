@@ -20,6 +20,7 @@ Before we begin, I need to clarify some of the adjustments I made when collectin
 knitr::opts_chunk$set(warning = FALSE) 
 ```
 
+As always, we import the necessary packages for data manipulation and visualization. Here, our focus is on the `ggbump` package, which will allow us to create a smooth bump chart in `R`.
 
 ```{r}
 library(dplyr)
@@ -29,20 +30,24 @@ library(cowplot)
 library(ggbump)
 ```
 
+---
+
+The following is the dataset that I have manually created:
+
 ```{r}
 gen <- read.csv("musicgenres-2022.csv")
+head(gen)
+```
 
+We will now take care of data manipulation. 
 
+```{r}
 gen <- gen %>%
   group_by(tags) %>%
   mutate(first_top5 = min(order[rank <= 5]),
-         last_top5 = max(order[rank <= 5]),
-         d_first_top5 = if_else(order == first_top5,
-                                1,
-                                0)) %>%
+         d_first_top5 = if_else(order == first_top5, 1, 0)) %>%
   filter(!is.na(first_top5),
-         order >= first_top5,
-         order <= last_top5) %>%
+         order >= first_top5) %>%
   ungroup()
 
 
@@ -53,17 +58,15 @@ gen <- gen %>%
   ungroup() %>% 
   mutate(group = cumsum(lag_zero))
 
-# Select the columns needed for the plot
-gen <- gen %>% 
-  select(tags, month_year, order, rank, first_top5, d_first_top5, group)
-
 gen
+
 ```
 
 
 ```{r, fig.width = 15, fig.height=4}
 # Make a palette by drawing pseudo random colors from `RColorBrewer`
-set.seed(42)
+
+set.seed(567)
 custom_palette <- c(RColorBrewer::brewer.pal(9, "Set1"),
                     RColorBrewer::brewer.pal(8, "Dark2")) %>% 
   sample(n_distinct(gen$tags))
@@ -109,7 +112,7 @@ p +
   geom_text(data = gen %>% filter(d_first_top5 == 1),
             aes(label = tags, x = order-.2),
             color = "white",
-            nudge_y = .43,
+            nudge_y = .25, # adjusted for better look
             nudge_x = -.05,
             size = 3.5,
             fontface = 2,
