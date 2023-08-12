@@ -4,7 +4,9 @@ comments: false
 listing:
   contents: misc
   sort: "date desc"
-  type: default
+  type: table
+  table-striped: true
+  table-hover: true
   categories: true
   sort-ui: true
   filter-ui: true

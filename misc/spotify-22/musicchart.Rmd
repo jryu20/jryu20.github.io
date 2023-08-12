@@ -2,17 +2,18 @@
 title: "Spotify Rewind 2022"
 author: "Jun Ryu"
 date: "2023-08-11"
-categories: [R]
 output: html_document
 ---
 
 Yes, it is *August 2023*. And yes, I know it's too late to be doing a 2022 recap now.
 
+hehe
+
 This post is heavily inspired by David Sjoberg and his tutorial found [here](https://github.com/davidsjoberg/ggbump/wiki/My-year-on-Spotify). Here, I will essentially walk through David's tutorial but with my own listening data. Huge thanks to David!
 
 ---
 
-Before we begin, I need to clarify some of the adjustments I made when collecting data. In David's tutorial, the way to import Spotify data and attach tags through the last.fm API is thoroughly explained and one could easily replicate that process if need be. However, I decided that since I will be categorizing by month (instead of seasons) and the monthly tag chart is already available on last.fm (but only with their subscription service, `last.fm pro`), I have pulled and manually created my own data. Due to this, I have skipped the first half of the tutorial.
+Before we begin, I need to clarify some of the adjustments I made when collecting data. In David's tutorial, the process to import Spotify data and attach tags through the last.fm API is thoroughly explained and one could easily replicate it if need be. However, I decided that since I will be categorizing by month (instead of seasons) and the monthly tag chart is already available on last.fm (but only with their subscription service, *last.fm pro*), I have pulled and manually created my own data. Due to this, I have skipped the first half of the tutorial.
 
 ---
 
@@ -39,7 +40,7 @@ gen <- read.csv("musicgenres-2022.csv")
 head(gen)
 ```
 
-We will now take care of data manipulation. 
+Now, the rest is 
 
 ```{r}
 gen <- gen %>%
@@ -64,7 +65,6 @@ gen
 
 
 ```{r, fig.width = 15, fig.height=4}
-# Make a palette by drawing pseudo random colors from `RColorBrewer`
 
 set.seed(567)
 custom_palette <- c(RColorBrewer::brewer.pal(9, "Set1"),
@@ -152,7 +152,7 @@ p +
             color = "white")
 ```
 
-
+![](bumpchart.png)
 
 
 
