@@ -1,8 +1,14 @@
 [
   {
-    "listing": "/exercises.html",
+    "listing": "/psets.html",
     "items": [
-      "/exercises/regex/index.html"
+      "/psets/regex/index.html"
+    ]
+  },
+  {
+    "listing": "/misc.html",
+    "items": [
+      "/misc/musicchart.html"
     ]
   },
   {
@@ -21,24 +27,6 @@
       "/posts/predator-prey/index.html",
       "/posts/palmer-project/index.html",
       "/posts/palmer-vis/index.html"
-    ]
-  },
-  {
-    "listing": "/PSets.html",
-    "items": [
-      "/exercises/regex/index.html"
-    ]
-  },
-  {
-    "listing": "/psets.html",
-    "items": [
-      "/psets/regex/index.html"
-    ]
-  },
-  {
-    "listing": "/misc.html",
-    "items": [
-      "/misc/musicchart.html"
     ]
   }
 ]
