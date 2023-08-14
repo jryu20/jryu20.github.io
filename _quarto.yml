@@ -13,6 +13,7 @@ website:
     border: false
   navbar:
     right:
+      - about.qmd
       - blog.qmd
       - psets.qmd
       - misc.qmd

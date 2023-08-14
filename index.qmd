@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Welcome! I'm Jun Ryu."
 comments: false
 image: bare bears.jpg
 about:
@@ -19,18 +19,6 @@ format:
     css: styles.css
 ---
 
-Welcome! I'm **Jun Ryu** (he/him), a fourth-year undergraduate student studying Applied Mathematics and Statistics/Data Science at the University of California, Los Angeles (UCLA). 
+...a fourth-year undergraduate student studying Applied Mathematics and Statistics/Data Science <br> at the University of California, Los Angeles (UCLA). 
 
-Here, you will find many of my current interests: 
-
-data visualization <br>
-machine learning <br>
-mathematical modeling <br>
-music <br>
-basketball <br>
-
-... just to name a few. <br>
-
-Head over to my blog page to read more! <br>
-
-If you have any questions or comments, feel free leave them on any blog post or send them over to **ryujunhee [at] ucla [dot] edu**. I'd love to connect with you!
+Head over to the [About](about.html) page to read more. <br>
