@@ -1,19 +1,23 @@
 ---
-title: "About"
+title: About
+image: bare bears.jpg
 comments: false
 about:
-  template: jolla
+  template: trestles
 ---
+
+## My Interests
 
 Here, you will find many of my current interests: 
 
-data visualization <br>
-machine learning <br>
-mathematical modeling <br>
-music <br>
-basketball <br>
+*data visualization* <br><br>
+*machine learning* <br><br>
+*mathematical modeling* <br><br>
+[*music*](https://www.last.fm/user/icebearr) <br><br>
+*basketball* <br><br>
 
 ... just to name a few. <br>
 
+## Contact Me!
 
 If you have any questions or comments, feel free leave them on any blog post or send them over to **ryujunhee [at] ucla [dot] edu**. I'd love to connect with you!
