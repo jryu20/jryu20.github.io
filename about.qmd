@@ -1,23 +1,32 @@
 ---
 title: About
-image: bare bears.jpg
 comments: false
 about:
-  template: trestles
+  template: broadside
 ---
 
-## My Interests
+### This Site
+
+[Blog](blog.html) will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.
+
+[PSets](psets.html) will feature some of my favorite problems in mathematics and statistics as well as my solutions.
+
+[Misc](misc.html) will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment.
+
+### My Interests
 
 Here, you will find many of my current interests: 
 
-*data visualization* <br><br>
+>
+*data wrangling/visualization* <br><br>
 *machine learning* <br><br>
 *mathematical modeling* <br><br>
-[*music*](https://www.last.fm/user/icebearr) <br><br>
+[*music*](https://www.last.fm/user/icebearr) (both playing and listening!) <br><br>
 *basketball* <br><br>
 
 ... just to name a few. <br>
 
-## Contact Me!
 
-If you have any questions or comments, feel free leave them on any blog post or send them over to **ryujunhee [at] ucla [dot] edu**. I'd love to connect with you!
+### Contact Me!
+
+If you have any questions/comments, feel free to send them over to **ryujunhee [at] ucla [dot] edu**. I'd love to connect with you!
