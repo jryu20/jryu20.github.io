@@ -13,7 +13,8 @@ website:
     border: false
   navbar:
     right:
-      - about.qmd
+      - text: "About"
+        file: about.qmd
       - blog.qmd
       - psets.qmd
       - misc.qmd

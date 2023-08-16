@@ -422,16 +422,16 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Jun Ryu",
     "section": "",
-    "text": "This Site\nBlog will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.\nPSets will feature some of my favorite problems in mathematics and statistics as well as my solutions.\nMisc will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment.\n\n\nMy Interests\nHere, you will find many of my current interests:\n\ndata wrangling/visualization  machine learning  mathematical modeling  music (both playing and listening!)  basketball \n\n… just to name a few. \n\n\nContact Me!\nIf you have any questions/comments, feel free to send them over to ryujunhee [at] ucla [dot] edu. I’d love to connect with you!"
+    "text": "Blog will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.\nPSets will feature some of my favorite problems in mathematics and statistics as well as my solutions.\nMisc will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment."
   },
   {
     "objectID": "about.html#contact-me",
     "href": "about.html#contact-me",
-    "title": "About",
+    "title": "Jun Ryu",
     "section": "Contact Me!",
-    "text": "Contact Me!\nIf you have any questions/comments, feel free to send them over to ryujunhee [at] ucla [dot] edu. I’d love to connect with you!"
+    "text": "Contact Me!\nIf you have any questions or comments, feel free to send them to ryujunhee [at] ucla [dot] edu. I’d love to connect with you!"
   },
   {
     "objectID": "about.html#this-site",
@@ -443,8 +443,8 @@
   {
     "objectID": "about.html#my-interests",
     "href": "about.html#my-interests",
-    "title": "About",
+    "title": "Jun Ryu",
     "section": "My Interests",
-    "text": "My Interests\nHere, you will find many of my current interests:\n\ndata visualization  machine learning  mathematical modeling  music  basketball \n\n… just to name a few."
+    "text": "My Interests\nHere, you will find many of my current interests:\n\ndata wrangling/visualization  machine learning  mathematical modeling  music (both playing and listening!)  basketball \n\n… just to name a few."
   }
 ]

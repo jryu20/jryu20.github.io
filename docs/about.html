@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jun Ryu - About</title>
+<title>Jun Ryu – about</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,6 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -121,40 +122,32 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-broadside column-page">
-  <div class="about-main">
-    <div class="about-entity" style="background-image: url('')"></div>
-    <div class="about-contents"><header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-<section id="this-site" class="level3">
-<h3 data-anchor-id="this-site">This Site</h3>
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="this-site" class="level2">
+<h2 class="anchored" data-anchor-id="this-site">This Site</h2>
 <p><a href="blog.html">Blog</a> will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.</p>
 <p><a href="psets.html">PSets</a> will feature some of my favorite problems in mathematics and statistics as well as my solutions.</p>
 <p><a href="misc.html">Misc</a> will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment.</p>
 </section>
-<section id="my-interests" class="level3">
-<h3 data-anchor-id="my-interests">My Interests</h3>
+<section id="my-interests" class="level2">
+<h2 class="anchored" data-anchor-id="my-interests">My Interests</h2>
 <p>Here, you will find many of my current interests:</p>
 <blockquote class="blockquote">
 <p><em>data wrangling/visualization</em> <br><br> <em>machine learning</em> <br><br> <em>mathematical modeling</em> <br><br> <a href="https://www.last.fm/user/icebearr"><em>music</em></a> (both playing and listening!) <br><br> <em>basketball</em> <br><br></p>
 </blockquote>
 <p>… just to name a few. <br></p>
 </section>
-<section id="contact-me" class="level3">
-<h3 data-anchor-id="contact-me">Contact Me!</h3>
-<p>If you have any questions/comments, feel free to send them over to <strong>ryujunhee [at] ucla [dot] edu</strong>. I’d love to connect with you!</p>
+<section id="contact-me" class="level2">
+<h2 class="anchored" data-anchor-id="contact-me">Contact Me!</h2>
+<p>If you have any questions or comments, feel free to send them to <strong>ryujunhee [at] ucla [dot] edu</strong>. I’d love to connect with you!</p>
 
 
 </section>
-</main></div>
-  </div>
-</div>
- <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -290,6 +283,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     toggleColorMode(false);
   }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;
