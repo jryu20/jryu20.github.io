@@ -403,7 +403,7 @@
     "href": "psets.html",
     "title": "PSets",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nFun with Regex\n\n\n\n\n\n\n\nR\n\n\npython\n\n\nregex\n\n\n\n\n\n\n\n\n\n\n\nFeb 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nFun with Regex\n\n\n\n\n\n\n\nR\n\n\npython\n\n\nregex\n\n\n\n\n\n\n\n\n\n\n\nFeb 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Magic\n\n\n\n\n\n\n\nstatistics\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "misc.html",
@@ -446,5 +446,12 @@
     "title": "Jun Ryu",
     "section": "My Interests",
     "text": "My Interests\nHere, you will find many of my current interests:\n\ndata wrangling/visualization  machine learning  mathematical modeling  music (both playing and listening!)  basketball \n\n… just to name a few."
+  },
+  {
+    "objectID": "psets/distribution/index.html",
+    "href": "psets/distribution/index.html",
+    "title": "Distribution Magic",
+    "section": "",
+    "text": "Suppose one has a collection of numbers \\(x_1,\\ldots, x_n\\), which are taken to be independent samples from the \\(N(\\mu, \\sigma_0^2)\\) distribution.\n\nHere, \\(\\sigma_0^2\\) is known, but \\(\\mu\\) is unknown. Using the prior distribution \\(M ∼ N(\\mu_0, \\rho_0^2)\\) for \\(\\mu\\), derive the formula for the posterior distribution.\n\nTo solve this problem, we will utilize the concept of proportionality (\\(\\propto\\)). More specifically, we have the following equation regarding the posterior distribution:\n\\[f_{\\Theta|X}(\\theta|x) \\propto f_{X|\\Theta}(x|\\theta)f_{\\Theta}(\\theta)\\] \\[\\text{Posterior density} \\propto \\text{Likelihood} \\times \\text{Prior density}\\]\nWe will first find the likelihood.\n\n\n1. Likelihood\n\nWe have that \\(f(x_i|\\mu, \\sigma_0^2) \\propto\\)"
   }
 ]
