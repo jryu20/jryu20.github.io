@@ -452,6 +452,13 @@
     "href": "psets/distribution/index.html",
     "title": "Distribution Magic",
     "section": "",
-    "text": "Suppose one has a collection of numbers \\(x_1,\\ldots, x_n\\), which are taken to be independent samples from the \\(N(\\mu, \\sigma_0^2)\\) distribution.\n\nHere, \\(\\sigma_0^2\\) is known, but \\(\\mu\\) is unknown. Using the prior distribution \\(M ∼ N(\\mu_0, \\rho_0^2)\\) for \\(\\mu\\), derive the formula for the posterior distribution.\n\nTo solve this problem, we will utilize the concept of proportionality (\\(\\propto\\)). More specifically, we have the following equation regarding the posterior distribution:\n\\[f_{\\Theta|X}(\\theta|x) \\propto f_{X|\\Theta}(x|\\theta)f_{\\Theta}(\\theta)\\] \\[\\text{Posterior density} \\propto \\text{Likelihood} \\times \\text{Prior density}\\]\nWe will first find the likelihood.\n\n\n1. Likelihood\n\nWe have that \\(f(x_i|\\mu, \\sigma_0^2) \\propto\\)"
+    "text": "Suppose one has a collection of numbers \\(x_1,\\ldots, x_n\\), which are taken to be independent samples from the \\(N(\\mu, \\sigma_0^2)\\) distribution.\nTo solve this problem, we will utilize the concept of proportionality (\\(\\propto\\)). More specifically, we have the following equation regarding the posterior distribution:\n\\[f_{\\Theta|X}(\\theta|x) \\propto f_{X|\\Theta}(x|\\theta)f_{\\Theta}(\\theta)\\] \\[\\text{Posterior density} \\propto \\text{Likelihood} \\times \\text{Prior density}\\]\nWe will first find the likelihood."
+  },
+  {
+    "objectID": "psets/distribution/index.html#likelihood",
+    "href": "psets/distribution/index.html#likelihood",
+    "title": "Distribution Magic",
+    "section": "1. Likelihood",
+    "text": "1. Likelihood\nWe have that: \\[f(x_i|\\mu, \\sigma_0^2) \\propto {\\kappa}e^{-{(x_i-\\mu)^2}/{2\\sigma_0^2}}\\] since each \\(x_i\\) is a sample from a normal distribution. (Here, \\(\\kappa\\) is just a normalizing constant.)\nSo, our likelihood is the product of all the PDFs (probability density functions) for \\(x_1,\\ldots,x_n\\):\n\\[big product\\]"
   }
 ]

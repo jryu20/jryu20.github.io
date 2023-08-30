@@ -177,10 +177,11 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[f_{\Theta|X}(\theta|x) \propto f_{X|\Theta}(x|\theta)f_{\Theta}(\theta)\]</span> <span class="math display">\[\text{Posterior density} \propto \text{Likelihood} \times \text{Prior density}\]</span></p>
 <p>We will first find the <em>likelihood</em>.</p>
 <hr>
-<section id="likelihood" class="level3">
-<h3 class="anchored" data-anchor-id="likelihood">1. Likelihood</h3>
-<p><br></p>
-<p>We have that <span class="math inline">\(f(x_i|\mu, \sigma_0^2) \propto\)</span></p>
+<section id="likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="likelihood">1. Likelihood</h2>
+<p>We have that: <span class="math display">\[f(x_i|\mu, \sigma_0^2) \propto {\kappa}e^{-{(x_i-\mu)^2}/{2\sigma_0^2}}\]</span> since each <span class="math inline">\(x_i\)</span> is a sample from a normal distribution. (Here, <span class="math inline">\(\kappa\)</span> is just a normalizing constant.)</p>
+<p>So, our likelihood is the product of all the PDFs (probability density functions) for <span class="math inline">\(x_1,\ldots,x_n\)</span>:</p>
+<p><span class="math display">\[big product\]</span></p>
 
 
 </section>
