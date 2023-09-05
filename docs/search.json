@@ -459,6 +459,20 @@
     "href": "psets/distribution/index.html#likelihood",
     "title": "Distribution Magic",
     "section": "1. Likelihood",
-    "text": "1. Likelihood\nWe have that: \\[f(x_i|\\mu, \\sigma_0^2) \\propto {\\kappa}e^{-{(x_i-\\mu)^2}/{2\\sigma_0^2}}\\] since each \\(x_i\\) is a sample from a normal distribution. (Here, \\(\\kappa\\) is just a normalizing constant.)\nSo, our likelihood is the product of all the PDFs (probability density functions) for \\(x_1,\\ldots,x_n\\):\n\\[big product\\]"
+    "text": "1. Likelihood\nWe have that: \\[f(x_i|\\mu, \\sigma_0^2) \\propto {\\kappa}e^{-{(x_i-\\mu)^2}/{2\\sigma_0^2}}\\] since each \\(x_i\\) is a sample from a normal distribution. (Here, \\(\\kappa\\) is just a normalizing constant.)\nOur likelihood is the product of all the PDFs (probability density functions) for \\(x_1,\\ldots,x_n\\):\n\\[ f(x|\\mu, \\sigma_0^2) = \\prod_{i=1}^n f(x_i|\\mu, \\sigma_0^2) \\propto {\\kappa}e^{-{\\sum_{i=1}^n(x_i-\\mu)^2}/{2\\sigma_0^2}} \\]"
+  },
+  {
+    "objectID": "psets/distribution/index.html#posterior-density",
+    "href": "psets/distribution/index.html#posterior-density",
+    "title": "Distribution Magic",
+    "section": "2. Posterior Density",
+    "text": "2. Posterior Density\nUsing the above, we will derive the posterior density. Given that our prior distribution is also normal, we have:\n\\[ P(\\mu|x_1,\\ldots,x_n) = f(x|\\mu, \\sigma_0^2) \\cdot g(\\mu|\\mu_0, \\rho_0^2) \\] \\[ \\propto {\\kappa}e^{-{\\sum_{i=1}^n(x_i-\\mu)^2}/{2\\sigma_0^2} - (\\mu-\\mu_0)^2/2\\rho_0^2} \\]\nNow, we just need to simplify the exponent:\n\\[ -\\frac{1}{2}\\left(\\frac{\\sum_{i=1}^n(x_i-\\mu)^2}{\\sigma_0^2} + \\frac{(\\mu-\\mu_0)^2}{\\rho_0^2}\\right) \\] \\[ = -\\frac{1}{2}\\left(\\frac{\\sum_{i=1}^n x_i^2 - 2n\\bar{x}\\mu+n\\mu^2}{\\sigma_0^2} + \\frac{\\mu^2-2\\mu\\mu_0+\\mu_0^2}{\\rho_0^2}\\right) \\]\nFrom here, we can drop all terms without \\(\\mu\\) because those are part of our normalizing constant:\n\\[ = -\\frac{1}{2}\\left(\\frac{-2n\\bar{x}\\mu+n\\mu^2}{\\sigma_0^2} + \\frac{\\mu^2-2\\mu\\mu_0}{\\rho_0^2}\\right) \\] \\[ = -\\frac{1}{2}\\left(\\frac{-2n\\bar{x}\\mu\\rho_0^2+n\\mu^2\\rho_0^2+\\mu^2\\sigma_0^2-2\\mu\\mu_0\\sigma_0^2}{\\sigma_0^2\\rho_0^2}\\right) \\] \\[ = -\\frac{1}{2}\\left(\\frac{\\mu^2(n\\rho_0^2+\\sigma_0^2)-2\\mu(\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2)}{\\sigma_0^2\\rho_0^2}\\right) \\]\n\\[ = -\\frac{1}{2}\\left(\\frac{\\mu^2-2\\mu\\frac{(\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2)}{(n\\rho_0^2+\\sigma_0^2)}}{\\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\right) \\]"
+  },
+  {
+    "objectID": "psets/distribution/index.html#final-distribution",
+    "href": "psets/distribution/index.html#final-distribution",
+    "title": "Distribution Magic",
+    "section": "3. Final Distribution",
+    "text": "3. Final Distribution\nHere, we will use a neat trick called complete the square. We do this by introducing a constant term \\(\\kappa_0\\) (a term that does not involve \\(\\mu\\)) to the numerator:\n\\[ = -\\frac{1}{2}\\left(\\frac{\\mu^2-2\\mu\\frac{(\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2)}{(n\\rho_0^2+\\sigma_0^2)}+\\kappa_0}{\\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\right) \\]\n\n\n\n\n\n\nNote\n\n\n\nTo be more specific, \\(\\kappa_0 := \\left(\\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}\\right)^2\\), and indeed, this term does not have \\(\\mu\\) and does not affect the distribution.\n\n\n\\[ = -\\frac{1}{2}\\left(\\frac{\\left(\\mu-\\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}\\right)^2}{\\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\right) \\]\nWe notice that the above form looks a lot like the PDF of a normal distribution. Thus, our posterior PDF can be represented as \\({\\kappa}e^{{-(\\mu-c)^2}/{2\\tau^2}}\\), where:\n\\[ \\boxed{c = \\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}, \\tau^2 = \\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\]\nSo, we conclude that our posterior distribution is \\(\\boxed{N(c, \\tau^2)}\\)."
   }
 ]

@@ -160,6 +160,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#likelihood" id="toc-likelihood" class="nav-link active" data-scroll-target="#likelihood">1. Likelihood</a></li>
+  <li><a href="#posterior-density" id="toc-posterior-density" class="nav-link" data-scroll-target="#posterior-density">2. Posterior Density</a></li>
+  <li><a href="#final-distribution" id="toc-final-distribution" class="nav-link" data-scroll-target="#final-distribution">3. Final Distribution</a></li>
   </ul>
 </nav>
     </div>
@@ -171,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Suppose one has a collection of numbers <span class="math inline">\(x_1,\ldots, x_n\)</span>, which are taken to be independent samples from the <span class="math inline">\(N(\mu, \sigma_0^2)\)</span> distribution.</p>
 <blockquote class="blockquote">
-<p>Here, <span class="math inline">\(\sigma_0^2\)</span> is known, but <span class="math inline">\(\mu\)</span> is unknown. Using the prior distribution <span class="math inline">\(M ∼ N(\mu_0, \rho_0^2)\)</span> for <span class="math inline">\(\mu\)</span>, derive the formula for the posterior distribution.</p>
+<p>Here, <span class="math inline">\(\sigma_0^2\)</span> is known, but <span class="math inline">\(\mu\)</span> is unknown. Using the prior distribution <span class="math inline">\(M ∼ N(\mu_0, \rho_0^2)\)</span> for <span class="math inline">\(\mu\)</span>, derive the formula for the <a href="https://en.wikipedia.org/wiki/Posterior_probability">posterior distribution</a>.</p>
 </blockquote>
 <p>To solve this problem, we will utilize the concept of proportionality (<span class="math inline">\(\propto\)</span>). More specifically, we have the following equation regarding the posterior distribution:</p>
 <p><span class="math display">\[f_{\Theta|X}(\theta|x) \propto f_{X|\Theta}(x|\theta)f_{\Theta}(\theta)\]</span> <span class="math display">\[\text{Posterior density} \propto \text{Likelihood} \times \text{Prior density}\]</span></p>
@@ -180,8 +182,40 @@ ul.task-list li input[type="checkbox"] {
 <section id="likelihood" class="level2">
 <h2 class="anchored" data-anchor-id="likelihood">1. Likelihood</h2>
 <p>We have that: <span class="math display">\[f(x_i|\mu, \sigma_0^2) \propto {\kappa}e^{-{(x_i-\mu)^2}/{2\sigma_0^2}}\]</span> since each <span class="math inline">\(x_i\)</span> is a sample from a normal distribution. (Here, <span class="math inline">\(\kappa\)</span> is just a normalizing constant.)</p>
-<p>So, our likelihood is the product of all the PDFs (probability density functions) for <span class="math inline">\(x_1,\ldots,x_n\)</span>:</p>
-<p><span class="math display">\[big product\]</span></p>
+<p>Our likelihood is the product of all the PDFs (probability density functions) for <span class="math inline">\(x_1,\ldots,x_n\)</span>:</p>
+<p><span class="math display">\[ f(x|\mu, \sigma_0^2) = \prod_{i=1}^n f(x_i|\mu, \sigma_0^2) \propto {\kappa}e^{-{\sum_{i=1}^n(x_i-\mu)^2}/{2\sigma_0^2}} \]</span></p>
+</section>
+<section id="posterior-density" class="level2">
+<h2 class="anchored" data-anchor-id="posterior-density">2. Posterior Density</h2>
+<p>Using the above, we will derive the posterior density. Given that our prior distribution is also normal, we have:</p>
+<p><span class="math display">\[ P(\mu|x_1,\ldots,x_n) = f(x|\mu, \sigma_0^2) \cdot g(\mu|\mu_0, \rho_0^2) \]</span> <span class="math display">\[ \propto {\kappa}e^{-{\sum_{i=1}^n(x_i-\mu)^2}/{2\sigma_0^2} - (\mu-\mu_0)^2/2\rho_0^2} \]</span></p>
+<p>Now, we just need to simplify the exponent:</p>
+<p><span class="math display">\[ -\frac{1}{2}\left(\frac{\sum_{i=1}^n(x_i-\mu)^2}{\sigma_0^2} + \frac{(\mu-\mu_0)^2}{\rho_0^2}\right) \]</span> <span class="math display">\[ = -\frac{1}{2}\left(\frac{\sum_{i=1}^n x_i^2 - 2n\bar{x}\mu+n\mu^2}{\sigma_0^2} + \frac{\mu^2-2\mu\mu_0+\mu_0^2}{\rho_0^2}\right) \]</span></p>
+<p>From here, we can drop all terms without <span class="math inline">\(\mu\)</span> because those are part of our normalizing constant:</p>
+<p><span class="math display">\[ = -\frac{1}{2}\left(\frac{-2n\bar{x}\mu+n\mu^2}{\sigma_0^2} + \frac{\mu^2-2\mu\mu_0}{\rho_0^2}\right) \]</span> <span class="math display">\[ = -\frac{1}{2}\left(\frac{-2n\bar{x}\mu\rho_0^2+n\mu^2\rho_0^2+\mu^2\sigma_0^2-2\mu\mu_0\sigma_0^2}{\sigma_0^2\rho_0^2}\right) \]</span> <span class="math display">\[ = -\frac{1}{2}\left(\frac{\mu^2(n\rho_0^2+\sigma_0^2)-2\mu(\mu_0\sigma_0^2+n\bar{x}\rho_0^2)}{\sigma_0^2\rho_0^2}\right) \]</span></p>
+<p><span class="math display">\[ = -\frac{1}{2}\left(\frac{\mu^2-2\mu\frac{(\mu_0\sigma_0^2+n\bar{x}\rho_0^2)}{(n\rho_0^2+\sigma_0^2)}}{\frac{\sigma_0^2\rho_0^2}{n\rho_0^2+\sigma_0^2}}\right) \]</span></p>
+</section>
+<section id="final-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="final-distribution">3. Final Distribution</h2>
+<p>Here, we will use a neat trick called <em>complete the square</em>. We do this by introducing a constant term <span class="math inline">\(\kappa_0\)</span> (a term that does not involve <span class="math inline">\(\mu\)</span>) to the numerator:</p>
+<p><span class="math display">\[ = -\frac{1}{2}\left(\frac{\mu^2-2\mu\frac{(\mu_0\sigma_0^2+n\bar{x}\rho_0^2)}{(n\rho_0^2+\sigma_0^2)}+\kappa_0}{\frac{\sigma_0^2\rho_0^2}{n\rho_0^2+\sigma_0^2}}\right) \]</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To be more specific, <span class="math inline">\(\kappa_0 := \left(\frac{\mu_0\sigma_0^2+n\bar{x}\rho_0^2}{n\rho_0^2+\sigma_0^2}\right)^2\)</span>, and indeed, this term does not have <span class="math inline">\(\mu\)</span> and does not affect the distribution.</p>
+</div>
+</div>
+<p><span class="math display">\[ = -\frac{1}{2}\left(\frac{\left(\mu-\frac{\mu_0\sigma_0^2+n\bar{x}\rho_0^2}{n\rho_0^2+\sigma_0^2}\right)^2}{\frac{\sigma_0^2\rho_0^2}{n\rho_0^2+\sigma_0^2}}\right) \]</span></p>
+<p>We notice that the above form looks a lot like the PDF of a <strong>normal distribution</strong>. Thus, our posterior PDF can be represented as <span class="math inline">\({\kappa}e^{{-(\mu-c)^2}/{2\tau^2}}\)</span>, where:</p>
+<p><span class="math display">\[ \boxed{c = \frac{\mu_0\sigma_0^2+n\bar{x}\rho_0^2}{n\rho_0^2+\sigma_0^2}, \tau^2 = \frac{\sigma_0^2\rho_0^2}{n\rho_0^2+\sigma_0^2}}\]</span></p>
+<p>So, we conclude that our posterior distribution is <span class="math inline">\(\boxed{N(c, \tau^2)}\)</span>.</p>
 
 
 </section>
