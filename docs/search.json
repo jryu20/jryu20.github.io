@@ -403,7 +403,7 @@
     "href": "psets.html",
     "title": "PSets",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nFun with Regex\n\n\n\n\n\n\n\nR\n\n\npython\n\n\nregex\n\n\n\n\n\n\n\n\n\n\n\nFeb 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Magic\n\n\n\n\n\n\n\nstatistics\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nFun with Regex\n\n\n\n\n\n\n\nR\n\n\npython\n\n\nregex\n\n\n\n\n\n\n\n\n\n\n\nFeb 21, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Magic\n\n\n\n\n\n\n\nstatistics\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2023\n\n\nJun Ryu\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFluid Dynamics with PDE\n\n\n\n\n\n\n\nPDE\n\n\n\n\n\n\n\n\n\n\n\nDec 2, 2022\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "misc.html",
@@ -474,5 +474,33 @@
     "title": "Distribution Magic",
     "section": "3. Final Distribution",
     "text": "3. Final Distribution\nHere, we will use a neat trick called complete the square. We do this by introducing a constant term \\(\\kappa_0\\) (a term that does not involve \\(\\mu\\)) to the numerator:\n\\[ = -\\frac{1}{2}\\left(\\frac{\\mu^2-2\\mu\\frac{(\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2)}{(n\\rho_0^2+\\sigma_0^2)}+\\kappa_0}{\\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\right) \\]\n\n\n\n\n\n\nNote\n\n\n\nTo be more specific, \\(\\kappa_0 := \\left(\\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}\\right)^2\\), and indeed, this term does not have \\(\\mu\\) and does not affect the distribution.\n\n\n\\[ = -\\frac{1}{2}\\left(\\frac{\\left(\\mu-\\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}\\right)^2}{\\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\right) \\]\nWe notice that the above form looks a lot like the PDF of a normal distribution. Thus, our posterior PDF can be represented as \\({\\kappa}e^{{-(\\mu-c)^2}/{2\\tau^2}}\\), where:\n\\[ \\boxed{c = \\frac{\\mu_0\\sigma_0^2+n\\bar{x}\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}, \\tau^2 = \\frac{\\sigma_0^2\\rho_0^2}{n\\rho_0^2+\\sigma_0^2}}\\]\nSo, we conclude that our posterior distribution is \\(\\boxed{N(c, \\tau^2)}\\)."
+  },
+  {
+    "objectID": "psets/pde/index.html",
+    "href": "psets/pde/index.html",
+    "title": "Fluid Dynamics with PDE",
+    "section": "",
+    "text": "A one-dimensional compressible fluid blob starts at \\(t = 0\\) with uniform density \\(\\rho \\equiv 1\\) on \\(1 \\leq x \\leq 2\\)."
+  },
+  {
+    "objectID": "psets/pde/index.html#a",
+    "href": "psets/pde/index.html#a",
+    "title": "Fluid Dynamics with PDE",
+    "section": "A)",
+    "text": "A)\nWe start with the conservation of mass equation: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial (\\rho \\mathcal{v})}{\\partial x} = 0\\]\nWe use the Chain Rule, plug in what was given, and rearrange: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial \\rho}{\\partial x}\\mathcal{v} + \\frac{\\partial \\mathcal{v}}{\\partial x}\\rho = 0\\]\n\\[\\frac{\\partial \\rho}{\\partial t} + (x^2e^{-3t})\\frac{\\partial \\rho}{\\partial x} = -2xe^{-3t}\\rho\\]"
+  },
+  {
+    "objectID": "psets/pde/index.html#b",
+    "href": "psets/pde/index.html#b",
+    "title": "Fluid Dynamics with PDE",
+    "section": "B)",
+    "text": "B)\nWe have that \\(x\\) starts off bounded (\\(1 \\leq x \\leq 2\\)) so…\n\\[x_1(0) = 1 \\Rightarrow A_1 = 1\\] \\[x_2(0) = 2 \\Rightarrow A_2 = 2\\]\nfrom the setup in Part A. We also had:\n\\[x := \\left(\\frac{1}{A}+\\frac{e^{-3t}}{3}-\\frac{1}{3}\\right)^{-1}\\]\nThis gives us:\n\\[x_1(t) = \\left(\\frac{1}{A_1}+\\frac{e^{-3t}}{3}-\\frac{1}{3}\\right)^{-1} \\Rightarrow \\left(\\frac{e^{-3t}}{3}+\\frac{2}{3}\\right)^{-1} = \\boxed{\\frac{3}{2+e^{-3t}}}\\] \\[x_2(t) = \\left(\\frac{1}{A_2}+\\frac{e^{-3t}}{3}-\\frac{1}{3}\\right)^{-1} \\Rightarrow \\left(\\frac{e^{-3t}}{3}+\\frac{1}{6}\\right)^{-1} = \\boxed{\\frac{6}{1+2e^{-3t}}}\\]"
+  },
+  {
+    "objectID": "psets/pde/index.html#c",
+    "href": "psets/pde/index.html#c",
+    "title": "Fluid Dynamics with PDE",
+    "section": "C)",
+    "text": "C)\nCombining Parts A & B:\n\\[\\int_{x_1(t)}^{x_2(t)} \\rho(x, t) dx = \\int_{\\frac{3}{2+e^{-3t}}}^{\\frac{6}{1+2e^{-3t}}} \\left(\\frac{x}{3}(e^{-3t}-1)-1\\right)^{-2} dx\\]\n\\[ =  \\]"
   }
 ]
