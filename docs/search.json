@@ -487,7 +487,7 @@
     "href": "psets/pde/index.html#a",
     "title": "Fluid Dynamics with PDE",
     "section": "A)",
-    "text": "A)\nWe start with the conservation of mass equation: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial (\\rho \\mathcal{v})}{\\partial x} = 0\\]\nWe use the Chain Rule, plug in what was given, and rearrange: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial \\rho}{\\partial x}\\mathcal{v} + \\frac{\\partial \\mathcal{v}}{\\partial x}\\rho = 0\\]\n\\[\\frac{\\partial \\rho}{\\partial t} + (x^2e^{-3t})\\frac{\\partial \\rho}{\\partial x} = -2xe^{-3t}\\rho\\]"
+    "text": "A)\nWe start with the conservation of mass equation: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial (\\rho \\mathcal{v})}{\\partial x} = 0\\]\nWe use the Chain Rule, plug in what was given, and rearrange: \\[\\frac{\\partial \\rho}{\\partial t} + \\frac{\\partial \\rho}{\\partial x}\\mathcal{v} + \\frac{\\partial \\mathcal{v}}{\\partial x}\\rho = 0\\]\n\\[\\frac{\\partial \\rho}{\\partial t} + (x^2e^{-3t})\\frac{\\partial \\rho}{\\partial x} = -2xe^{-3t}\\rho\\]\nWe are now ready to use the method of characteristics!"
   },
   {
     "objectID": "psets/pde/index.html#b",
@@ -501,6 +501,6 @@
     "href": "psets/pde/index.html#c",
     "title": "Fluid Dynamics with PDE",
     "section": "C)",
-    "text": "C)\nCombining Parts A & B:\n\\[\\int_{x_1(t)}^{x_2(t)} \\rho(x, t) dx = \\int_{\\frac{3}{2+e^{-3t}}}^{\\frac{6}{1+2e^{-3t}}} \\left(\\frac{x}{3}(e^{-3t}-1)-1\\right)^{-2} dx\\]\n\\[ =  \\]"
+    "text": "C)\nCombining Parts A & B:\n\\[\\int_{x_1(t)}^{x_2(t)} \\rho(x, t) dx = \\int_{\\frac{3}{2+e^{-3t}}}^{\\frac{6}{1+2e^{-3t}}} \\left(\\frac{x}{3}(e^{-3t}-1)-1\\right)^{-2} dx\\]\nWe will use u-substitution:\n\\[u = \\frac{x}{3}(e^{-3t}-1)-1, du = \\frac{e^{-3t}-1}{3}\\]\n\\[\\Rightarrow \\frac{3}{e^{-3t}-1}\\int u^{-2} du\\] \\[ = -\\frac{3}{\\left(e^{-3t}-1\\right)u}\\]\nNow, we will integrate with bounds:\n\\[ = -\\frac{3}{\\left(e^{-3t}-1\\right)\\left(\\frac{x}{3}(e^{-3t}-1)-1\\right)}\\Biggr|_\\frac{3}{2+e^{-3t}}^\\frac{6}{1+2e^{-3t}}\\]\nThe process of simplifying is omitted (try it out yourself!), but in the end, we arrive at:\n\\[\\frac{2e^{-3t}+1}{e^{-3t}-1} - \\frac{e^{-3t}+2}{e^{-3t}-1} = \\frac{e^{-3t}-1}{e^{-3t}-1} = \\boxed{1}\\]\nThe Reynolds transport theorem gives us the following formula:\n\\[\\frac{d}{dt}\\left(\\int_{a(t)}^{b(t)}\\rho(x,t)\\:dx\\right) = \\int_{a(t)}^{b(t)}\\left[\\frac{\\partial}{\\partial t}\\rho(x,t)+\\frac{\\partial}{\\partial x}\\left(\\rho(x,t)\\mathcal{v}(x,t)\\right)\\right] dx\\]\nWe just solved for the integral on the left hand side and the integrand on the right hand side was given in the problem:\n\\[ \\text{LHS} = \\frac{d}{dt}\\:1 = 0\\] \\[ \\text{RHS} = \\int_{a(t)}^{b(t)}0\\:dx = 0\\]\nSo, the results are consistent with the transport theorem."
   }
 ]
