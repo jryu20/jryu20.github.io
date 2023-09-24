@@ -16,6 +16,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/memory-study/index.html",
       "/posts/clustering/index.html",
       "/posts/zillow-blog/index.html",
       "/posts/fakenews/index.html",
