@@ -189,8 +189,18 @@ ul.task-list li input[type="checkbox"] {
 <p>We use the Chain Rule, plug in what was given, and rearrange: <span class="math display">\[\frac{\partial \rho}{\partial t} + \frac{\partial \rho}{\partial x}\mathcal{v} + \frac{\partial \mathcal{v}}{\partial x}\rho = 0\]</span></p>
 <p><span class="math display">\[\frac{\partial \rho}{\partial t} + \underbrace{(x^2e^{-3t})}_{c(x)}\frac{\partial \rho}{\partial x} = \underbrace{-2xe^{-3t}\rho}_{r(x,\rho)}\]</span></p>
 <p>We are now ready to use the method of characteristics!</p>
-<p>First, we will solve the ODE describing the path:</p>
-<p>[will be updated]</p>
+<hr>
+<p>First, we will construct the ODE describing the path:</p>
+<p><span class="math display">\[\frac{dy}{d\tau} = c(y(\tau)) = y^2e^{-3\tau}\]</span> <span class="math display">\[y(t) = x\]</span> <span class="math display">\[y(0) = A\]</span></p>
+<p>We will solve the above, and then solve for <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[y(\tau) = \left(\frac{1}{A}+\frac{e^{-3\tau}}{3}-\frac{1}{3}\right)^{-1}\]</span> <span class="math display">\[y(t) = x = \left(\frac{1}{A}+\frac{e^{-3t}}{3}-\frac{1}{3}\right)^{-1}\]</span> <span class="math display">\[\Rightarrow A = \left(\frac{1}{x}-\frac{e^{-3t}}{3}+\frac{1}{3}\right)^{-1}\]</span></p>
+<p>Now, we have:</p>
+<p><span class="math display">\[\frac{d\rho}{dt} = r(y(t),\rho(t)) = -2y(t)e^{-3t}\rho\]</span> <span class="math display">\[\Rightarrow \frac{1}{\rho}d\rho = -2e^{-3t}y(t)\:dt\]</span> <span class="math display">\[\Rightarrow \int_{0}^{t} \frac{1}{\rho}d\rho = \int_{0}^{t} -2e^{-3\tau}y(\tau)\:d\tau\]</span></p>
+<p>by separation of variables. We will plug in <span class="math inline">\(y(\tau)\)</span> and simplify:</p>
+<p><span class="math display">\[\int_{0}^{t} \frac{1}{\rho}d\rho = \int_{0}^{t} -2e^{-3\tau}\left(\frac{1}{A}+\frac{e^{-3\tau}}{3}-\frac{1}{3}\right)^{-1}\:d\tau\]</span></p>
+<p><span class="math display">\[\Rightarrow \ln(\rho(t))-\underbrace{\ln(\rho(0))}_{=1} = \int_{0}^{t} \frac{-6Ae^{-3\tau}}{3+Ae^{-3\tau}-A}\:d\tau\]</span> <span class="math display">\[\Rightarrow \ln(\rho(t)) = 2\ln(Ae^{-3\tau}-A+3)\Biggr|_{0}^{t}\]</span> <span class="math display">\[\Rightarrow \ln(\rho(t)) = 2\ln(Ae^{-3t}-A+3)-2\ln(3)\]</span> <span class="math display">\[\Rightarrow \rho(t) = \frac{(Ae^{-3t}-A+3)^2}{9}\]</span></p>
+<p>From this point, we plug in <span class="math inline">\(A\)</span> that we previously solved for:</p>
+<p><span class="math display">\[\boxed{\rho(x,t) = \left(\frac{x}{3}(e^{-3t}-1)-1\right)^{-2}}\]</span></p>
 </section>
 <section id="b" class="level2">
 <h2 class="anchored" data-anchor-id="b">B)</h2>
