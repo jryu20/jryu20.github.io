@@ -164,6 +164,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">1. Abstract</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">2. Introduction</a></li>
   <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">3. Data Preprocessing</a></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">4. Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">5. Machine Learning</a>
+  <ul class="collapse">
+  <li><a href="#a.-support-vector-classifier-svc" id="toc-a.-support-vector-classifier-svc" class="nav-link" data-scroll-target="#a.-support-vector-classifier-svc">a. Support Vector Classifier (SVC)</a></li>
+  <li><a href="#b.-adaptive-boosting-adaboost" id="toc-b.-adaptive-boosting-adaboost" class="nav-link" data-scroll-target="#b.-adaptive-boosting-adaboost">b. Adaptive Boosting (AdaBoost)</a></li>
+  <li><a href="#c.-artificial-neural-network-ann" id="toc-c.-artificial-neural-network-ann" class="nav-link" data-scroll-target="#c.-artificial-neural-network-ann">c.&nbsp;Artificial Neural Network (ANN)</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">6. Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">7. References</a></li>
   </ul>
 </nav>
     </div>
@@ -175,21 +184,96 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">1. Abstract</h2>
-<p>In this report, we will deal with the topic of stellar classification, which is determining an astronomical object based on its spectral characteristics. In particular, we will focus on building a classification algorithm to correctly identify whether an input object is a star, a galaxy, or a quasar. We will mainly rely on the values given by the photometric system to help us classify these objects.</p>
+<p>In this report, we will deal with the topic of stellar classification, which is determining an astronomical object based on its spectral characteristics. In particular, we will focus on building a classification algorithm to correctly identify whether the input object is a star, a galaxy, or a quasar. We will mainly rely on the values given by the photometric system to help us classify these objects.</p>
 <p>The machine learning models used in this report include <strong>support vector machine (SVM), adaptive boosting with decision trees (AdaBoost), and artificial neural network (ANN)</strong>.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">2. Introduction</h2>
-<p>Stellar classification can be considered to be one of the most fundamental problems in astronomy, where the distinctions between different spectral objects lay the building blocks of studies often conducted in astronomy. To preface this report, we will first define what each object category will be:</p>
-<p><em>1. Star</em>:</p>
-<p>We are using the <a href="https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17/data">Stellar Classification Dataset</a>, provided by SDSS17. This dataset houses 100,000 observations of space taken by Sloan Digital Sky Survey (SDSS), what do they do… The original dataset contains 18 columns (the full data dictionary can be accessed at the Kaggle site); however, since we have already decided our features to be the values resulting from the photometric system, we will only be working with 6 columns (5 features and 1 response). The 5 feature columns are <code>u</code>, <code>g</code>, <code>r</code>, <code>i</code>, and <code>z</code>, which are the values obtained from 5 different filters in the photometric system. These values all mostly range between 0 and 100. The response column, or <code>class</code>, is one that reports on the object class; it is one of “STAR”, “GALAXY”, or “QSO”, the last of which stands for quasi-stellar objects.</p>
-<p>The photometric system, often utilized in astronomy, is a set of filters that essentially work together to determine an object’s brightness. The idea is that an object will undergo different filters with each filter transmitting only a specific range of wavelengths. Through this process, an astronomer is able to measure the different intensities that pass through each filter, which can be combined to determine the overall brightness. Here, we deal with a specific set of filters: the <code>ugriz</code> filters, which the Sloan Digital Sky Survey most notably employs for their observations. The <code>ugriz</code> filters are made up of 5 filters (<code>u</code>, <code>g</code>, <code>r</code>, <code>i</code>, and <code>z</code>), which extract…</p>
+<p>Stellar classification can be considered to be one of the most fundamental problems in astronomy, where the distinctions between different spectral objects lay the building blocks of studies often conducted in astronomy. To preface this report, we will first discuss the differences between the three classes.</p>
+<p>Stars can be viewed as a building block of galaxies, where each galaxy may contain billions and even trillions of stars. On the other hand, quasars are extremely bright and energetic types of AGN (active galactic nucleus). The main difference between a quasar and a galaxy is that quasars will have a much more active central region, which is responsible for emitting high amounts of energy.</p>
+<p>We are using the <a href="https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17/data">Stellar Classification Dataset</a>, provided by SDSS17 (17th Data Release). This dataset houses 100,000 observations of space taken by Sloan Digital Sky Survey (SDSS), which is a major redshift survey conducted at Apache Point Observatory in New Mexico, USA. The original dataset contains 18 columns (the full data dictionary can be accessed at the Kaggle site); however, since we already decided our features to be the values collected from the photometric system, we will only be working with 6 columns (5 features and 1 response). The 5 feature columns are <code>u</code>, <code>g</code>, <code>r</code>, <code>i</code>, and <code>z</code>, which are the values obtained from 5 different filters in the photometric system. These values all mostly range between 0 and 100. The response column, or <code>class</code>, is one that reports on the object class; it is one of “STAR”, “GALAXY”, or “QSO”, the last of which stands for quasi-stellar objects.</p>
+<p>The photometric system, often utilized in astronomy, is a set of filters that essentially work together to determine an object’s brightness. The idea is that an object will undergo different filters with each filter transmitting only a specific range of wavelengths. Through this process, an astronomer is able to measure the different intensities that pass through each filter, which can be combined to determine the overall brightness. Here, we deal with a specific set of filters: the <code>ugriz</code> filters, which the Sloan Digital Sky Survey most notably employs for their observations. The <code>ugriz</code> filters are made up of 5 filters (<code>u</code>, <code>g</code>, <code>r</code>, <code>i</code>, and <code>z</code>), which represent the ultraviolet, green, red, near-infrared, and infrared bands, respectively. To give a brief explanation of what each filter does, let us take the <code>u</code> band as an example. The <code>u</code> or the ultraviolet band will capture wavelengths within the ultraviolet section of the electromagnetic spectrum and will block off all the other wavelengths.</p>
 </section>
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">3. Data Preprocessing</h2>
-<p>Preprocessing the data was not a difficult process for this specific dataset and required less than 5 lines of code. There were no <code>NA</code> values and there was only one extreme outlier noted across all 100,000 observations. Therefore, we took steps to remove this observation. We then grabbed the 6 columns described above, and sampled 10,000 observations (10% of the original). The reason why we scaled down the size of the dataset was due to the computational cost; with the available computational power, we were not able to run some models on the full dataset. We have also encoded the labels for the response variable as integers (<span class="math inline">\(0,1,2\)</span>) in order to ensure we can track which label is which when plotting the confusion matrix.</p>
-<p>After the preprocessing, we proceeded to split the data into 80% training and 20% testing. Then, for each of these, we split it into the <span class="math inline">\(X\)</span> (the predictors) and the <span class="math inline">\(y\)</span> (the response), resulting in four sets defined as <code>X_train</code>, <code>y_train</code>, <code>X_test</code>, and <code>y_test</code>.</p>
-<p>why did we not scale data? we probably should…</p>
+<p>Preprocessing the data was not a difficult process for this specific dataset and required less than 5 lines of code. There were no <code>NA</code> values and there was only one extreme outlier noted across all 100,000 observations. Therefore, we took steps to remove this observation. We then grabbed the 6 columns of interest as described above, and sampled 3,000 observations for each object class, resulting in a total of 9,000 data points to work with. There were two main reasons why we sampled like this; first was to obtain a balanced dataset. The disadvantages of an unbalanced dataset are that they often lead to biased results (as the majority class can dominate) and can produce misleading accuracy scores. Thus, having a balanced dataset is crucial in the context of machine learning. The second reason was to scale down the size of the dataset due to the computational cost; with the available computational power, we were not able to run some models on the full dataset.</p>
+<p>After the preprocessing step, we proceeded to split the data into 80% training and 20% testing. Then, for each of these, we split it into the <span class="math inline">\(X\)</span> (the predictors) and the <span class="math inline">\(y\)</span> (the response), resulting in four sets defined as <code>X_train</code>, <code>y_train</code>, <code>X_test</code>, and <code>y_test</code>. We also encoded the labels for the response variable as integers (<span class="math inline">\(0,1,2\)</span>) to ensure we can track which label is which when plotting the confusion matrix.</p>
+</section>
+<section id="exploratory-data-analysis-eda" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-eda">4. Exploratory Data Analysis (EDA)</h2>
+<p>Now that the data has been preprocessed, we will move on to performing exploratory data analysis. First, we printed a comprehensive summary table of our preprocessed data grouped by each object class:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img1.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img2.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>As we mentioned, there are 3,000 samples of each object class. Comparing the three classes across the 5 feature variables, there are only subtle differences; for example, we don’t see any outstanding differences in the mean values for each feature. However, some interesting takeaways are that quasars have the highest mean value recorded under four features and that stars have the highest standard deviation value recorded under four features as well.</p>
+<p>To further investigate, we decided to produce a scatter plot of two features split across the different object classes.</p>
+<p><img src="img3.png" class="img-fluid"></p>
+<p>Above, we picked the two features to be <code>u</code> and <code>g</code>. Based on the above scatterplot, we observe that the shape of the plot for the quasars seem to be the smallest, while the other two extend out almost in a linear form. The shape of the plot for the galaxies has a region that is wider than that of the stars. Although subtle, these differences might be crucial for our machine learning models! Next, we decided to plot another feature variable, <code>r</code>, in the shape of a boxplot to wrap up EDA:</p>
+<p><img src="img4.png" class="img-fluid"></p>
+<p>The above plot confirms a similar finding; the quasars have their data points in a tighter range when compared to the other two.</p>
+</section>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">5. Machine Learning</h2>
+<section id="a.-support-vector-classifier-svc" class="level3">
+<h3 class="anchored" data-anchor-id="a.-support-vector-classifier-svc">a. Support Vector Classifier (SVC)</h3>
+<p>The first model we will be using is a <strong>support vector classifier</strong>. Support vector classifier (subbranch of support vector machine) is a supervised learning algorithm which can be particularly useful in a high-dimensional space. Through the selection of a proper kernel, this classifier is able to capture non-linear data and handle complex data well. However, one disadvantage is that it requires a lot of computational power for a large dataset; as we were running this algorithm, we noticed that this algorithm took significantly longer than the others. However, as our boundaries are highly non-linear, SVC proved to be a good choice.</p>
+<p>To determine our parameters for SVC, we utilized <code>GridSearchCV</code>, which is an exhaustive search method over the specified values by the user. The idea of <code>GridSearchCV</code> is to utilize a cross-validation technique to find the best parameter values without overfitting the data. To operate <code>GridSearchCV</code>, we had to feed the algorithm with a grid of parameters and the algorithm essentially went through each unique combination of parameters and evaluated the mean testing score using cross-validation. The default cross-validation method under <code>GridSearchCV</code> is a 5-fold cross-validation, which is what we adopted when calling the algorithm.</p>
+<p>For SVC in particular, the grid of parameters we prepared was setting the <code>kernel</code> to be either <code>linear</code>, <code>rbf</code>, or <code>sigmoid</code> and setting the regularization parameter (<span class="math inline">\(C\)</span>) to be either <span class="math inline">\(0.1,0.5,1,5\)</span> or <span class="math inline">\(10\)</span>. So, in this case, the <code>GridSearchCV</code> would essentially go through 15 pairs of parameters to determine which pair is the best.</p>
+<p>To call <code>GridSearchCV</code>, we not only had to feed the parameter grid but we also had to insert the model pipeline. In the model pipeline, we had two procedures; the first was a <code>StandardScaler()</code> object that would scale the data and the second was a <code>SVC()</code> object that could be used to test the different parameters. After running <code>GridSearchCV</code>, we were given the following result:</p>
+<p><img src="img5.png" class="img-fluid"></p>
+<p>From the above table, we see that all the combinations of parameters are ranked from 1 to 15 based on which produces a higher cross-validation testing score. The only one we are really interested in is the first optimal choice, which is setting the kernel to be <code>rbf</code> and regularization parameter to be <span class="math inline">\(10\)</span>. Thus, we proceeded with those parameters and trained the model. After fitting the model and evaluating the score, we got an accuracy of <span class="math inline">\(\boxed{82.72\%}\)</span>, which is outstanding considering that our object classes only have subtle differences between them. Next up, we will plot the confusion matrix to see how this accuracy is distributed.</p>
+<p><img src="img6.png" class="img-fluid"></p>
+<p>Based on the confusion plot, it seems like the model is struggling to correctly identify objects corresponding to class 0, which are stars. We will also plot the ROC (Receiver Operating Characteristic) curve as another form of error metric to see how well the model separates the different classes. A note here about the ROC curve is that it is typically meant for a binary classification; therefore, we will be adopting a slightly modified ROC metric. There are two major changes:</p>
+<ol type="1">
+<li>We will be using a one-vs-rest (OvR) strategy where we take one class and compare it against the other 2 classes as a whole so it models a “binary” classification. We repeat this for all classes available.</li>
+<li>We will be taking the average of all the OvR metrics, otherwise known as taking the macro-average.</li>
+</ol>
+<p>Taking the macro-average ROC curve, we get the following plot.</p>
+<p><img src="img7.png" class="img-fluid"></p>
+<p>The AUC (Area Under the Curve) is 0.94, which is pretty high and close to a desired value of 1! This represents that the model is able to separate the different classes well.</p>
+</section>
+<section id="b.-adaptive-boosting-adaboost" class="level3">
+<h3 class="anchored" data-anchor-id="b.-adaptive-boosting-adaboost">b. Adaptive Boosting (AdaBoost)</h3>
+<p>The second model we will be using is <strong>adaptive boosting</strong>. To be more specific, we are using adaptive boosting in conjuction with decision trees. One advantage of using decision trees are that just like SVC, they are able to work with complex data well. Moreover, decision trees are highly flexible and easy to interpret. However, decision trees are prone to overfitting and is unstable to noise. The advantages of AdaBoost include that they tend to produce higher accuracies by modifying the weights based on misclassified instances and that it is able to use a simple estimator such as decision trees as its base classifier.</p>
+<p>As we did with SVC, we will be tuning our (hyper)parameters using <code>GridSearchCV</code>. In this case, the grid of (hyper)parameters we prepared was setting <code>max_depth</code> to be one of <span class="math inline">\(4,8,12,16\)</span> and <code>n_estimators</code> to be one of <span class="math inline">\(25,50,75,100\)</span>. Note here that <code>max_depth</code> is a hyperparameter for decision trees (since decision trees are non-parametric) and <code>n_estimators</code> is a hyperparameter for AdaBoost itself. The results are as follows:</p>
+<p><img src="img8.png" class="img-fluid"></p>
+<p>Using the above table, we find that the hyperparameters <span class="math inline">\(16\)</span> and <span class="math inline">\(50\)</span>, respectively, give us the best mean score (the parameters are ordered the same way we input them). Using these hyperparameters, we get an accuracy score of <span class="math inline">\(\boxed{80.78\%}\)</span>, a value slightly lower than that resulting from SVC.</p>
+<p><img src="img9.png" class="img-fluid"></p>
+<p>The confusion matrix for AdaBoost gives us a similar result as that of SVC: the model does a poorer job trying to predict stars. But also, AdaBoost’s accuracy falls a bit lower than SVC’s due to having more misclassifications of galaxies.</p>
+<p><img src="img10.png" class="img-fluid"></p>
+<p>Using the same macro-average ROC method, we obtain the above graph. The above graph looks almost identical to that of SVC and even has the same AUC value of 0.94.</p>
+</section>
+<section id="c.-artificial-neural-network-ann" class="level3">
+<h3 class="anchored" data-anchor-id="c.-artificial-neural-network-ann">c.&nbsp;Artificial Neural Network (ANN)</h3>
+<p>The final model we will be using is an <strong>artificial neural network</strong>. We will be using Multi-layer perceptron (MLP) classifier, which is a part of ANN. The reason why ANN was chosen as one of the models was due to its versatility with respect to the hidden layer sizes. Also, as a deep learning architecture, performance keeps improving with more data. However, just as with SVM, computational cost is an issue for ANN, especially if there are numerous hidden layers.</p>
+<p>The parameters we prepared for MLP will allow for 12 different combinations. We have the parameter <code>activation</code> to be set either to <code>relu</code> or <code>tanh</code> and we have the 6 choices for the parameter <code>hidden_layer_sizes</code>: <span class="math inline">\((2,2),(3,3),(4,4),(2,4),(3,6),(4,8)\)</span>. Thus, we will be using two hidden layers regardless of which parameters display the best result.</p>
+<p><img src="img11.png" class="img-fluid"></p>
+<p>So, we use the parameters <code>tanh</code> and <span class="math inline">\((4,8)\)</span> and achieve the accuracy score of <span class="math inline">\(\boxed{81.72\%}\)</span>, which falls right in between the accuracies of SVM and AdaBoost.</p>
+<p><img src="img12.png" class="img-fluid"></p>
+<p>The confusion matrix also produces a similar result as the other two classifiers.</p>
+<p><img src="img13.png" class="img-fluid"></p>
+<p>The ROC curve also looks identical to the other two. The AUC value is also 0.94 for ANN.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">6. Conclusion</h2>
+<p>To summarize, we trained three different models (SVC, AdaBoost, and ANN) and used 3 error metrics for each model (accuracy score, confusion matrix, and ROC-AUC). The results were quite similar across all models. For example, the AUC value was the same for all three models at 0.94 and the ROC curves looked identical. The confusion matrix had subtle differences; however, it was a common characteristic that all three models had a difficult time classifying stars. Thus, we are only left with the accuracy scores to go off of. Ranking by the accuracy scores, SVC was the best classifier with about <span class="math inline">\(82.7\%\)</span> accuracy and AdaBoost was the worst with about <span class="math inline">\(80.8\%\)</span> accuracy. However, we must note that there is a tradeoff in achieving these accuracies. While it is true that SVC had the highest accuracy, the model took considerably longer when performing <code>GridSearchCV</code> and training. Considering the extra computational intensity, AdaBoost might not be the worst option as it only falls about <span class="math inline">\(2\%\)</span> short.</p>
+<p>Regardless of which model was truly the best, none of the models performed better than <span class="math inline">\(85\%\)</span>. As we saw in our exploratory data analysis, there were a lot of overlapping regions between the three object classes, which definitely made it difficult for the models to make accurate classifications. A future study could take a look at other feature variables and how they factor in with the values from the photometric system to improve the results.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">7. References</h2>
+<ol type="1">
+<li>https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17/data</li>
+<li>https://arxiv.org/abs/2112.02026</li>
+<li>https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html#one-vs-rest-multiclass-roc</li>
+</ol>
 
 
 </section>
