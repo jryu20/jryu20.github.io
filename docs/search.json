@@ -424,7 +424,7 @@
     "href": "about.html",
     "title": "Jun Ryu",
     "section": "",
-    "text": "Blog will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.\nPSets will feature some of my favorite problems in mathematics and statistics as well as my solutions.\nMisc will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment."
+    "text": "CV will outline my work experience/relevant academic experience and will include a downloadable resume (last updated March 2024).\nBlog will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.\nPSets will feature some of my favorite problems in mathematics and statistics as well as my solutions.\nMisc will contain anything that does not fall under the above three; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment."
   },
   {
     "objectID": "about.html#contact-me",
@@ -565,5 +565,61 @@
     "title": "Stellar Classification",
     "section": "7. References",
     "text": "7. References\n\nhttps://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17/data\nhttps://arxiv.org/abs/2112.02026\nhttps://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html#one-vs-rest-multiclass-roc"
+  },
+  {
+    "objectID": "CV.html",
+    "href": "CV.html",
+    "title": "Jun Ryu",
+    "section": "",
+    "text": "B.S. Applied Mathematics & Statistics/Data Science with a Specialization in Computing\nRelevant Coursework:\n\nPython with Applications (PIC 16A, 16B)\nApplied Numerical Methods (Math 151A, 151BH)\nLinear Algebra (Math 115A, 115B)\nAlgorithms (Math 182)\nMathematical Modeling (Math 142)\nData Analysis and Regression (Stats 101A)\nDesign and Analysis of Experiment (Stats 101B)\nStatistical Models and Data Mining (Stats 101C)\nComputational Statistics with R (Stats 102A)\nComputation and Optimization for Statistics (Stats 102B)\nMonte Carlo Methods (Stats 102C)\nText Mining Using R (Stats 133)\nPractice of Statistical Consulting (Stats 140XP)\nMachine Learning for Physical Sciences (AOS C111)"
+  },
+  {
+    "objectID": "CV.html#my-interests",
+    "href": "CV.html#my-interests",
+    "title": "Jun Ryu",
+    "section": "My Interests",
+    "text": "My Interests\nHere, you will find many of my current interests:\n\ndata wrangling/visualization  machine learning  mathematical modeling  music (both playing and listening!)  basketball \n\n… just to name a few."
+  },
+  {
+    "objectID": "CV.html#contact-me",
+    "href": "CV.html#contact-me",
+    "title": "Jun Ryu",
+    "section": "Contact Me!",
+    "text": "Contact Me!\nIf you have any questions or comments, feel free to send them to ryujunhee [at] ucla [dot] edu. I’d love to connect with you!"
+  },
+  {
+    "objectID": "CV.html#education",
+    "href": "CV.html#education",
+    "title": "Jun Ryu",
+    "section": "Education",
+    "text": "Education\nBlog will showcase long-term projects, data-oriented tutorials, and experimentations with different programming languages.\nPSets will feature some of my favorite problems in mathematics and statistics as well as my solutions.\nMisc will contain anything that does not fall under the above two; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment."
+  },
+  {
+    "objectID": "CV.html#download-my-resume",
+    "href": "CV.html#download-my-resume",
+    "title": "Jun Ryu",
+    "section": "Download My Resume",
+    "text": "Download My Resume\nClick the above link to download my resume/CV."
+  },
+  {
+    "objectID": "CV.html#work-experience",
+    "href": "CV.html#work-experience",
+    "title": "Jun Ryu",
+    "section": "Work Experience",
+    "text": "Work Experience\n\nIntern, The Stack\n\nWrote data-driven articles guided by multiple visualizations on topics relevant to the community\nUsed Visual Studio Code and JavaScript templates to create various plots\nFocused on data collection and data cleaning in order to extract meaningful analysis\n\n\n\nUndergraduate Teaching Assistant, Learning Assistant Program\n\nHandled the logistics of the Learning Assistant Program that aims to facilitate collaborative and inclusive learning in STEM (science, technology, engineering and mathematics) classrooms\nCreated and modified a Google Apps Script (written in JavaScript) in order to automate the feedback process of the Learning Assistants\n\n\n\nReader, UCLA Math Department\n\nProvided detailed feedback and graded students’ homework based on both completion and accuracy\nKept an organized record of over 1000 students’ grades across 6 different courses"
+  },
+  {
+    "objectID": "CV.html#projects",
+    "href": "CV.html#projects",
+    "title": "Jun Ryu",
+    "section": "Projects",
+    "text": "Projects\n\nStellar Classification\n\nDetermined an astronomical object based on its spectral characteristics (such as brightness) using classification models\nMain Components used: Support Vector Machine, Adaptive Boosting, Artificial Neural Network\n\n\n\nEffects of Various Substances on Memory\n\nIdentified the quantitative impact of various substances to memory cognition using statistical analysis, providing insights to the ongoing discourse on psychoactive substances\nMain Components used: ANOVA, G*Power, ggplot\n\n\n\nVisualizing Zillow Homes\n\nHelped the user understand and visualize the distribution of homes for sale on Zillow as well as estimate a home price based on its characteristics using machine learning (regression analysis)\nMain Components used: Zillow API, Flask, plotly, scikit-learn"
+  },
+  {
+    "objectID": "CV.html#relevant-experience",
+    "href": "CV.html#relevant-experience",
+    "title": "Jun Ryu",
+    "section": "Relevant Experience",
+    "text": "Relevant Experience\n\nWorkshop Lead, National Student Data Corps at UCLA\n\nLed workshops related to data visualization/machine learning by creating tutorials on Google Colab\n\n\n\nResearch Member, Bruin Sports Analytics\n\nWorked on a yearlong research project analyzing player trends in the NBA (National Basketball Association) using deep learning\n\n\n\nParticipant, ASA DataFest at UCLA\n\nParticipated in a 48-hour data analytics hackathon looking for any trends in the dataset regarding the American Bar Association’s Pro Bono service"
   }
 ]

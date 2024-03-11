@@ -1,0 +1,83 @@
+---
+comments: false
+---
+
+## Education
+
+### University of California, Los Angeles (UCLA)
+
+B.S. Applied Mathematics & Statistics/Data Science with a Specialization in Computing
+
+Relevant Coursework: 
+
+* Python with Applications (PIC 16A, 16B)
+* Applied Numerical Methods (Math 151A, 151BH)
+* Linear Algebra (Math 115A, 115B)
+* Algorithms (Math 182)
+* Mathematical Modeling (Math 142)
+* Data Analysis and Regression (Stats 101A)
+* Design and Analysis of Experiment (Stats 101B)
+* Statistical Models and Data Mining (Stats 101C)
+* Computational Statistics with R (Stats 102A)
+* Computation and Optimization for Statistics (Stats 102B)
+* Monte Carlo Methods (Stats 102C)
+* Text Mining Using R (Stats 133)
+* Practice of Statistical Consulting (Stats 140XP)
+* Machine Learning for Physical Sciences (AOS C111)
+
+## Work Experience
+
+### **Intern**, *The Stack*
+
+* Wrote data-driven articles guided by multiple visualizations on topics relevant to the community
+* Used Visual Studio Code and JavaScript templates to create various plots
+* Focused on data collection and data cleaning in order to extract meaningful analysis
+
+### **Undergraduate Teaching Assistant**, *Learning Assistant Program*
+
+* Handled the logistics of the Learning Assistant Program that aims to facilitate collaborative and inclusive learning in STEM (science, technology, engineering and mathematics) classrooms
+* Created and modified a Google Apps Script (written in JavaScript) in order to automate the feedback process of the Learning Assistants
+
+### **Reader**, *UCLA Math Department*
+
+* Provided detailed feedback and graded students' homework based on both completion and accuracy 
+* Kept an organized record of over 1000 students' grades across 6 different courses
+
+## Projects
+
+### Stellar Classification
+
+* Determined an astronomical object based on its spectral characteristics (such as brightness) using classification models
+* Main Components used: **Support Vector Machine, Adaptive Boosting, Artificial Neural Network**
+
+### Effects of Various Substances on Memory
+
+* Identified the quantitative impact of various substances to memory cognition using statistical analysis, providing insights to the ongoing discourse on psychoactive substances
+* Main Components used: **ANOVA, G\*Power, ggplot**
+
+### Visualizing Zillow Homes
+
+* Helped the user understand and visualize the distribution of homes for sale on Zillow as well as estimate a home price based on its characteristics using machine learning (regression analysis)
+* Main Components used: **Zillow API, Flask, plotly, scikit-learn**
+
+## Relevant Experience
+
+### **Workshop Lead**, *National Student Data Corps at UCLA*
+
+* Led workshops related to data visualization/machine learning by creating tutorials on Google Colab
+
+### **Research Member**, *Bruin Sports Analytics*
+
+* Worked on a yearlong research project analyzing player trends in the NBA (National Basketball Association) using deep learning
+
+### **Participant**, *ASA DataFest at UCLA*
+
+* Participated in a 48-hour data analytics hackathon looking for any trends in the dataset regarding the American Bar Association's Pro Bono service
+
+<br>
+
+## [Download My Resume](https://drive.google.com/file/d/16v0qnSrtUcAS-EnVHh1lNnySuJXWOFUE/view?usp=sharing)
+
+Click the above link to download my resume/CV.
+
+

@@ -8,9 +8,6 @@ about:
     - icon: instagram
       text: Instagram
       href: https://www.instagram.com/r.yujunhee
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
     - icon: github
       text: Github
       href: https://github.com/jryu20
