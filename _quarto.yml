@@ -15,7 +15,7 @@ website:
     right:
       - text: "About"
         file: about.qmd
-      - text: "CV"
+      - text: "C"
         file: CV.qmd
       - blog.qmd
       - psets.qmd
