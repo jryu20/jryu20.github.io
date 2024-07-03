@@ -16,7 +16,7 @@ website:
       - text: "About"
         file: about.qmd
       - text: "CV"
-        file: CV.qmd
+        file: cv.qmd
       - blog.qmd
       - psets.qmd
       - misc.qmd
@@ -32,6 +32,6 @@ format:
 
 comments:
   giscus:
-    repo: jryu20/quarto
+    repo: jryu20/jryu20.github.io
 
 
