@@ -4,8 +4,6 @@ project:
 
 website:
   title: "Jun Ryu"
-  favicon: favicon.jpg
-  site-url: https://jhryu.com
   page-footer:
     right: |
       ![signature](/posts/signature.png){width=100} <br>
@@ -27,6 +25,9 @@ website:
         href: https://www.instagram.com/r.yujunhee
 format:
   html:
+    include-in-header:
+      text: |
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
     theme: 
       light: flatly
       dark: darkly
