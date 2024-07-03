@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Jun Ryu"
-  favicon: favicon.png
+  favicon: favicon.jpg
   page-footer:
     right: |
       ![signature](/posts/signature.png){width=100} <br>
