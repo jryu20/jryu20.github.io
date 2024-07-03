@@ -17,6 +17,7 @@ website:
       - text: "CV"
         file: CV.qmd
       - blog.qmd
+      - projects.qmd
       - psets.qmd
       - misc.qmd
       - icon: github
