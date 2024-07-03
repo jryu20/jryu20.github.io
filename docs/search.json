@@ -586,5 +586,40 @@
     "title": "Blog",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nStellar Classification\n\n\n\nML\n\n\npython\n\n\nproject\n\n\n\n\n\n\n\nJun Ryu\n\n\nDec 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffects of Various Substances on Memory\n\n\n\nstatistics\n\n\nproject\n\n\n\n\n\n\n\nJun, Justin, Nathan, Samyi\n\n\nSep 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpectral Clustering. What is it?\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\nJun Ryu\n\n\nJun 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Zillow Homes\n\n\n\npython\n\n\nproject\n\n\nhtml\n\n\n\n\n\n\n\nAram, Emily, Jun, Ryan\n\n\nMar 24, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFake News Classification\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 15, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObjected Oriented Programming in R\n\n\n\nR\n\n\nOOP\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAre You a Dog or Cat Person?\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 28, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\nR\n\n\ntidyverse\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFlask Tutorial\n\n\n\npython\n\n\nsqlite\n\n\nhtml\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping with Scrapy\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotly: Pure Perfection\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 17, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClimate Data Visualization\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredator-Prey Dynamics\n\n\n\nmath\n\n\nmodeling\n\n\nproject\n\n\n\n\n\n\n\nJun, Kevin, Yuki\n\n\nNov 28, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdélie! Gentoo! Chinstrap!\n\n\n\npython\n\n\nvisualizations\n\n\nproject\n\n\nML\n\n\n\n\n\n\n\nJeremy, Jun, Meichen\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPalmer Penguins\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "Jun Ryu",
+    "section": "",
+    "text": "B.S. Applied Mathematics & Statistics/Data Science with a Specialization in Computing\nRelevant Coursework:\n\nPython with Applications (PIC 16A, 16B)\nApplied Numerical Methods (Math 151A, 151BH)\nLinear Algebra (Math 115A, 115B)\nAlgorithms (Math 182)\nMathematical Modeling (Math 142)\nData Analysis and Regression (Stats 101A)\nDesign and Analysis of Experiment (Stats 101B)\nStatistical Models and Data Mining (Stats 101C)\nComputational Statistics with R (Stats 102A)\nComputation and Optimization for Statistics (Stats 102B)\nMonte Carlo Methods (Stats 102C)\nText Mining Using R (Stats 133)\nPractice of Statistical Consulting (Stats 140XP)\nMachine Learning for Physical Sciences (AOS C111)"
+  },
+  {
+    "objectID": "cv.html#work-experience",
+    "href": "cv.html#work-experience",
+    "title": "Jun Ryu",
+    "section": "Work Experience",
+    "text": "Work Experience\n\nIntern, The Stack\n\nWrote data-driven articles guided by multiple visualizations on topics relevant to the community\nUsed Visual Studio Code and JavaScript templates to create various plots\nFocused on data collection and data cleaning in order to extract meaningful analysis\n\n\n\nUndergraduate Teaching Assistant, Learning Assistant Program\n\nHandled the logistics of the Learning Assistant Program that aims to facilitate collaborative and inclusive learning in STEM (science, technology, engineering and mathematics) classrooms\nCreated and modified a Google Apps Script (written in JavaScript) in order to automate the feedback process of the Learning Assistants\n\n\n\nReader, UCLA Math Department\n\nProvided detailed feedback and graded students’ homework based on both completion and accuracy\nKept an organized record of over 1000 students’ grades across 6 different courses"
+  },
+  {
+    "objectID": "cv.html#projects",
+    "href": "cv.html#projects",
+    "title": "Jun Ryu",
+    "section": "Projects",
+    "text": "Projects\n\nStellar Classification\n\nDetermined an astronomical object based on its spectral characteristics (such as brightness) using classification models\nMain Components used: Support Vector Machine, Adaptive Boosting, Artificial Neural Network\n\n\n\nEffects of Various Substances on Memory\n\nIdentified the quantitative impact of various substances to memory cognition using statistical analysis, providing insights to the ongoing discourse on psychoactive substances\nMain Components used: ANOVA, G*Power, ggplot\n\n\n\nVisualizing Zillow Homes\n\nHelped the user understand and visualize the distribution of homes for sale on Zillow as well as estimate a home price based on its characteristics using machine learning (regression analysis)\nMain Components used: Zillow API, Flask, plotly, scikit-learn"
+  },
+  {
+    "objectID": "cv.html#relevant-experience",
+    "href": "cv.html#relevant-experience",
+    "title": "Jun Ryu",
+    "section": "Relevant Experience",
+    "text": "Relevant Experience\n\nWorkshop Lead, National Student Data Corps at UCLA\n\nLed workshops related to data visualization/machine learning by creating tutorials on Google Colab\n\n\n\nResearch Member, Bruin Sports Analytics\n\nWorked on a yearlong research project analyzing player trends in the NBA (National Basketball Association) using deep learning\n\n\n\nParticipant, ASA DataFest at UCLA\n\nParticipated in a 48-hour data analytics hackathon looking for any trends in the dataset regarding the American Bar Association’s Pro Bono service"
+  },
+  {
+    "objectID": "cv.html#download-my-resume",
+    "href": "cv.html#download-my-resume",
+    "title": "Jun Ryu",
+    "section": "Download My Resume",
+    "text": "Download My Resume\nClick the above link to download my resume/CV."
   }
 ]
