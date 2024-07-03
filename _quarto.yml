@@ -27,8 +27,8 @@ format:
   html:
     include-in-header:
       text: |
-        <link rel="icon" href="favicon.ico?" type="image/x-icon">
-        <link rel="shortcut icon" href="favicon.ico?" type="image/x-icon">
+        <link rel="icon" href="https://jhryu.com/favicon.ico?" type="image/x-icon">
+        <link rel="shortcut icon" href="https://jhryu.com/favicon.ico?" type="image/x-icon">
     theme: 
       light: flatly
       dark: darkly
