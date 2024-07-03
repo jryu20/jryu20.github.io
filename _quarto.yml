@@ -5,6 +5,7 @@ project:
 website:
   title: "Jun Ryu"
   favicon: favicon.jpg
+  site-url: https://jhryu.com
   page-footer:
     right: |
       ![signature](/posts/signature.png){width=100} <br>
