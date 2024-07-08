@@ -557,7 +557,7 @@
     "href": "CV.html#projects",
     "title": "Jun Ryu",
     "section": "Projects",
-    "text": "Projects\n\nMajor League Baseball (MLB) Pitcher Analysis\n\nConducted an investigation to determine whether a pitcher’s spin rate predicts the risk of injury as part of a consulting project\nMain Components used: Multiple Linear Regression, Logistic Regression, Model Diagnostics\n\n\n\nStellar Classification\n\nDetermined an astronomical object based on its spectral characteristics using classification models\nMain Components used: Support Vector Machine, Adaptive Boosting, Artificial Neural Network\n\n\n\nEffects of Various Substances on Memory\n\nIdentified the quantitative impact of various substances on memory cognition through statistical analysis, providing valuable insights into the ongoing discourse on psychoactive substances\nMain Components used: ANOVA, G*Power, ggplot\n\n\n\nVisualizing Zillow Homes\n\nAssisted users in understanding and visualizing the distribution of homes for sale on Zillow, as well as estimating home prices based on their characteristics using machine learning\nMain Components used: Zillow API, Flask, plotly, scikit-learn, Regression Analysis"
+    "text": "Projects\n\nMajor League Baseball (MLB) Pitcher Analysis\n\nConducted an investigation to determine whether a pitcher’s spin rate predicts the risk of injury as part of a consulting project\nMain Components used: Multiple Linear Regression, Logistic Regression, Model Diagnostics\n\n\n\nClassifying Soccer Tweets\n\nAnalyzed tweets from 7 European soccer clubs to examine various sentiments and predict tweet origin based on textual content\nMain Components used: Quanteda, tf-idf, Bigrams, Sentiment Analysis, Latent Dirichlet Allocation, Random Forest\n\n\n\nAirbnb Landscape in LA\n\nProvided insights to Los Angeles Airbnb hosts on increasing profitability and created an interactive dashboard to help guests find the right listings\nMain Components used: Tableau, Logistic Regression, Topic Modeling\n\n\n\nStellar Classification\n\nDetermined an astronomical object based on its spectral characteristics using classification models\nMain Components used: Support Vector Machine, Adaptive Boosting, Artificial Neural Network\n\n\n\nEffects of Various Substances on Memory\n\nIdentified the quantitative impact of various substances on memory cognition through statistical analysis, providing valuable insights into the ongoing discourse on psychoactive substances\nMain Components used: ANOVA, G*Power, ggplot\n\n\n\nVisualizing Zillow Homes\n\nAssisted users in understanding and visualizing the distribution of homes for sale on Zillow, as well as estimating home prices based on their characteristics using machine learning\nMain Components used: Zillow API, Flask, plotly, scikit-learn, Regression Analysis"
   },
   {
     "objectID": "CV.html#relevant-experience",
@@ -578,14 +578,14 @@
     "href": "misc.html",
     "title": "Misc",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nAug 11, 2023\n\n\nSpotify Rewind 2022\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJul 8, 2024\n\n\nRecapping DataFest\n\n\nJun Ryu\n\n\n\n\nAug 11, 2023\n\n\nSpotify Rewind 2022\n\n\nJun Ryu\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpectral Clustering. What is it?\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\nJun Ryu\n\n\nJun 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFake News Classification\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 15, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObjected Oriented Programming in R\n\n\n\nR\n\n\nOOP\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAre You a Dog or Cat Person?\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 28, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\nR\n\n\ntidyverse\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFlask Tutorial\n\n\n\npython\n\n\nsqlite\n\n\nhtml\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping with Scrapy\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotly: Pure Perfection\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 17, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClimate Data Visualization\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPalmer Penguins\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nNSDC Sample Workshop\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nNov 20, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpectral Clustering. What is it?\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\nJun Ryu\n\n\nJun 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFake News Classification\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 15, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObjected Oriented Programming in R\n\n\n\nR\n\n\nOOP\n\n\n\n\n\n\n\nJun Ryu\n\n\nMar 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAre You a Dog or Cat Person?\n\n\n\npython\n\n\nML\n\n\ntensorflow\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 28, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\nR\n\n\ntidyverse\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFlask Tutorial\n\n\n\npython\n\n\nsqlite\n\n\nhtml\n\n\n\n\n\n\n\nJun Ryu\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping with Scrapy\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotly: Pure Perfection\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 17, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClimate Data Visualization\n\n\n\nsqlite\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPalmer Penguins\n\n\n\npython\n\n\nvisualizations\n\n\n\n\n\n\n\nJun Ryu\n\n\nJan 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "cv.html",
@@ -634,7 +634,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nStellar Classification\n\n\n\nML\n\n\npython\n\n\n\n\n\n\n\nJun Ryu\n\n\nDec 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffects of Various Substances on Memory\n\n\n\nstatistics\n\n\n\n\n\n\n\nJun, Justin, Nathan, Samyi\n\n\nSep 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Zillow Homes\n\n\n\npython\n\n\nhtml\n\n\n\n\n\n\n\nAram, Emily, Jun, Ryan\n\n\nMar 24, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredator-Prey Dynamics\n\n\n\nmath\n\n\nmodeling\n\n\n\n\n\n\n\nJun, Kevin, Yuki\n\n\nNov 28, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdélie! Gentoo! Chinstrap!\n\n\n\npython\n\n\nvisualizations\n\n\nML\n\n\n\n\n\n\n\nJeremy, Jun, Meichen\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEfficient Hyperparameter Tuning for Resource-Constrained Environments\n\n\n\npython\n\n\nresearch\n\n\ndeep learning\n\n\n\n\n\n\n\nEthan, Kelsey, Jun, Catherine\n\n\nJun 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAirbnb Landscape in LA\n\n\n\npython\n\n\nR\n\n\nTableau\n\n\nvisualizations\n\n\nML\n\n\nsentiment analysis\n\n\n\n\n\n\n\nPeike, Franklin, Jun, Khang, Audrey, Kiv\n\n\nMay 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifying Soccer Tweets\n\n\n\nR\n\n\nvisualizations\n\n\nML\n\n\nsentiment analysis\n\n\n\n\n\n\n\nNathan, Jun\n\n\nMar 24, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIMDB Sentiment Prediction\n\n\n\npython\n\n\nML\n\n\n\n\n\n\n\nMaika, Maneh, Aaron, Yuki, Andrew, Jun\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStellar Classification\n\n\n\nML\n\n\npython\n\n\n\n\n\n\n\nJun Ryu\n\n\nDec 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffects of Various Substances on Memory\n\n\n\nstatistics\n\n\n\n\n\n\n\nJun, Justin, Nathan, Samyi\n\n\nSep 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Zillow Homes\n\n\n\npython\n\n\nhtml\n\n\n\n\n\n\n\nAram, Emily, Jun, Ryan\n\n\nMar 24, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredator-Prey Dynamics\n\n\n\nmath\n\n\nmodeling\n\n\n\n\n\n\n\nJun, Kevin, Yuki\n\n\nNov 28, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdélie! Gentoo! Chinstrap!\n\n\n\npython\n\n\nvisualizations\n\n\nML\n\n\n\n\n\n\n\nJeremy, Jun, Meichen\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/stellar-classification/index.html",
@@ -718,7 +718,7 @@
     "href": "projects/predator-prey/index.html",
     "title": "Predator-Prey Dynamics",
     "section": "",
-    "text": "In this project, we explore a predator-prey relationship between ducks (predator), fish (prey), and a common food source (namely, an aquatic plant). In doing so, we split the model into 2 different phases: the first phase is with a constant population of the shared food source and the second is without.\n\nAttached below is the presentation that summarizes our findings."
+    "text": "In this project, we explore a predator-prey relationship between ducks (predator), fish (prey), and a common food source (namely, an aquatic plant). In doing so, we split the model into 2 different phases: the first phase is with a constant population of the shared food source and the second is without.\n\nAttached below is the presentation that summarizes our findings:"
   },
   {
     "objectID": "projects/palmer-project/index.html",
@@ -761,5 +761,61 @@
     "title": "Adélie! Gentoo! Chinstrap!",
     "section": "5. Discussion",
     "text": "5. Discussion\nOverall, all three of our models performed well, with scores of 0.983, 0.952, and 0.919 for multinomial logistic regression, random forests, and K nearest neighbors, respectively. The highest accuracy score was seen in the logistic regression model that used Island, Culmen Length, and Culmen Depth, so we recommend those as the ideal model and features for predicting penguin species.\nIncreasing the number of samples in the data would reduce the effect that outliers have on the data and lead to a more reliable prediction overall. It would also allow us to see if our logistic regression model really does predict species with a 98% accuracy rate and make sure that it was not due to a small sample size.\nMore data on Gentoo and Chinstrap penguins would also be helpful, since the majority of the current data set is Adelie penguins. They could also expand to more diverse islands, since Torgersen Island only housed Adelie penguins and not Gentoos or Chinstraps."
+  },
+  {
+    "objectID": "posts/nsdc-workshop/index.html",
+    "href": "posts/nsdc-workshop/index.html",
+    "title": "NSDC Sample Workshop",
+    "section": "",
+    "text": "Here is a sample workshop we held in Fall 2023, tailored for beginners and open to the general public. The workshop, titled “Analyzing Grade Distributions,” aimed to create a more engaging and interactive environment for attendees.\n\nAs workshop leads, we focused on active learning, enabling participants to code a meaningful and tangible product rather than passively listening to a presentation. This approach allowed attendees to leave with a presentable project, fostered creative problem-solving, and promoted collaboration.\nWe developed an original Jupyter notebook for attendees to work through and made the workshop relevant to UCLA students by focusing on a topic they care about: grade distributions. This fun exploration using Python enabled attendees to visualize grade distributions of their own classes based on past data.\nSince the workshop was meant for beginners, the Jupyter notebook provided to the attendees contained very detailed instructions and guidelines, including links to relevant documentation. More technical portions of the notebook were pre-filled by us, and we designed the tasks to be easy enough for individuals with no coding background to follow at a reasonable pace.\nThe Jupyter notebook (that contains the solutions) can be found here."
+  },
+  {
+    "objectID": "posts/nsdc-workshop/ind.html",
+    "href": "posts/nsdc-workshop/ind.html",
+    "title": "NSDC Sample Workshop",
+    "section": "",
+    "text": "Here is one sample workshop we held in Fall 2023 tailored for beginners! The workshop was open to the general public and this one was called “Analyzing Grade Distributions”.\n\nAs workshop leads, we wanted to create a more engaging, interactive environment where attendees can come and actually code up a meaningful, tangible product instead of listening to a set of slides then leaving. This active learning process will not only allow the attendees to leave with something presentable, but enable them to think creatively about problems posed to them. The Jupyter notebook we created was all our original work with an aim to create a relevance amongst the UCLA students (by focusing on what students seemingly care about the most: grade distributions)."
+  },
+  {
+    "objectID": "posts/datafest/index.html",
+    "href": "posts/datafest/index.html",
+    "title": "ASA DataFest Presentation",
+    "section": "",
+    "text": "Attached below is the presentation we submitted for ASA DataFest 2024 at UCLA. The topic was…"
+  },
+  {
+    "objectID": "projects/imdb-reviews/index.html",
+    "href": "projects/imdb-reviews/index.html",
+    "title": "IMDB Sentiment Prediction",
+    "section": "",
+    "text": "The Internet Movie Database (IMDB) offers extensive information on movies, TV shows, video games, and streaming content. It enables users to rate and review movies. The ‘IMDB Dataset of 50K Movie Reviews,’ intended for binary sentiment classification, includes only positive and negative ratings. Our goal is to examine the relationship between ratings and reviews and to predict sentiments using Logistic Regression, Logistic Regression with Stochastic Gradient Descent, K-Nearest Neighbors, and Random Forest models.\n\nAttached below is our report:"
+  },
+  {
+    "objectID": "projects/soccer-tweets/index.html",
+    "href": "projects/soccer-tweets/index.html",
+    "title": "Classifying Soccer Tweets",
+    "section": "",
+    "text": "The goal of this project was to analyze the collection of tweets from 7 European Soccer Clubs (AFC Ajax, AC Milan, FC Barcelona, FC Bayern, Juventus FC, Liverpool FC, Real Madrid) between January 2019 and July 2019. Specifically, we wanted to see the various tones/sentiments of the clubs’ tweets and determine how accurately we can predict the origin of the tweet based on its textual content. To conduct the analysis, we cleaned the data, found the term frequencies, ran sentiment analysis, and applied both unsupervised and supervised machine learning.\n\nAttached below is our report:"
+  },
+  {
+    "objectID": "projects/hyperparam-tuning/index.html",
+    "href": "projects/hyperparam-tuning/index.html",
+    "title": "Efficient Hyperparameter Tuning for Resource-Constrained Environments",
+    "section": "",
+    "text": "This study addresses the challenges posed by resource constraints, particularly on edge devices with limited computational power. Hyperparameter tuning is crucial for optimizing deep neural networks but is often computationally expensive. We propose an efficient framework using Latin Hypercube Sampling (LHS) and surrogate models like Gaussian Processes to reduce computational burden. This approach significantly reduces time while improving or maintaining model accuracy compared to traditional grid search methods.\n\nAttached below is our research findings:"
+  },
+  {
+    "objectID": "misc/datafest-24/index.html",
+    "href": "misc/datafest-24/index.html",
+    "title": "Recapping DataFest",
+    "section": "",
+    "text": "Working on this post…"
+  },
+  {
+    "objectID": "projects/airbnb-analysis/index.html",
+    "href": "projects/airbnb-analysis/index.html",
+    "title": "Airbnb Landscape in LA",
+    "section": "",
+    "text": "This project provides a comprehensive analysis of Airbnb listings and hosts in Los Angeles using data from Inside Airbnb. Key components include identifying predictors of becoming a superhost with logistic regression and random forest models, creating an interactive dashboard to help guests find suitable listings, and analyzing listings using sentiment analysis on reviews and topic modeling with LDA.\n\nAttached below is the presentation that summarizes our findings:"
   }
 ]

@@ -63,6 +63,16 @@ Relevant Coursework:
 * Conducted an investigation to determine whether a pitcher's spin rate predicts the risk of injury as part of a consulting project
 * Main Components used: **Multiple Linear Regression, Logistic Regression, Model Diagnostics**
 
+### Classifying Soccer Tweets
+
+* Analyzed tweets from 7 European soccer clubs to examine various sentiments and predict tweet origin based on textual content
+* Main Components used: **Quanteda, tf-idf, Bigrams, Sentiment Analysis, Latent Dirichlet Allocation, Random Forest**
+
+### Airbnb Landscape in LA
+
+* Provided insights to Los Angeles Airbnb hosts on increasing profitability and created an interactive dashboard to help guests find the right listings
+* Main Components used: **Tableau, Logistic Regression, Topic Modeling**
+
 ### Stellar Classification
 
 * Determined an astronomical object based on its spectral characteristics using classification models

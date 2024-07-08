@@ -10,12 +10,14 @@
   {
     "listing": "/misc.html",
     "items": [
+      "/misc/datafest-24/index.html",
       "/misc/spotify-22/musicchart.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/nsdc-workshop/index.html",
       "/posts/clustering/index.html",
       "/posts/fakenews/index.html",
       "/posts/OOP/index.html",
@@ -31,6 +33,10 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/hyperparam-tuning/index.html",
+      "/projects/airbnb-analysis/index.html",
+      "/projects/soccer-tweets/index.html",
+      "/projects/imdb-reviews/index.html",
       "/projects/stellar-classification/index.html",
       "/projects/memory-study/index.html",
       "/projects/zillow-blog/index.html",
