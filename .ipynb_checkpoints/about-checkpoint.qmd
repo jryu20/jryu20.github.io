@@ -1,0 +1,33 @@
+---
+comments: false
+---
+
+## This Site
+
+[CV](CV.html) will outline my work experience/relevant academic experience and will include a downloadable resume (last updated June 2024).
+
+[Blog](blog.html) will showcase data-oriented tutorials and experimentations with different programming languages/tools.
+
+[Projects](projects.html) will contain long-term projects that best represent my technical skills.
+
+[PSets](psets.html) will feature some of my favorite problems in mathematics and statistics as well as my solutions.
+
+[Misc](misc.html) will contain anything that does not fall under the above four; it will mostly be a jumble of my spontaneous thoughts and things I find intriguing at the moment.
+
+## My Interests
+
+Here, you will find many of my current interests: 
+
+>
+*data wrangling/visualization* <br><br>
+*machine learning* <br><br>
+*mathematical modeling* <br><br>
+[*music*](https://www.last.fm/user/icebearr) (both playing and listening!) <br><br>
+*basketball* <br><br>
+
+... just to name a few. <br>
+
+
+## Contact Me!
+
+If you have any questions or comments, feel free to send them to **ryujunhee [at] ucla [dot] edu**. I'd love to connect with you!
