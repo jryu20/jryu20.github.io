@@ -34,8 +34,10 @@
     "listing": "/projects.html",
     "items": [
       "/projects/hyperparam-tuning/index.html",
+      "/projects/pitcher-analysis/index.html",
       "/projects/airbnb-analysis/index.html",
       "/projects/soccer-tweets/index.html",
+      "/projects/heart-failure/index.html",
       "/projects/heart-disease/index.html",
       "/projects/imdb-reviews/index.html",
       "/projects/stellar-classification/index.html",
