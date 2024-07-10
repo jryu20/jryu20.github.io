@@ -284,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_blobs(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="va">None</span>, centers <span class="op">=</span> <span class="dv">2</span>, cluster_std <span class="op">=</span> <span class="fl">2.0</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947c78d9d0&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faef6120400&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
@@ -293,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Clustering</em> refers to the task of separating this data set into the two natural “blobs.” K-means is a very common way to achieve this task, which has good performance on circular-ish blobs like these:</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init <span class="op">=</span> <span class="st">"auto"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947ce3a550&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faef66cda00&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_moons(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, noise<span class="op">=</span><span class="fl">0.05</span>, random_state<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947cfb37c0&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faef6837eb0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
@@ -321,11 +321,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We can still make out two meaningful clusters in the data, but now they aren’t blobs but crescents. As before, the Euclidean coordinates of the data points are contained in the matrix <code>X</code>, while the labels of each point are contained in <code>y</code>. Now k-means won’t work so well, because k-means is, by design, looking for circular clusters.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init <span class="op">=</span> <span class="st">"auto"</span>)</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f947d206fa0&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faef6a80c40&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
@@ -586,61 +586,61 @@ Warning
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> transform(A, y)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.random.rand(n)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(orth_obj, z)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>z_min <span class="op">=</span> result.x</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>z_min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>array([-1.83363931e-03, -2.41710538e-03, -1.20226192e-03, -1.41758081e-03,
-       -9.85645864e-04, -1.23091162e-03, -5.85690924e-04, -8.67514274e-04,
-       -2.13363507e-03, -1.82275230e-03, -2.18410465e-03, -1.18182503e-03,
-       -1.12573569e-03, -2.27573913e-03, -2.49845111e-03, -2.32678030e-03,
-       -2.03869604e-03, -1.27316401e-03, -1.24225281e-03, -1.14288295e-03,
-       -2.24037253e-03, -1.12831398e-03, -2.25941115e-03, -1.41898598e-03,
-       -8.52871118e-04, -1.94379461e-03, -1.07881349e-03, -2.00285492e-03,
-       -2.16758843e-03, -1.20013076e-03, -1.00747518e-03, -2.04783063e-03,
-       -2.38495329e-03, -2.15588571e-03, -2.15346690e-03, -2.30818567e-03,
-       -8.52871117e-04, -2.46828992e-03, -2.33964356e-03, -1.16170816e-03,
-       -2.22253922e-03, -1.27174485e-03, -1.12822595e-03, -3.46851488e-04,
-       -9.25887377e-04, -1.41520836e-03, -1.27241376e-03, -2.31479528e-03,
-       -2.35165502e-03, -1.11530568e-03, -1.13554628e-03, -1.14961808e-03,
-       -2.25941115e-03, -2.21235864e-03, -7.09467445e-04, -1.15745784e-03,
-       -2.38254035e-03, -1.43650669e-03, -2.25741888e-03, -1.34604463e-03,
-       -4.20138485e-04, -1.11092535e-03, -2.05793167e-03, -1.25856296e-03,
-       -2.04525652e-03, -1.08288583e-03, -4.20137105e-04, -8.54366305e-04,
-       -1.42143144e-03, -2.33033499e-03, -2.03790090e-03, -2.38897307e-03,
-       -2.18990875e-03, -1.34300843e-03, -1.14333581e-03, -1.65981887e-03,
-       -1.93561374e-03, -1.27238395e-03, -2.39845900e-03, -1.09193946e-03,
-       -1.44543280e-03, -1.05106695e-03, -1.22165960e-03, -2.26391726e-03,
-       -2.25748494e-03, -2.33476211e-03, -2.15588571e-03, -1.35432579e-03,
-       -1.13228638e-03, -1.27211371e-03, -7.25774582e-04, -2.05793167e-03,
-       -1.17093782e-03, -1.13554628e-03, -1.43650734e-03, -1.82275230e-03,
-       -2.46828992e-03, -2.40313530e-03, -9.53961261e-04, -1.14961808e-03,
-       -2.47023064e-03, -2.35165502e-03, -2.31358643e-03, -6.55858666e-04,
-       -2.22993136e-03, -2.33808740e-03, -9.04983291e-04, -1.34574350e-03,
-       -2.35520055e-03, -2.26940338e-03, -9.81138612e-04, -1.23226012e-03,
-       -1.20423531e-03, -2.33200711e-03, -1.12902150e-03, -7.78452491e-04,
-        8.23457782e-05, -5.85694297e-04, -1.43650682e-03, -2.39011246e-03,
-       -2.60606277e-03, -1.20843845e-03, -2.22127811e-03, -2.30546869e-03,
-       -2.11887544e-03, -1.15351926e-03, -2.37703302e-03, -1.35926151e-03,
-       -2.04783063e-03, -1.43650717e-03, -1.00403850e-03, -5.85690315e-04,
-       -1.34604463e-03, -1.07246063e-03, -2.38606851e-03, -2.47182993e-03,
-       -2.32143351e-03, -2.07609848e-03, -2.22257682e-03, -1.55196736e-03,
-       -1.84564303e-03, -2.37810962e-03, -1.21766890e-03, -1.27596967e-03,
-       -1.62202776e-03, -1.21533336e-03, -1.03802326e-03, -1.23447236e-03,
-       -1.12849559e-03, -1.20803626e-03, -1.12822595e-03, -1.00403850e-03,
-       -1.14333581e-03, -1.94379461e-03, -2.50549836e-03, -4.20135287e-04,
-       -1.97571135e-03, -1.14961808e-03, -1.21533336e-03, -1.22165959e-03,
-       -2.42209324e-03, -2.24464800e-03, -1.08620784e-03, -1.35432579e-03,
-       -1.51461366e-03, -1.94379461e-03, -2.33808740e-03, -1.27596967e-03,
-       -5.85689966e-04, -4.45279297e-04, -2.53383008e-03, -1.16192726e-03,
-       -2.26940338e-03, -2.32109946e-03, -2.33476211e-03, -1.20105347e-03,
-       -1.20033435e-03, -1.23447236e-03, -1.41551282e-03, -2.30546869e-03,
-       -2.03869604e-03, -1.15084992e-03, -1.11092535e-03, -1.99748461e-03,
-       -2.13363507e-03, -2.05049163e-03, -9.86896127e-04, -2.15346690e-03,
-       -2.38254035e-03, -2.35165502e-03, -1.20105347e-03, -2.42209324e-03,
-       -9.86896127e-04, -2.52236526e-03, -2.27504770e-03, -2.32678030e-03,
-       -2.09440454e-03, -1.33509304e-03, -1.49829560e-03, -1.33646032e-03])</code></pre>
+<pre><code>array([ 33.56667894,  26.37316335, -21.39702164, -20.55071611,
+       -23.49521762, -22.22583467, -20.58454322, -20.56529733,
+        17.32151832,  12.92074237,  22.78649358, -21.6425766 ,
+        -3.93000947,  20.62219017,  30.48792501,  25.65359739,
+        19.53087355, -21.36003169, -24.4363914 , -22.78690083,
+        22.22146152,  10.64059859,  33.58854065, -20.60080751,
+       -26.02027458,  15.19921269, -20.69525676,  21.13293901,
+        18.95811059, -21.00525524, -20.68958909,  34.04993781,
+        25.19032729,  24.50867291,  18.27983536,  27.77539342,
+       -26.00158657,  33.13506718,  29.25427799, -22.3317278 ,
+        24.42996414, -21.21719816, -21.04328742, -25.90130481,
+       -25.78291401, -21.18474707, -21.30937214,  22.4242508 ,
+        30.07309516,   4.23764119, -21.26852308, -20.67189647,
+        33.57741684,  20.975337  , -26.22610425, -24.91284151,
+        27.89415393,  11.56344857,  33.17995203, -21.19698778,
+       -26.07863767, -24.07099584,  17.17040637, -21.31657182,
+        19.87883457, -22.43744228, -26.08559129, -25.75230516,
+       -21.37557797,  33.51214037,  28.39180555,  32.48717228,
+        33.55623108, -21.15625599, -25.56897992, -19.14888222,
+        14.92566763, -21.06860386,  33.22218498, -22.22972484,
+       -19.52092689, -23.70888334, -25.36223788,  23.17301992,
+        23.07437633,  29.08387663,  24.55973722, -21.17014922,
+       -21.52601955, -21.01648092, -20.87912299,  17.17576485,
+       -22.03067982, -21.27411166,  11.51371715,  12.93823407,
+        33.13294229,  28.90292165, -24.71950125, -20.66092009,
+        33.28195361,  30.07375766,  28.0527965 , -14.50319656,
+        24.82600383,  23.3097561 , -23.80433908, -20.75097155,
+        26.70245317,  20.45056606, -23.5815637 , -24.8964045 ,
+       -21.43036126,  25.8047085 , -21.15719993, -26.18143098,
+       -27.86492963, -20.53480694,  11.55026781,  25.45722698,
+        32.63447792, -23.05458713,  18.14553997,  31.47060664,
+        33.6672929 , -25.15117026,  27.62178804, -20.20282002,
+        33.97240791,  11.54809532, -25.58954778, -20.57088731,
+       -21.21076092, -21.04059505,  32.26086804,  33.3914734 ,
+        22.60475507,  21.19481961,  21.4986715 ,  34.09257895,
+        14.08214772,  31.64437103, -25.63123855, -21.32475067,
+        33.7862901 , -25.52134551, -24.07395441, -24.72590513,
+       -20.9547022 , -21.29166206, -21.0474039 , -25.59786566,
+       -25.58351664,  15.18748075,  30.77139142, -26.05066909,
+        33.98671044, -20.66262663, -25.5539579 , -25.43757765,
+        26.4635911 ,  28.12163816, -22.39866538, -21.17350504,
+        11.91792664,  15.23261131,  23.26120506, -21.3482099 ,
+       -20.5920695 , -20.57769699,  32.7390437 , -24.86264842,
+        20.4007099 ,  22.4301347 ,  29.0808605 , -21.3753384 ,
+       -21.07642789, -24.75473525, -20.63617456,  31.5161828 ,
+        19.54006394, -25.28257919, -24.04723688,  14.57176239,
+        17.28917035,  16.73722775, -21.79058334,  18.31688394,
+        27.92984478,  30.08404797, -21.33173509,  26.50436567,
+       -21.76764741,  31.85749159,  23.6364957 ,  25.68592432,
+        15.57119198, -21.19872538, -20.63305669, -21.10856242])</code></pre>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -672,7 +672,7 @@ Note
 <p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Hmm… Something looks off here. Let’s fix it!</p>
+<p>This looks great, but can we make the process quicker?</p>
 </section>
 <section id="part-f" class="level2">
 <h2 class="anchored" data-anchor-id="part-f">Part F</h2>
@@ -753,7 +753,7 @@ Note
 <p><img src="index_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>This looks a lot better!</p>
+<p>This looks essentially the same, but it took significantly less time!</p>
 </section>
 <section id="part-g" class="level2">
 <h2 class="anchored" data-anchor-id="part-g">Part G</h2>
@@ -833,7 +833,7 @@ Note
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> datasets.make_circles(n_samples<span class="op">=</span>n, shuffle<span class="op">=</span><span class="va">True</span>, noise<span class="op">=</span><span class="fl">0.05</span>, random_state<span class="op">=</span><span class="va">None</span>, factor <span class="op">=</span> <span class="fl">0.4</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f9451f5a940&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faed409fca0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
@@ -841,11 +841,11 @@ Note
 </div>
 <p>There are two concentric circles. As before k-means will not do well here at all.</p>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>, n_init<span class="op">=</span><span class="st">"auto"</span>)</span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>km.fit(X)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>], c <span class="op">=</span> km.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f94520a99d0&gt;</code></pre>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7faecdc1a520&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
